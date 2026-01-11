@@ -4,15 +4,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2025 DTC Treatment Assistant ()</title>
-<style> :root { --bg: #0f172a; --card: #111827; --muted: #94a3b8; --text: #e5e7eb; --good: #16a34a; --warn: #f59e0b; --bad: #ef4444; --accent: #22d3ee; } html, body { height: 100%; } body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; background: linear-gradient(180deg, #0b1022, #0f172a 40%); color: var(--text); } .wrap { max-width: 1200px; margin: 32px auto; padding: 0 16px; } .title { font-weight:700; font-size: 26px; letter-spacing: 0.2px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;} .badge { font-size: 12px; padding:4px 8px; border-radius:999px; background:#1f2937; color:var(--accent); border:1px solid #0ea5b7; } .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; } /* --- Layout polish (v1.0.1) --- */
+<title>Thyroid Ca (DTC) 2025 Decision Support Tool</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #111827;
+    --muted: #94a3b8;
+    --text: #e5e7eb;
+    --good: #16a34a;
+    --warn: #f59e0b;
+    --bad: #ef4444;
+    --accent: #22d3ee;
+  }
+  html, body { height: 100%; }
+  body {
+    margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+    background: linear-gradient(180deg, #0b1022, #0f172a 40%);
+    color: var(--text);
+  }
+  .wrap { max-width: 1200px; margin: 32px auto; padding: 0 16px; }
+  .title { font-weight:700; font-size: 26px; letter-spacing: 0.2px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .badge { font-size: 12px; padding:4px 8px; border-radius:999px; background:#1f2937; color:var(--accent); border:1px solid #0ea5b7; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  /* --- Layout polish (v1.0.1) --- */
 .grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-@media (min-width: 980px){ .grid { grid-template-columns: 1fr 1fr; }
+@media (min-width: 980px){
+  .grid { grid-template-columns: 1fr 1fr; }
 }
 .row { display:flex; gap:12px; flex-wrap:wrap; }
 .row > div { flex: 1 1 240px; min-width: 240px; }
 .row input, .row select { width:100%; }
-.card { background: rgba(17,24,39,0.85); border: 1px solid #1f2937; border-radius: 14px; padding: 16px; box-shadow: 0 6px 30px rgba(0,0,0,0.25); backdrop-filter: blur(4px); } .card h3 { margin: 0 0 10px; font-size: 16px; color: #e2e8f0; } label { display:block; font-size: 13px; color: var(--muted); margin: 12px 0 6px; } input[type="number"], select, input[type="text"] { width: 100%; padding: 10px 12px; border-radius:10px; border:1px solid #334155; background:#0b1324; color:var(--text); outline: none; transition: border 0.2s ease; } input[type="number"]:focus, select:focus, input[type="text"]:focus { border-color:#22d3ee; } .row { display:flex; gap:10px; } .row > div { flex:1; } .pill { display:inline-block; padding:6px 10px; border-radius:10px; border:1px solid #334155; margin:4px 6px 0 0; font-size:12px; color:#cbd5e1; } .cta { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg, #0891b2, #06b6d4); font-weight:700; padding: 12px 16px; border-radius:12px; color:#042f2e; border:none; cursor:pointer; margin-top:10px; } .cta.secondary { background:transparent; color:#e2e8f0; border:1px solid #334155; } .result { margin-top: 18px; } .tag { display:inline-block; padding:4px 8px; border-radius:999px; margin-right:6px; font-size:12px; border:1px solid #334155; color:#cbd5e1;} .tag.low { color:#10b981; border-color:#10b98133; } .tag.mid { color:#f59e0b; border-color:#f59e0b33; } .tag.high { color:#ef4444; border-color:#ef444433; } .section { margin-top: 12px; border-top:1px dashed #233048; padding-top: 12px; } .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0b1324; border:1px solid #1e293b; padding:10px 12px; border-radius:10px; overflow:auto; color:#e5e7eb; } .footer { margin-top: 26px; font-size:12px; color:#94a3b8; } .list { margin: 8px 0 0 18px; } .subhead { margin-top:12px; font-size:12px; text-transform:uppercase; letter-spacing: 0.08em; color:#93c5fd; display:flex; align-items:center; gap:8px;} .tip { font-size:12px; color:#93c5fd; } .info { font-size: 11px; color:#93c5fd; border:1px solid #1f3b68; padding:6px 8px; border-radius:8px; display:inline-block; margin-top:6px; } .toolbar { display:flex; gap:8px; flex-wrap:wrap; margin: 10px 0 0; } @media print { body { background:#fff; color:#000; } .card { background:#fff; border:1px solid #ccc; box-shadow:none; } .cta, .badge { display:none !important; } .footer { color:#000; } }
+.card {
+    background: rgba(17,24,39,0.85); border: 1px solid #1f2937; border-radius: 14px; padding: 16px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px);
+  }
+  .card h3 { margin: 0 0 10px; font-size: 16px; color: #e2e8f0; }
+  label { display:block; font-size: 13px; color: var(--muted); margin: 12px 0 6px; }
+  input[type="number"], select, input[type="text"] {
+    width: 100%; padding: 10px 12px; border-radius:10px; border:1px solid #334155; background:#0b1324; color:var(--text);
+    outline: none; transition: border 0.2s ease;
+  }
+  input[type="number"]:focus, select:focus, input[type="text"]:focus { border-color:#22d3ee; }
+  .row { display:flex; gap:10px; }
+  .row > div { flex:1; }
+  .pill { display:inline-block; padding:6px 10px; border-radius:10px; border:1px solid #334155; margin:4px 6px 0 0; font-size:12px; color:#cbd5e1; }
+  .cta {
+    display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg, #0891b2, #06b6d4);
+    font-weight:700; padding: 12px 16px; border-radius:12px; color:#042f2e; border:none; cursor:pointer; margin-top:10px;
+  }
+  .cta.secondary { background:transparent; color:#e2e8f0; border:1px solid #334155; }
+  .result { margin-top: 18px; }
+  .tag { display:inline-block; padding:4px 8px; border-radius:999px; margin-right:6px; font-size:12px; border:1px solid #334155; color:#cbd5e1;}
+  .tag.low { color:#10b981; border-color:#10b98133; }
+  .tag.mid { color:#f59e0b; border-color:#f59e0b33; }
+  .tag.high { color:#ef4444; border-color:#ef444433; }
+  .section { margin-top: 12px; border-top:1px dashed #233048; padding-top: 12px; }
+  .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0b1324; border:1px solid #1e293b;
+          padding:10px 12px; border-radius:10px; overflow:auto; color:#e5e7eb; }
+  .footer { margin-top: 26px; font-size:12px; color:#94a3b8; }
+  .list { margin: 8px 0 0 18px; }
+  .subhead { margin-top:12px; font-size:12px; text-transform:uppercase; letter-spacing: 0.08em; color:#93c5fd; display:flex; align-items:center; gap:8px;}
+  .tip { font-size:12px; color:#93c5fd; }
+  .info { font-size: 11px; color:#93c5fd; border:1px solid #1f3b68; padding:6px 8px; border-radius:8px; display:inline-block; margin-top:6px; }
+  .toolbar { display:flex; gap:8px; flex-wrap:wrap; margin: 10px 0 0; }
+  @media print {
+    body { background:#fff; color:#000; }
+    .card { background:#fff; border:1px solid #ccc; box-shadow:none; }
+    .cta, .badge { display:none !important; }
+    .footer { color:#000; }
+  }
 /* --- Histology Help Modal --- */
 .linkbtn { background:transparent; border:none; color:#93c5fd; font-size:12px; cursor:pointer; padding:0 4px; text-decoration:underline; }
 .modalOverlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); display:none; align-items:flex-start; justify-content:center; padding:24px; z-index:9999; }
@@ -25,43 +86,686 @@ details { border:1px solid #1f3b62; border-radius:12px; padding:10px 12px; margi
 summary { cursor:pointer; font-weight:800; }
 .k { color:#93c5fd; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; margin-top:10px; }
 .p { margin:6px 0 0; font-size:13px; color:#cfe3ff; line-height:1.45; }
-.muted2 { color:#9bb7da; font-size:12px; margin-top:10px; } /* --- Horizontal field alignment --- */
-.form-row { display: flex; gap: 12px; flex-wrap: wrap;
+.muted2 { color:#9bb7da; font-size:12px; margin-top:10px; }
+
+/* --- Horizontal field alignment --- */
+.form-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-.form-row > * { flex: 1 1 220px;
-} </style>
+.form-row > * {
+  flex: 1 1 220px;
+}
+
+</style>
 </head>
-<body> <div class="wrap"> <div class="title"> <div>2025 Differentiated Thyroid Cancer — Treatment Assistant</div> <div class="badge">v1.0.1</div> </div> <p style="color:#94a3b8; margin-top:6px;"> Decision support built around the 2025 guidelines (DATA model). This is an educational aide and not a substitute for clinical judgement. </p> <p style="color:#94a3b8; margin-top:4px; font-size:12px;"> Author &amp; Contact: <b style="color:#cfe3ff;">Professor Steven C. Boyages</b> • <a href="mailto:steve.boyages@gmail.com" style="color:#93c5fd; text-decoration:none;">steve.boyages@gmail.com</a>
-</p> <div class="toolbar"> <button class="cta" onclick="window.print()">Export Plan to PDF</button> </div> <div class="grid"> <div class="card"> <h3>Patient & Tumor Basics</h3> <label>Patient name (optional)</label> <input id="pname" type="text" placeholder="e.g., Norma S."> <label>Tumor size (cm)</label> <input id="size" type="number" step="0.1" min="0" value="1.2"/> <div class="row"> <div> <label>Intrathyroidal?</label> <select id="intrathyroidal"><option value="yes">Yes</option><option value="no">No</option></select> </div> <div> <label>Gross ETE present?</label> <select id="grossETE"><option value="no">No</option><option value="yes">Yes</option></select> </div> </div> <div class="row"> <div> <label>Histology <span class="tip" id="histologyTip" title="">ⓘ</span> <button type="button" class="linkbtn" id="histologyHelpBtn">Help</button></label> <select id="histology"> <option value="PTC">PTC</option> <option value="FTC">FTC</option> <option value="OTC">OTC</option> <option value="IEFVPTC">IEFVPTC</option> </select> </div> <div> <label>Vascular invasion (categorical) <span class="tip" title="Minimal=limited foci; Extensive=multiple/large-scale invasion. In FTC/OTC, ≥4 foci is typically considered extensive.">ⓘ</span></label> <select id="vascular"> <option value="none">None</option> <option value="minimal">Minimal (limited)</option> <option value="extensive">Extensive</option> </select> </div> </div> <div class="subhead">Pathology Findings</div> <div class="info">Record quantifiable features that refine 2025 recurrence risk (vascular foci, nodal number/size, ENE, margin).</div> <div class="row"> <div> <label>Number of vascular invasion foci (0–20) <span class="tip" title="FTC/OTC: ≥4 foci → High risk. PTC: any VI increases risk; ≥4 foci often treated as extensive.">ⓘ</span></label> <input id="viFoci" type="number" step="1" min="0" max="20" value="0"/> </div> <div> <label>Nodes involved (number) <span class="tip" title="≥6 nodes or largest ≥2 cm generally increases recurrence risk to at least Intermediate‑High.">ⓘ</span></label> <input id="nodes" type="number" step="1" min="0" value="0"/> </div> </div> <div class="row"> <div> <label>Largest metastatic lymph node (cm) <span class="tip" title="≥2 cm is associated with higher recurrence risk; micrometastases <0.2 cm may be very low risk.">ⓘ</span></label> <input id="largestNode" type="number" step="0.1" min="0" value="0"/> </div> <div> <label>Micrometastases only (&lt;2 mm) <span class="tip" title="If ≤5 micrometastatic nodes and largest &lt;0.2 cm, low-risk may be retained if other factors are favorable.">ⓘ</span></label> <select id="microOnly"><option value="no">No / Mixed</option><option value="yes">Yes (all &lt;2 mm)</option></select> </div> </div> <div class="row"> <div> <label>Extranodal extension (ENE) <span class="tip" title="Gross/clinical ENE is linked to higher recurrence and may justify upgrading risk.">ⓘ</span></label> <select id="ene"><option value="no">No</option><option value="yes">Yes</option></select> </div> <div> <label>Margin distance (mm, if R0) <span class="tip" title="Very close margins (&lt;1 mm) may increase local recurrence risk even if R0. R1=microscopic positive margin already handled.">ⓘ</span></label> <input id="marginmm" type="number" step="0.1" min="0" value="2"/> </div> </div> <div class="row"> <div> <label>Distant metastasis?</label> <select id="mets"><option value="no">No</option><option value="yes">Yes</option></select> </div> <div> <label>Resection status</label> <select id="resection"> <option value="R0">R0 (negative margin)</option> <option value="R1">R1 (microscopic +)</option> <option value="R2">R2 (gross residual)</option> </select> </div> </div> <div class="row"> <div> <label>Age</label> <input id="age" type="number" min="10" max="120" value="55"/> </div> </div> </div> <div class="card"> <h3>Molecular, Labs & Special</h3> <label>Actionable driver</label> <select id="driver"> <option value="none">None/Unknown</option> <option value="RET">RET fusion</option> <option value="NTRK">NTRK fusion</option> <option value="BRAF">BRAF V600E</option> <option value="ALK">ALK fusion</option> </select> <div class="row"> <div> <label>Post-op Tg trend</label> <select id="tgTrend"> <option value="undetectable">Undetectable/low</option> <option value="rising">Rising</option> </select> </div> <div> <label>TgAb</label> <select id="tgab"> <option value="negative">Negative</option> <option value="positive">Positive/variable</option> </select> </div> </div> <div class="row"> <div> <label>Pregnant?</label> <select id="preg"><option value="no">No</option><option value="yes">Yes</option></select> </div> <div> <label>Comorbidity burden</label> <select id="comorbid"> <option value="low">Low</option> <option value="high">High/frailty</option> </select> </div> </div> <div class="toolbar"> <button class="cta" onclick="run()">Generate Plan</button> <button type="button" class="cta secondary" id="raiHelpBtn">ⓘ RAI dosing help</button> <button class="cta secondary" onclick="resetForm()">Reset</button> </div> </div> <div class="card" id="output"> <h3>Plan & Rationale</h3> <div id="riskTags"></div> <div class="result" id="surgery"></div> <div class="section" id="rai"></div> <div class="section" id="follow"></div> <div class="section" id="advanced"></div> <div class="section" id="notes"></div> </div> </div> <div class="grid" style="margin-top:16px;"> <div class="card"> <h3>Target–Therapy Map (Quick Reference)</h3> <ul class="list" style="margin-top:6px;"> <li><strong>RET fusion</strong> → Selpercatinib / Pralsetinib</li> <li><strong>NTRK1/3 fusion</strong> → Larotrectinib / Entrectinib</li> <li><strong>BRAF V600E</strong> → Dabrafenib + Trametinib (consider redifferentiation)</li> <li><strong>ALK fusion</strong> → Alectinib</li> <li><strong>No driver</strong> → Lenvatinib (first-line MKI) or Sorafenib; consider trials</li> <li><strong>Optional biomarkers</strong>: TMB-H / MSI-H (rare) → consider ICI; PD-L1 not routine</li> </ul> </div> <div class="card"> <h3>Provenance & Cautions</h3> <div class="code">Simplified rules aligned to 2025. Always apply clinical judgment and MDT review for complex cases.</div> </div> </div> </div> <script>
-function classifyRisk(inputs){ const { size, intrathyroidal, grossETE, vascular, nodes, mets, resection, histology, viFoci, largestNode, microOnly, ene, marginmm } = inputs; // Highest tier triggers if (mets === 'yes' || grossETE === 'yes' || resection === 'R2') return { tier:'High', label:'High (>30%)', cls:'high' }; // FTC/OTC with extensive vascular invasion if ((histology === 'FTC' || histology === 'OTC') && viFoci >= 4) { return { tier:'High', label:'High (>30%)', cls:'high' }; } // ENE upgrade if (ene === 'yes') { return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' }; } // Node burden and size upgrade if (nodes >= 6 || largestNode >= 2.0) { return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' }; } // Close margin nuance (R0 but <1 mm) → bump to at least Low-Intermediate if any nodal disease const closeMarginBump = (resection === 'R0' && marginmm > 0 && marginmm < 1 && nodes > 0); // Micrometastases-only refinement: if otherwise low and ≤5 nodes and largest <0.2 cm, stay Low const microLowCandidate = (microOnly === 'yes' && nodes <= 5 && largestNode > 0 && largestNode < 0.2); // PTC/IEFVPTC vascular invasion effects if ((histology === 'PTC' || histology === 'IEFVPTC')) { if (viFoci >= 4 || vascular === 'extensive') { return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' }; } if (viFoci >= 1 || vascular === 'minimal') { if (intrathyroidal === 'no') { return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' }; } // at least low-intermediate return { tier: closeMarginBump ? 'Intermediate-High' : 'Low-Intermediate', label: closeMarginBump ? 'Intermediate-High (16–30%)' : 'Low-Intermediate (10–15%)', cls:'mid' }; } } // Generic rules if (resection === 'R1') return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' }; if (intrathyroidal === 'no') return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' }; if (vascular === 'minimal' || (nodes > 0 && nodes <= 5)) { if (microLowCandidate && !closeMarginBump) return { tier:'Low', label:'Low (<10%)', cls:'low' }; return { tier: closeMarginBump ? 'Intermediate-High' : 'Low-Intermediate', label: closeMarginBump ? 'Intermediate-High (16–30%)' : 'Low-Intermediate (10–15%)', cls:'mid' }; } if (size <= 4 && intrathyroidal === 'yes' && nodes === 0 && vascular === 'none' && resection === 'R0' && !closeMarginBump) { return { tier:'Low', label:'Low (<10%)', cls:'low' }; } return { tier: closeMarginBump ? 'Intermediate-High' : 'Low-Intermediate', label: closeMarginBump ? 'Intermediate-High (16–30%)' : 'Low-Intermediate (10–15%)', cls:'mid' };
-} function surgeryReco(risk, inputs){ const { size, intrathyroidal, nodes, comorbid } = inputs; let op = '', bullets = []; if (risk.tier === 'Low') { if (size <= 1 && intrathyroidal === 'yes' && nodes === 0) { op = 'Active surveillance OR Lobectomy'; bullets.push('Micro-PTC (≤1 cm) may be observed with 6–12 mo US.'); } else { op = 'Lobectomy ± isthmusectomy'; } } else if (risk.tier === 'Low-Intermediate') { op = 'Total thyroidectomy if bilateral disease or RAI anticipated; otherwise lobectomy can be considered.'; } else if (risk.tier === 'Intermediate-High' || risk.tier === 'High') { op = 'Total thyroidectomy'; bullets.push('Therapeutic central/lateral neck dissection if nodes are clinically involved.'); } if (comorbid === 'high') bullets.push('Consider de-intensification given comorbidity/frailty.'); return { op, bullets };
-} function raiReco(risk, inputs){ const { tgTrend, tgab, preg } = inputs; let title='', bullets=[], flag=''; if (preg === 'yes') { title = 'RAI: Contraindicated in pregnancy.'; bullets = ['Defer RAI; use surgery and ultrasound-based surveillance.', 'Coordinate with obstetrics.']; return { title, bullets, flag:'warn' }; } if (risk.tier === 'Low') { title = 'RAI: Not routinely recommended.'; bullets = ['No proven survival benefit in low-risk DTC.', 'Consider only if unusual high-risk features emerge.']; flag = 'good'; } else if (risk.tier === 'Low-Intermediate') { title = 'RAI: Consider selectively.'; bullets = ['Adjuvant RAI may be considered based on pathology and Tg trends.', 'If Tg rising or nodes present, therapeutic RAI may be reasonable.']; flag = 'warn'; } else if (risk.tier === 'Intermediate-High' || risk.tier === 'High') { title = 'RAI: Recommended (adjuvant/therapeutic).'; bullets = ['Use I-131 after TSH stimulation (rhTSH or withdrawal).', 'Low-iodine diet 1–2 weeks pre-therapy.', 'Post-therapy WBS ± SPECT/CT.']; flag = 'bad'; } if (tgab === 'positive') bullets.push('Interpret Tg trends cautiously (TgAb positive).'); if (tgTrend === 'rising') bullets.push('Rising Tg suggests persistent disease—consider imaging and RAI if appropriate.'); return { title, bullets, flag };
-} function followPlan(risk, inputs){ const { tgTrend } = inputs; let tsh='', visits='', imaging=[], labs = ['Tg + TgAb on LT4']; if (risk.tier === 'High' || tgTrend === 'rising') tsh = '<0.1 mIU/L'; else if (risk.tier === 'Intermediate-High') tsh = '0.1–0.5 mIU/L'; else tsh = '0.5–2.0 mIU/L'; visits = '6–12 months initially; extend if stable.'; imaging.push('Neck ultrasound 6–12 months, then q12–24 months if stable.'); if (tgTrend === 'rising') imaging.push('Diagnostic WBS or PET/CT if Tg-positive/scan-negative.'); return { tsh, visits, imaging, labs };
-} function advancedPlan(inputs){ const { driver } = inputs; if (driver === 'RET') return { title:'Targeted therapy (RET fusion): selpercatinib or pralsetinib.', cls:'bad' }; if (driver === 'NTRK') return { title:'Targeted therapy (NTRK fusion): larotrectinib or entrectinib.', cls:'bad' }; if (driver === 'BRAF') return { title:'Targeted therapy (BRAF V600E): dabrafenib + trametinib; consider redifferentiation strategy.', cls:'bad' }; if (driver === 'ALK') return { title:'Targeted therapy (ALK fusion): alectinib.', cls:'bad' }; return { title:'If RAI-refractory and no driver: lenvatinib (first-line) or sorafenib; consider clinical trials and redifferentiation therapy.', cls:'warn' };
-} function run(){ const inputs = getInputs(); const risk = classifyRisk(inputs); document.getElementById('riskTags').innerHTML = ` <span class="tag ${risk.cls}">Risk: ${risk.label}</span> <span class="tag">Histology: ${inputs.histology}</span> <span class="tag">Resection: ${inputs.resection}</span> <span class="tag">Nodes: ${inputs.nodes}</span> <span class="tag">Largest node: ${inputs.largestNode} cm</span> <span class="tag">VI foci: ${inputs.viFoci}</span> <span class="tag">ENE: ${inputs.ene}</span> <span class="tag">Margin: ${inputs.resection==='R0'?inputs.marginmm+' mm':'n/a'}</span> `; const s = surgeryReco(risk, inputs); document.getElementById('surgery').innerHTML = ` <div style="font-weight:700;margin-bottom:6px;">Surgery</div> <div>${s.op}</div> ${s.bullets.length ? `<ul class="list">${s.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''} `; const r = raiReco(risk, inputs); document.getElementById('rai').innerHTML = ` <div style="font-weight:700;margin-bottom:6px;">Radioactive Iodine (RAI)</div> <div style="margin-top:-4px; margin-bottom:6px;"><button type="button" class="linkbtn" onclick="openRAIHelp()">RAI activity guidance</button></div> <div>${r.title}</div> ${r.bullets.length ? `<ul class="list">${r.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''} `; const f = followPlan(risk, inputs); document.getElementById('follow').innerHTML = ` <div style="font-weight:700;margin-bottom:6px;">Follow-up & TSH Targets</div> <div><strong>TSH:</strong> ${f.tsh}</div> <div><strong>Visits:</strong> ${f.visits}</div> <div><strong>Labs:</strong> ${f.labs.join(', ')}</div> <div><strong>Imaging:</strong></div> <ul class="list">${f.imaging.map(i=>`<li>${i}</li>`).join('')}</ul> `; const a = advancedPlan(inputs); document.getElementById('advanced').innerHTML = ` <div style="font-weight:700;margin-bottom:6px;">Advanced / RAI-Refractory Pathway</div> <div>${a.title}</div> `; document.getElementById('notes').innerHTML = ` <div style="font-weight:700;margin-bottom:6px;">Notes</div> <div class="code"> DATA model: Diagnosis → Assessment → Treatment → Assessment of response. Path refinements: VI foci, nodal number/size, ENE, and margin distance influence 2025 risk tier. </div> `;
-} function getInputs(){ return { pname: document.getElementById('pname').value.trim(), size: parseFloat(document.getElementById('size').value||'0'), intrathyroidal: document.getElementById('intrathyroidal').value, grossETE: document.getElementById('grossETE').value, vascular: document.getElementById('vascular').value, viFoci: parseInt(document.getElementById('viFoci').value||'0'), nodes: parseInt(document.getElementById('nodes').value||'0'), largestNode: parseFloat(document.getElementById('largestNode').value||'0'), microOnly: document.getElementById('microOnly').value, ene: document.getElementById('ene').value, marginmm: parseFloat(document.getElementById('marginmm').value||'0'), mets: document.getElementById('mets').value, resection: document.getElementById('resection').value, histology: document.getElementById('histology').value, age: parseInt(document.getElementById('age').value||'0'), driver: document.getElementById('driver').value, tgTrend: document.getElementById('tgTrend').value, tgab: document.getElementById('tgab').value, preg: document.getElementById('preg').value, comorbid: document.getElementById('comorbid').value, };
-} function resetForm(){ document.getElementById('pname').value = ""; document.getElementById('size').value = "1.2"; document.getElementById('intrathyroidal').value = "yes"; document.getElementById('grossETE').value = "no"; document.getElementById('histology').value = "PTC"; document.getElementById('vascular').value = "none"; document.getElementById('viFoci').value = "0"; document.getElementById('nodes').value = "0"; document.getElementById('largestNode').value = "0"; document.getElementById('microOnly').value = "no"; document.getElementById('ene').value = "no"; document.getElementById('marginmm').value = "2"; document.getElementById('mets').value = "no"; document.getElementById('resection').value = "R0"; document.getElementById('age').value = "55"; document.getElementById('driver').value = "none"; document.getElementById('tgTrend').value = "undetectable"; document.getElementById('tgab').value = "negative"; document.getElementById('preg').value = "no"; document.getElementById('comorbid').value = "low"; ['riskTags','surgery','rai','follow','advanced','notes'].forEach(id=>{ const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+<body>
+  <div class="wrap">
+    <div class="title">
+      <div>Thyroid Ca (DTC) 2025 Decision Support Tool</div>
+      <div class="badge">v1.0.1</div>
+    </div>
+    <p style="color:#94a3b8; margin-top:6px;">
+      Decision support built around the 2025 ATA guidelines (DATA model). This is an educational aide and not a substitute for clinical judgement.
+    </p>
+
+<p style="color:#94a3b8; margin-top:4px; font-size:12px;">
+  Author &amp; Contact: <b style="color:#cfe3ff;">Professor Steven C. Boyages</b> •
+  <a href="mailto:steve.boyages@gmail.com" style="color:#93c5fd; text-decoration:none;">steve.boyages@gmail.com</a>
+</p>
+
+
+    <div class="toolbar">
+      <button class="cta" onclick="window.print()">Export Plan to PDF</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Patient & Tumor Basics</h3>
+        <label>Patient name (optional)</label>
+        <input id="pname" type="text" placeholder="e.g., Norma S.">
+        <label>Tumor size (cm)</label>
+        <input id="size" type="number" step="0.1" min="0" value="1.2"/>
+        <div class="row">
+          <div>
+            <label>Intrathyroidal?</label>
+            <select id="intrathyroidal"><option value="yes">Yes</option><option value="no">No</option></select>
+          </div>
+          <div>
+            <label>Gross ETE present?</label>
+            <select id="grossETE"><option value="no">No</option><option value="yes">Yes</option></select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Histology <span class="tip" id="histologyTip" title="">ⓘ</span> <button type="button" class="linkbtn" id="histologyHelpBtn">Help</button></label>
+            <select id="histology">
+              <option value="PTC">PTC</option>
+              <option value="FTC">FTC</option>
+              <option value="OTC">OTC</option>
+              <option value="IEFVPTC">IEFVPTC</option>
+            </select>
+          </div>
+          <div>
+            <label>Vascular invasion (categorical) <span class="tip" title="Minimal=limited foci; Extensive=multiple/large-scale invasion. In FTC/OTC, ≥4 foci is typically considered extensive.">ⓘ</span></label>
+            <select id="vascular">
+              <option value="none">None</option>
+              <option value="minimal">Minimal (limited)</option>
+              <option value="extensive">Extensive</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="subhead">Pathology Findings</div>
+        <div class="info">Record quantifiable features that refine ATA 2025 recurrence risk (vascular foci, nodal number/size, ENE, margin).</div>
+        <div class="row">
+          <div>
+            <label>Number of vascular invasion foci (0–20) <span class="tip" title="FTC/OTC: ≥4 foci → High risk. PTC: any VI increases risk; ≥4 foci often treated as extensive.">ⓘ</span></label>
+            <input id="viFoci" type="number" step="1" min="0" max="20" value="0"/>
+          </div>
+          <div>
+            <label>Nodes involved (number) <span class="tip" title="≥6 nodes or largest ≥2 cm generally increases recurrence risk to at least Intermediate‑High.">ⓘ</span></label>
+            <input id="nodes" type="number" step="1" min="0" value="0"/>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Largest metastatic lymph node (cm) <span class="tip" title="≥2 cm is associated with higher recurrence risk; micrometastases <0.2 cm may be very low risk.">ⓘ</span></label>
+            <input id="largestNode" type="number" step="0.1" min="0" value="0"/>
+          </div>
+          <div>
+            <label>Micrometastases only (&lt;2 mm) <span class="tip" title="If ≤5 micrometastatic nodes and largest &lt;0.2 cm, low-risk may be retained if other factors are favorable.">ⓘ</span></label>
+            <select id="microOnly"><option value="no">No / Mixed</option><option value="yes">Yes (all &lt;2 mm)</option></select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Extranodal extension (ENE) <span class="tip" title="Gross/clinical ENE is linked to higher recurrence and may justify upgrading risk.">ⓘ</span></label>
+            <select id="ene"><option value="no">No</option><option value="yes">Yes</option></select>
+          </div>
+          <div>
+            <label>Margin distance (mm, if R0) <span class="tip" title="Very close margins (&lt;1 mm) may increase local recurrence risk even if R0. R1=microscopic positive margin already handled.">ⓘ</span></label>
+            <input id="marginmm" type="number" step="0.1" min="0" value="2"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Distant metastasis?</label>
+            <select id="mets"><option value="no">No</option><option value="yes">Yes</option></select>
+          </div>
+          <div>
+            <label>Resection status</label>
+            <select id="resection">
+              <option value="R0">R0 (negative margin)</option>
+              <option value="R1">R1 (microscopic +)</option>
+              <option value="R2">R2 (gross residual)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Age</label>
+            <input id="age" type="number" min="10" max="120" value="55"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Molecular, Labs & Special</h3>
+        <label>Actionable driver</label>
+        <select id="driver">
+          <option value="none">None/Unknown</option>
+          <option value="RET">RET fusion</option>
+          <option value="NTRK">NTRK fusion</option>
+          <option value="BRAF">BRAF V600E</option>
+          <option value="ALK">ALK fusion</option>
+        </select>
+        <div class="row">
+          <div>
+            <label>Post-op Tg trend</label>
+            <select id="tgTrend">
+              <option value="undetectable">Undetectable/low</option>
+              <option value="rising">Rising</option>
+            </select>
+          </div>
+          <div>
+            <label>TgAb</label>
+            <select id="tgab">
+              <option value="negative">Negative</option>
+              <option value="positive">Positive/variable</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Pregnant?</label>
+            <select id="preg"><option value="no">No</option><option value="yes">Yes</option></select>
+          </div>
+          <div>
+            <label>Comorbidity burden</label>
+            <select id="comorbid">
+              <option value="low">Low</option>
+              <option value="high">High/frailty</option>
+            </select>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="cta" onclick="run()">Generate Plan</button>
+          <button type="button" class="cta secondary" id="raiHelpBtn">ⓘ RAI dosing help</button>
+          <button class="cta secondary" onclick="resetForm()">Reset</button>
+        </div>
+      </div>
+
+      <div class="card" id="output">
+        <h3>Plan & Rationale</h3>
+        <div id="riskTags"></div>
+        <div class="result" id="surgery"></div>
+        <div class="section" id="rai"></div>
+        <div class="section" id="follow"></div>
+        <div class="section" id="advanced"></div>
+        <div class="section" id="notes"></div>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:16px;">
+      <div class="card">
+        <h3>Target–Therapy Map (Quick Reference)</h3>
+        <ul class="list" style="margin-top:6px;">
+          <li><strong>RET fusion</strong> → Selpercatinib / Pralsetinib</li>
+          <li><strong>NTRK1/3 fusion</strong> → Larotrectinib / Entrectinib</li>
+          <li><strong>BRAF V600E</strong> → Dabrafenib + Trametinib (consider redifferentiation)</li>
+          <li><strong>ALK fusion</strong> → Alectinib</li>
+          <li><strong>No driver</strong> → Lenvatinib (first-line MKI) or Sorafenib; consider trials</li>
+          <li><strong>Optional biomarkers</strong>: TMB-H / MSI-H (rare) → consider ICI; PD-L1 not routine</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Provenance & Cautions</h3>
+        <div class="code">Simplified rules aligned to ATA 2025. Always apply clinical judgment and MDT review for complex cases.</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+function classifyRisk(inputs){
+  const { size, intrathyroidal, grossETE, vascular, nodes, mets, resection, histology, viFoci, largestNode, microOnly, ene, marginmm } = inputs;
+
+  // Highest tier triggers
+  if (mets === 'yes' || grossETE === 'yes' || resection === 'R2') return { tier:'High', label:'High (>30%)', cls:'high' };
+
+  // FTC/OTC with extensive vascular invasion
+  if ((histology === 'FTC' || histology === 'OTC') && viFoci >= 4) {
+    return { tier:'High', label:'High (>30%)', cls:'high' };
+  }
+
+  // ENE upgrade
+  if (ene === 'yes') {
+    return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' };
+  }
+
+  // Node burden and size upgrade
+  if (nodes >= 6 || largestNode >= 2.0) {
+    return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' };
+  }
+
+  // Close margin nuance (R0 but <1 mm) → bump to at least Low-Intermediate if any nodal disease
+  const closeMarginBump = (resection === 'R0' && marginmm > 0 && marginmm < 1 && nodes > 0);
+
+  // Micrometastases-only refinement: if otherwise low and ≤5 nodes and largest <0.2 cm, stay Low
+  const microLowCandidate = (microOnly === 'yes' && nodes <= 5 && largestNode > 0 && largestNode < 0.2);
+
+  // PTC/IEFVPTC vascular invasion effects
+  if ((histology === 'PTC' || histology === 'IEFVPTC')) {
+    if (viFoci >= 4 || vascular === 'extensive') {
+      return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' };
+    }
+    if (viFoci >= 1 || vascular === 'minimal') {
+      if (intrathyroidal === 'no') {
+        return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' };
+      }
+      // at least low-intermediate
+      return { tier: closeMarginBump ? 'Intermediate-High' : 'Low-Intermediate', label: closeMarginBump ? 'Intermediate-High (16–30%)' : 'Low-Intermediate (10–15%)', cls:'mid' };
+    }
+  }
+
+  // Generic rules
+  if (resection === 'R1') return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' };
+  if (intrathyroidal === 'no') return { tier:'Intermediate-High', label:'Intermediate-High (16–30%)', cls:'mid' };
+  if (vascular === 'minimal' || (nodes > 0 && nodes <= 5)) {
+    if (microLowCandidate && !closeMarginBump) return { tier:'Low', label:'Low (<10%)', cls:'low' };
+    return { tier: closeMarginBump ? 'Intermediate-High' : 'Low-Intermediate', label: closeMarginBump ? 'Intermediate-High (16–30%)' : 'Low-Intermediate (10–15%)', cls:'mid' };
+  }
+  if (size <= 4 && intrathyroidal === 'yes' && nodes === 0 && vascular === 'none' && resection === 'R0' && !closeMarginBump) {
+    return { tier:'Low', label:'Low (<10%)', cls:'low' };
+  }
+  return { tier: closeMarginBump ? 'Intermediate-High' : 'Low-Intermediate', label: closeMarginBump ? 'Intermediate-High (16–30%)' : 'Low-Intermediate (10–15%)', cls:'mid' };
+}
+
+function surgeryReco(risk, inputs){
+  const { size, intrathyroidal, nodes, comorbid } = inputs;
+  let op = '', bullets = [];
+  if (risk.tier === 'Low') {
+    if (size <= 1 && intrathyroidal === 'yes' && nodes === 0) {
+      op = 'Active surveillance OR Lobectomy';
+      bullets.push('Micro-PTC (≤1 cm) may be observed with 6–12 mo US.');
+    } else {
+      op = 'Lobectomy ± isthmusectomy';
+    }
+  } else if (risk.tier === 'Low-Intermediate') {
+    op = 'Total thyroidectomy if bilateral disease or RAI anticipated; otherwise lobectomy can be considered.';
+  } else if (risk.tier === 'Intermediate-High' || risk.tier === 'High') {
+    op = 'Total thyroidectomy';
+    bullets.push('Therapeutic central/lateral neck dissection if nodes are clinically involved.');
+  }
+  if (comorbid === 'high') bullets.push('Consider de-intensification given comorbidity/frailty.');
+  return { op, bullets };
+}
+
+function raiReco(risk, inputs){
+  const { tgTrend, tgab, preg } = inputs;
+  let title='', bullets=[], flag='';
+  if (preg === 'yes') {
+    title = 'RAI: Contraindicated in pregnancy.';
+    bullets = ['Defer RAI; use surgery and ultrasound-based surveillance.', 'Coordinate with obstetrics.'];
+    return { title, bullets, flag:'warn' };
+  }
+  if (risk.tier === 'Low') {
+    title = 'RAI: Not routinely recommended.';
+    bullets = ['No proven survival benefit in low-risk DTC.', 'Consider only if unusual high-risk features emerge.'];
+    flag = 'good';
+  } else if (risk.tier === 'Low-Intermediate') {
+    title = 'RAI: Consider selectively.';
+    bullets = ['Adjuvant RAI may be considered based on pathology and Tg trends.', 'If Tg rising or nodes present, therapeutic RAI may be reasonable.'];
+    flag = 'warn';
+  } else if (risk.tier === 'Intermediate-High' || risk.tier === 'High') {
+    title = 'RAI: Recommended (adjuvant/therapeutic).';
+    bullets = ['Use I-131 after TSH stimulation (rhTSH or withdrawal).', 'Low-iodine diet 1–2 weeks pre-therapy.', 'Post-therapy WBS ± SPECT/CT.'];
+    flag = 'bad';
+  }
+  if (tgab === 'positive') bullets.push('Interpret Tg trends cautiously (TgAb positive).');
+  if (tgTrend === 'rising') bullets.push('Rising Tg suggests persistent disease—consider imaging and RAI if appropriate.');
+  return { title, bullets, flag };
+}
+
+function followPlan(risk, inputs){
+  const { tgTrend } = inputs;
+  let tsh='', visits='', imaging=[], labs = ['Tg + TgAb on LT4'];
+  if (risk.tier === 'High' || tgTrend === 'rising') tsh = '<0.1 mIU/L';
+  else if (risk.tier === 'Intermediate-High') tsh = '0.1–0.5 mIU/L';
+  else tsh = '0.5–2.0 mIU/L';
+
+  visits = '6–12 months initially; extend if stable.';
+  imaging.push('Neck ultrasound 6–12 months, then q12–24 months if stable.');
+  if (tgTrend === 'rising') imaging.push('Diagnostic WBS or PET/CT if Tg-positive/scan-negative.');
+  return { tsh, visits, imaging, labs };
+}
+
+function advancedPlan(inputs){
+  const { driver } = inputs;
+  if (driver === 'RET') return { title:'Targeted therapy (RET fusion): selpercatinib or pralsetinib.', cls:'bad' };
+  if (driver === 'NTRK') return { title:'Targeted therapy (NTRK fusion): larotrectinib or entrectinib.', cls:'bad' };
+  if (driver === 'BRAF') return { title:'Targeted therapy (BRAF V600E): dabrafenib + trametinib; consider redifferentiation strategy.', cls:'bad' };
+  if (driver === 'ALK') return { title:'Targeted therapy (ALK fusion): alectinib.', cls:'bad' };
+  return { title:'If RAI-refractory and no driver: lenvatinib (first-line) or sorafenib; consider clinical trials and redifferentiation therapy.', cls:'warn' };
+}
+
+function run(){
+  const inputs = getInputs();
+  const risk = classifyRisk(inputs);
+  document.getElementById('riskTags').innerHTML = `
+    <span class="tag ${risk.cls}">Risk: ${risk.label}</span>
+    <span class="tag">Histology: ${inputs.histology}</span>
+    <span class="tag">Resection: ${inputs.resection}</span>
+    <span class="tag">Nodes: ${inputs.nodes}</span>
+    <span class="tag">Largest node: ${inputs.largestNode} cm</span>
+    <span class="tag">VI foci: ${inputs.viFoci}</span>
+    <span class="tag">ENE: ${inputs.ene}</span>
+    <span class="tag">Margin: ${inputs.resection==='R0'?inputs.marginmm+' mm':'n/a'}</span>
+  `;
+
+  const s = surgeryReco(risk, inputs);
+  document.getElementById('surgery').innerHTML = `
+    <div style="font-weight:700;margin-bottom:6px;">Surgery</div>
+    <div>${s.op}</div>
+    ${s.bullets.length ? `<ul class="list">${s.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}
+  `;
+
+  const r = raiReco(risk, inputs);
+  document.getElementById('rai').innerHTML = `
+    <div style="font-weight:700;margin-bottom:6px;">Radioactive Iodine (RAI)</div>
+    <div style="margin-top:-4px; margin-bottom:6px;"><button type="button" class="linkbtn" onclick="openRAIHelp()">RAI activity guidance</button></div>
+    <div>${r.title}</div>
+    ${r.bullets.length ? `<ul class="list">${r.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}
+  `;
+
+  const f = followPlan(risk, inputs);
+  document.getElementById('follow').innerHTML = `
+    <div style="font-weight:700;margin-bottom:6px;">Follow-up & TSH Targets</div>
+    <div><strong>TSH:</strong> ${f.tsh}</div>
+    <div><strong>Visits:</strong> ${f.visits}</div>
+    <div><strong>Labs:</strong> ${f.labs.join(', ')}</div>
+    <div><strong>Imaging:</strong></div>
+    <ul class="list">${f.imaging.map(i=>`<li>${i}</li>`).join('')}</ul>
+  `;
+
+  const a = advancedPlan(inputs);
+  document.getElementById('advanced').innerHTML = `
+    <div style="font-weight:700;margin-bottom:6px;">Advanced / RAI-Refractory Pathway</div>
+    <div>${a.title}</div>
+  `;
+
+  document.getElementById('notes').innerHTML = `
+    <div style="font-weight:700;margin-bottom:6px;">Notes</div>
+    <div class="code">
+      DATA model: Diagnosis → Assessment → Treatment → Assessment of response.
+      Path refinements: VI foci, nodal number/size, ENE, and margin distance influence ATA 2025 risk tier.
+    </div>
+  `;
+}
+
+function getInputs(){
+  return {
+    pname: document.getElementById('pname').value.trim(),
+    size: parseFloat(document.getElementById('size').value||'0'),
+    intrathyroidal: document.getElementById('intrathyroidal').value,
+    grossETE: document.getElementById('grossETE').value,
+    vascular: document.getElementById('vascular').value,
+    viFoci: parseInt(document.getElementById('viFoci').value||'0'),
+    nodes: parseInt(document.getElementById('nodes').value||'0'),
+    largestNode: parseFloat(document.getElementById('largestNode').value||'0'),
+    microOnly: document.getElementById('microOnly').value,
+    ene: document.getElementById('ene').value,
+    marginmm: parseFloat(document.getElementById('marginmm').value||'0'),
+    mets: document.getElementById('mets').value,
+    resection: document.getElementById('resection').value,
+    histology: document.getElementById('histology').value,
+    age: parseInt(document.getElementById('age').value||'0'),
+    driver: document.getElementById('driver').value,
+    tgTrend: document.getElementById('tgTrend').value,
+    tgab: document.getElementById('tgab').value,
+    preg: document.getElementById('preg').value,
+    comorbid: document.getElementById('comorbid').value,
+  };
+}
+
+function resetForm(){
+  document.getElementById('pname').value = "";
+  document.getElementById('size').value = "1.2";
+  document.getElementById('intrathyroidal').value = "yes";
+  document.getElementById('grossETE').value = "no";
+  document.getElementById('histology').value = "PTC";
+  document.getElementById('vascular').value = "none";
+  document.getElementById('viFoci').value = "0";
+  document.getElementById('nodes').value = "0";
+  document.getElementById('largestNode').value = "0";
+  document.getElementById('microOnly').value = "no";
+  document.getElementById('ene').value = "no";
+  document.getElementById('marginmm').value = "2";
+  document.getElementById('mets').value = "no";
+  document.getElementById('resection').value = "R0";
+  document.getElementById('age').value = "55";
+  document.getElementById('driver').value = "none";
+  document.getElementById('tgTrend').value = "undetectable";
+  document.getElementById('tgab').value = "negative";
+  document.getElementById('preg').value = "no";
+  document.getElementById('comorbid').value = "low";
+  ['riskTags','surgery','rai','follow','advanced','notes'].forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = '';
+  });
 }
 </script>
 <!-- Histology Help Modal -->
-<div class="modalOverlay" id="histologyHelpModal" aria-hidden="true"> <div class="modal" role="dialog" aria-modal="true" aria-labelledby="histologyHelpTitle"> <div class="modalHeader"> <div> <div class="modalTitle" id="histologyHelpTitle"><div style="font-size:12px;color:#9bb7da;margin-bottom:8px;">Version 1.0.1 • Frozen release</div>Histology — How the system interprets categories</div> <div class="muted2">For healthcare professionals • Decision support only</div> </div> <button class="modalClose" type="button" id="histologyHelpClose">Close</button> </div> <div class="modalBody">
-<details open> <summary>Histology — How the system interprets categories</summary> <details> <summary>PTC — Papillary Thyroid Carcinoma (classical)</summary> <div class="k">System interpretation</div> <div class="p">Lowest baseline aggressiveness among invasive DTC subtypes. Risk is driven primarily by extent, nodal burden, and extrathyroidal extension.</div> <div class="k">Key assumptions</div> <div class="p">High likelihood of RAI avidity. Vascular invasion is a weaker prognostic driver than in follicular-pattern tumours.</div> <div class="k">Risk logic highlights</div> <div class="p">Intrathyroidal disease with low-volume nodal involvement may remain low risk; large-volume nodes or extranodal extension upgrade risk.</div> </details> <details> <summary>FVPTC — Follicular Variant Papillary Thyroid Carcinoma</summary> <div class="k">System interpretation</div> <div class="p">Intermediate biological behaviour between classical PTC and FTC. Behaviour depends on encapsulation and invasion pattern.</div> <div class="k">Key assumptions</div> <div class="p">Encapsulated FVPTC behaves indolently; infiltrative FVPTC behaves more aggressively. RAI responsiveness generally preserved.</div> <div class="k">Risk logic highlights</div> <div class="p">Encapsulated, non-invasive disease often low risk; infiltrative growth or vascular invasion upgrades risk.</div> </details> <details> <summary>NIFTP — Non‑Invasive Follicular Thyroid Neoplasm</summary> <div class="k">System interpretation</div> <div class="p">Not treated as carcinoma within the system.</div> <div class="k">Key assumptions</div> <div class="p">Near‑zero recurrence risk; no role for RAI; lobectomy usually definitive.</div> <div class="k">Risk logic highlights</div> <div class="p">Excluded from recurrence‑risk stratification.</div> </details> <details> <summary>FTC — Follicular Thyroid Carcinoma</summary> <div class="k">System interpretation</div> <div class="p">Follicular‑pattern carcinoma with haematogenous spread. Vascular invasion burden is the dominant prognostic driver.</div> <div class="k">Key assumptions</div> <div class="p">Nodal disease uncommon; distant metastases more likely than in PTC; RAI responsiveness variable.</div> <div class="k">Risk logic highlights</div> <div class="p">No vascular invasion → lower risk; 1–3 foci → intermediate risk; ≥4 foci → high risk.</div> </details> <details> <summary>OTC — Oncocytic Thyroid Carcinoma (Hürthle cell)</summary> <div class="k">System interpretation</div> <div class="p">Distinct subtype with higher baseline aggressiveness than FTC. Strong weighting of vascular invasion burden.</div> <div class="k">Key assumptions</div> <div class="p">Lower and less predictable RAI avidity; structural features carry greater weight.</div> <div class="k">Risk logic highlights</div> <div class="p">Any vascular invasion → ≥ intermediate risk; ≥4 foci → high risk.</div> </details> <details> <summary>Tall Cell Variant PTC</summary> <div class="k">System interpretation</div> <div class="p">Aggressive papillary variant by definition.</div> <div class="k">Key assumptions</div> <div class="p">Higher recurrence risk and reduced RAI sensitivity.</div> <div class="k">Risk logic highlights</div> <div class="p">Cannot be classified as low risk.</div> </details> <details> <summary>Poorly Differentiated Thyroid Carcinoma (PDTC)</summary> <div class="k">System interpretation</div> <div class="p">Not managed as standard differentiated thyroid cancer.</div> <div class="k">Key assumptions</div> <div class="p">Limited RAI responsiveness; early systemic therapy consideration.</div> <div class="k">Risk logic highlights</div> <div class="p">Automatically high risk.</div> </details>
-</details> <details open> <summary>PTC — Papillary Thyroid Carcinoma (classical)</summary> <div class="k">System interpretation</div> <div class="p">Lowest baseline aggressiveness among invasive DTC subtypes in the tool. Risk is driven primarily by <b>extent</b>, <b>nodal burden</b>, and <b>extrathyroidal extension</b>.</div> <div class="k">Key assumptions</div> <div class="p">RAI avidity is usually preserved. Vascular invasion is generally a weaker prognostic driver than in follicular-pattern tumours.</div> <div class="k">Risk logic highlights</div> <div class="p">Intrathyroidal, low-volume nodal disease may remain low/intermediate; large-volume nodes or extranodal extension upgrade risk.</div> </details> <details> <summary>IEFVPTC — Infiltrative/Encapsulated Follicular Variant PTC</summary> <div class="k">System interpretation</div> <div class="p">Behaviour depends on encapsulation and invasion pattern. Encapsulated disease tends to be indolent; infiltrative disease carries higher recurrence risk.</div> <div class="k">Key assumptions</div> <div class="p">RAI responsiveness is generally preserved, but risk can rise with infiltration, vascular invasion, or significant nodal disease.</div> <div class="k">Risk logic highlights</div> <div class="p">Encapsulated/non-invasive patterns lean lower risk; infiltrative growth and/or vascular invasion pushes toward intermediate risk.</div> </details> <details> <summary>FTC — Follicular Thyroid Carcinoma</summary> <div class="k">System interpretation</div> <div class="p">Follicular-pattern carcinoma where <b>vascular invasion burden</b> is a dominant prognostic driver and haematogenous spread is more common.</div> <div class="k">Key assumptions</div> <div class="p">Nodal disease is uncommon; distant metastases risk is higher than in typical PTC. RAI responsiveness is variable but often present.</div> <div class="k">Risk logic highlights</div> <div class="p">Vascular invasion is handled both categorically and by foci count (e.g., ≥4 foci often treated as extensive).</div> </details> <details> <summary>OTC — Oncocytic Thyroid Carcinoma (Hürthle cell)</summary> <div class="k">System interpretation</div> <div class="p">Distinct DTC subtype with higher baseline aggressiveness than FTC in the tool. Strong weighting is given to <b>vascular invasion burden</b> and adverse structural features.</div> <div class="k">Key assumptions</div> <div class="p">RAI avidity can be lower and less predictable; therefore structural risk features (vascular invasion, nodes, margins) carry greater weight.</div> <div class="k">Risk logic highlights</div> <div class="p">Any vascular invasion generally escalates risk; ≥4 foci is typically treated as extensive/high-risk biology.</div> </details> <div class="muted2" style="margin-top:14px;"> <b>Clinical Decision Support Disclaimer:</b> This tool is intended for qualified healthcare professionals. It provides guideline-based decision support and does not replace clinical judgment, MDT discussion, or institutional protocols. Final decisions remain the responsibility of the treating clinician. </div> </div> </div>
+<div class="modalOverlay" id="histologyHelpModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="histologyHelpTitle">
+    <div class="modalHeader">
+      <div>
+        <div class="modalTitle" id="histologyHelpTitle"><div style="font-size:12px;color:#9bb7da;margin-bottom:8px;">Version 1.0.1 • Frozen release</div>Histology — How the system interprets categories</div>
+        <div class="muted2">For healthcare professionals • Decision support only</div>
+      </div>
+      <button class="modalClose" type="button" id="histologyHelpClose">Close</button>
+    </div>
+    <div class="modalBody">
+<details open>
+  <summary>Histology — How the system interprets categories</summary>
+
+  <details>
+    <summary>PTC — Papillary Thyroid Carcinoma (classical)</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Lowest baseline aggressiveness among invasive DTC subtypes. Risk is driven primarily by extent, nodal burden, and extrathyroidal extension.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">High likelihood of RAI avidity. Vascular invasion is a weaker prognostic driver than in follicular-pattern tumours.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">Intrathyroidal disease with low-volume nodal involvement may remain low risk; large-volume nodes or extranodal extension upgrade risk.</div>
+  </details>
+
+  <details>
+    <summary>FVPTC — Follicular Variant Papillary Thyroid Carcinoma</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Intermediate biological behaviour between classical PTC and FTC. Behaviour depends on encapsulation and invasion pattern.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">Encapsulated FVPTC behaves indolently; infiltrative FVPTC behaves more aggressively. RAI responsiveness generally preserved.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">Encapsulated, non-invasive disease often low risk; infiltrative growth or vascular invasion upgrades risk.</div>
+  </details>
+
+  <details>
+    <summary>NIFTP — Non‑Invasive Follicular Thyroid Neoplasm</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Not treated as carcinoma within the system.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">Near‑zero recurrence risk; no role for RAI; lobectomy usually definitive.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">Excluded from ATA recurrence‑risk stratification.</div>
+  </details>
+
+  <details>
+    <summary>FTC — Follicular Thyroid Carcinoma</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Follicular‑pattern carcinoma with haematogenous spread. Vascular invasion burden is the dominant prognostic driver.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">Nodal disease uncommon; distant metastases more likely than in PTC; RAI responsiveness variable.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">No vascular invasion → lower risk; 1–3 foci → intermediate risk; ≥4 foci → high risk.</div>
+  </details>
+
+  <details>
+    <summary>OTC — Oncocytic Thyroid Carcinoma (Hürthle cell)</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Distinct subtype with higher baseline aggressiveness than FTC. Strong weighting of vascular invasion burden.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">Lower and less predictable RAI avidity; structural features carry greater weight.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">Any vascular invasion → ≥ intermediate risk; ≥4 foci → high risk.</div>
+  </details>
+
+  <details>
+    <summary>Tall Cell Variant PTC</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Aggressive papillary variant by definition.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">Higher recurrence risk and reduced RAI sensitivity.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">Cannot be classified as low risk.</div>
+  </details>
+
+  <details>
+    <summary>Poorly Differentiated Thyroid Carcinoma (PDTC)</summary>
+    <div class="k">System interpretation</div>
+    <div class="p">Not managed as standard differentiated thyroid cancer.</div>
+    <div class="k">Key assumptions</div>
+    <div class="p">Limited RAI responsiveness; early systemic therapy consideration.</div>
+    <div class="k">Risk logic highlights</div>
+    <div class="p">Automatically high risk.</div>
+  </details>
+</details>
+
+      <details open>
+        <summary>PTC — Papillary Thyroid Carcinoma (classical)</summary>
+        <div class="k">System interpretation</div>
+        <div class="p">Lowest baseline aggressiveness among invasive DTC subtypes in the tool. Risk is driven primarily by <b>extent</b>, <b>nodal burden</b>, and <b>extrathyroidal extension</b>.</div>
+        <div class="k">Key assumptions</div>
+        <div class="p">RAI avidity is usually preserved. Vascular invasion is generally a weaker prognostic driver than in follicular-pattern tumours.</div>
+        <div class="k">Risk logic highlights</div>
+        <div class="p">Intrathyroidal, low-volume nodal disease may remain low/intermediate; large-volume nodes or extranodal extension upgrade risk.</div>
+      </details>
+
+      <details>
+        <summary>IEFVPTC — Infiltrative/Encapsulated Follicular Variant PTC</summary>
+        <div class="k">System interpretation</div>
+        <div class="p">Behaviour depends on encapsulation and invasion pattern. Encapsulated disease tends to be indolent; infiltrative disease carries higher recurrence risk.</div>
+        <div class="k">Key assumptions</div>
+        <div class="p">RAI responsiveness is generally preserved, but risk can rise with infiltration, vascular invasion, or significant nodal disease.</div>
+        <div class="k">Risk logic highlights</div>
+        <div class="p">Encapsulated/non-invasive patterns lean lower risk; infiltrative growth and/or vascular invasion pushes toward intermediate risk.</div>
+      </details>
+
+      <details>
+        <summary>FTC — Follicular Thyroid Carcinoma</summary>
+        <div class="k">System interpretation</div>
+        <div class="p">Follicular-pattern carcinoma where <b>vascular invasion burden</b> is a dominant prognostic driver and haematogenous spread is more common.</div>
+        <div class="k">Key assumptions</div>
+        <div class="p">Nodal disease is uncommon; distant metastases risk is higher than in typical PTC. RAI responsiveness is variable but often present.</div>
+        <div class="k">Risk logic highlights</div>
+        <div class="p">Vascular invasion is handled both categorically and by foci count (e.g., ≥4 foci often treated as extensive).</div>
+      </details>
+
+      <details>
+        <summary>OTC — Oncocytic Thyroid Carcinoma (Hürthle cell)</summary>
+        <div class="k">System interpretation</div>
+        <div class="p">Distinct DTC subtype with higher baseline aggressiveness than FTC in the tool. Strong weighting is given to <b>vascular invasion burden</b> and adverse structural features.</div>
+        <div class="k">Key assumptions</div>
+        <div class="p">RAI avidity can be lower and less predictable; therefore structural risk features (vascular invasion, nodes, margins) carry greater weight.</div>
+        <div class="k">Risk logic highlights</div>
+        <div class="p">Any vascular invasion generally escalates risk; ≥4 foci is typically treated as extensive/high-risk biology.</div>
+      </details>
+
+<div class="muted2" style="margin-top:14px;">
+        <b>Clinical Decision Support Disclaimer:</b> This tool is intended for qualified healthcare professionals. It provides guideline-based decision support and does not replace clinical judgment, MDT discussion, or institutional protocols. Final decisions remain the responsibility of the treating clinician.
+      </div>
+    </div>
+  </div>
 </div>
 <!-- RAI Help Modal -->
-<div class="modalOverlay" id="raiHelpModal" aria-hidden="true"> <div class="modal" role="dialog" aria-modal="true" aria-labelledby="raiHelpTitle"> <div class="modalHeader"> <div> <div class="modalTitle" id="raiHelpTitle">Radioactive Iodine (RAI) — Activity Selection</div> <div class="muted2">Intent-based guidance • Decision support only</div> </div> <button class="modalClose" type="button" onclick="closeRAIHelp()">Close</button> </div> <div class="modalBody"> <div class="k">Guideline framework</div> <div class="p"> guidelines support <b>intent-based selection</b> of radioactive iodine activity rather than fixed dosing. Administered activity should be individualised based on treatment intent, pathological risk features, disease burden, and MDT discussion with nuclear medicine expertise. </div> <div class="k">Remnant ablation</div> <div class="p"> <b>Intent:</b> Elimination of normal thyroid remnant tissue following surgery.<br/> <b>Typical published practice:</b> ~30 mCi (1.1 GBq).<br/> Supported for low-risk and selected intermediate-risk patients, with comparable efficacy to higher activities and reduced toxicity. </div> <div class="k">Adjuvant therapy</div> <div class="p"> <b>Intent:</b> Reduction of recurrence risk in the presence of adverse pathological features.<br/> <b>Typical published practice:</b> ~75–150 mCi (2.8–5.5 GBq).<br/> Activity selection is contextual and depends on integrated risk assessment rather than histology alone. </div> <div class="k">Treatment of known iodine-avid disease</div> <div class="p"> <b>Intent:</b> Treatment of persistent or metastatic iodine-avid disease.<br/> Activities are typically higher and may be empiric or dosimetry-guided, particularly in the setting of distant metastases or repeat treatment. </div> <div class="muted2" style="margin-top:12px;"> <b>Clinical Decision Support Disclaimer:</b><br/> This information is intended for qualified healthcare professionals and does not replace clinical judgment, MDT discussion, or institutional protocols. Final RAI activity selection remains clinician- and nuclear medicine–led. </div> </div> </div>
+<div class="modalOverlay" id="raiHelpModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="raiHelpTitle">
+    <div class="modalHeader">
+      <div>
+        <div class="modalTitle" id="raiHelpTitle">Radioactive Iodine (RAI) — Activity Selection</div>
+        <div class="muted2">Intent-based guidance • Decision support only</div>
+      </div>
+      <button class="modalClose" type="button" onclick="closeRAIHelp()">Close</button>
+    </div>
+
+    <div class="modalBody">
+      <div class="k">Guideline framework</div>
+      <div class="p">
+        ATA guidelines support <b>intent-based selection</b> of radioactive iodine activity rather than fixed dosing.
+        Administered activity should be individualised based on treatment intent, pathological risk features,
+        disease burden, and MDT discussion with nuclear medicine expertise.
+      </div>
+
+      <div class="k">Remnant ablation</div>
+      <div class="p">
+        <b>Intent:</b> Elimination of normal thyroid remnant tissue following surgery.<br/>
+        <b>Typical published practice:</b> ~30 mCi (1.1 GBq).<br/>
+        Supported for low-risk and selected intermediate-risk patients, with comparable efficacy to higher activities
+        and reduced toxicity.
+      </div>
+
+      <div class="k">Adjuvant therapy</div>
+      <div class="p">
+        <b>Intent:</b> Reduction of recurrence risk in the presence of adverse pathological features.<br/>
+        <b>Typical published practice:</b> ~75–150 mCi (2.8–5.5 GBq).<br/>
+        Activity selection is contextual and depends on integrated risk assessment rather than histology alone.
+      </div>
+
+      <div class="k">Treatment of known iodine-avid disease</div>
+      <div class="p">
+        <b>Intent:</b> Treatment of persistent or metastatic iodine-avid disease.<br/>
+        Activities are typically higher and may be empiric or dosimetry-guided, particularly in the setting of
+        distant metastases or repeat treatment.
+      </div>
+
+      <div class="muted2" style="margin-top:12px;">
+        <b>Clinical Decision Support Disclaimer:</b><br/>
+        This information is intended for qualified healthcare professionals and does not replace clinical judgment,
+        MDT discussion, or institutional protocols. Final RAI activity selection remains clinician- and
+        nuclear medicine–led.
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 <script>
-(function(){ const histSelect = document.getElementById('histology'); const tip = document.getElementById('histologyTip'); const btn = document.getElementById('histologyHelpBtn'); const overlay = document.getElementById('histologyHelpModal'); const closeBtn = document.getElementById('histologyHelpClose'); const tips = { PTC: "PTC: Lowest baseline aggressiveness; risk driven mainly by extent, nodal burden, and ETE.", IEFVPTC: "FVPTC: Behaviour depends on encapsulation/infiltration; infiltrative patterns carry higher risk.", FTC: "FTC: Prognosis strongly driven by vascular invasion burden and haematogenous spread.", OTC: "OTC (Hürthle cell): Higher baseline risk; vascular invasion burden is highly prognostic; RAI avidity may be less predictable." }; function updateTip(){ const v = histSelect ? histSelect.value : "PTC"; if (tip) tip.title = tips[v] || ""; } function openModal(){ if (!overlay) return; overlay.style.display = "flex"; overlay.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; } function closeModal(){ if (!overlay) return; overlay.style.display = "none"; overlay.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; } if (histSelect) { histSelect.addEventListener('change', updateTip); } if (btn) btn.addEventListener('click', openModal); if (closeBtn) closeBtn.addEventListener('click', closeModal); if (overlay) overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); }); document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); }); updateTip();
+(function(){
+  const histSelect = document.getElementById('histology');
+  const tip = document.getElementById('histologyTip');
+  const btn = document.getElementById('histologyHelpBtn');
+  const overlay = document.getElementById('histologyHelpModal');
+  const closeBtn = document.getElementById('histologyHelpClose');
+
+  const tips = {
+    PTC: "PTC: Lowest baseline aggressiveness; risk driven mainly by extent, nodal burden, and ETE.",
+    IEFVPTC: "FVPTC: Behaviour depends on encapsulation/infiltration; infiltrative patterns carry higher risk.",
+    FTC: "FTC: Prognosis strongly driven by vascular invasion burden and haematogenous spread.",
+    OTC: "OTC (Hürthle cell): Higher baseline risk; vascular invasion burden is highly prognostic; RAI avidity may be less predictable."
+  };
+
+  function updateTip(){
+    const v = histSelect ? histSelect.value : "PTC";
+    if (tip) tip.title = tips[v] || "";
+  }
+
+  function openModal(){
+    if (!overlay) return;
+    overlay.style.display = "flex";
+    overlay.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(){
+    if (!overlay) return;
+    overlay.style.display = "none";
+    overlay.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+
+  if (histSelect) {
+    histSelect.addEventListener('change', updateTip);
+  }
+  if (btn) btn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+  updateTip();
 })();
 </script>
 <script>
-function openRAIHelp(){ const m = document.getElementById('raiHelpModal'); if(!m) return; m.style.display = "flex"; m.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden";
+function openRAIHelp(){
+  const m = document.getElementById('raiHelpModal');
+  if(!m) return;
+  m.style.display = "flex";
+  m.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
 }
-function closeRAIHelp(){ const m = document.getElementById('raiHelpModal'); if(!m) return; m.style.display = "none"; m.setAttribute("aria-hidden","true"); document.body.style.overflow = "";
+function closeRAIHelp(){
+  const m = document.getElementById('raiHelpModal');
+  if(!m) return;
+  m.style.display = "none";
+  m.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
 }
-(function(){ const btn = document.getElementById('raiHelpBtn'); const modal = document.getElementById('raiHelpModal'); if(btn) btn.addEventListener('click', openRAIHelp); if(modal) modal.addEventListener('click', (e)=>{ if(e.target===modal) closeRAIHelp(); }); document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeRAIHelp(); });
+(function(){
+  const btn = document.getElementById('raiHelpBtn');
+  const modal = document.getElementById('raiHelpModal');
+  if(btn) btn.addEventListener('click', openRAIHelp);
+  if(modal) modal.addEventListener('click', (e)=>{ if(e.target===modal) closeRAIHelp(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeRAIHelp(); });
 })();
 </script>
 </html>
