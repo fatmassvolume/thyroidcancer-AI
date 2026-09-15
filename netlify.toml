@@ -1,0 +1,14 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[functions]]
+  path = "/api/parse-pathology"
+  included_files = ["netlify/functions/parse-pathology.js"]
+
+# Allow larger payloads for PDF uploads (up to 6MB body after Netlify's base64 overhead)
+[functions."parse-pathology"]
+  timeout = 30
