@@ -43,18 +43,22 @@
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;font-size:14px;line-height:1.6;}
 
   /* ── HEADER ── */
-  header{background:var(--surface);color:var(--ink);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);box-shadow:0 1px 0 var(--border),0 4px 24px rgba(0,0,0,.4);}
-  .logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--accent) 0%,#2A5F96 100%);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#fff;box-shadow:0 2px 8px rgba(59,130,196,.4);}
-  .brand-name{font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--ink);}
-  .brand-sub{font-size:10px;color:var(--ink3);font-weight:500;letter-spacing:.5px;text-transform:uppercase;}
-  .header-actions{display:flex;align-items:center;gap:8px;}
-  .btn-ghost{background:var(--surface2);border:1px solid var(--border2);color:var(--ink2);padding:6px 14px;border-radius:var(--radius-sm);font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:6px;}
-  .btn-ghost:hover{background:var(--surface3);border-color:var(--accent);color:var(--ink);}
-  .version-pill{background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:20px;padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;color:var(--accent);}
+  header{background:linear-gradient(135deg,#0D2B4E 0%,#0F3460 60%,#0D2B4E 100%);color:#fff;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 2px 20px rgba(0,0,0,.5);}
+  .logo-mark{width:44px;height:44px;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#fff;flex-shrink:0;}
+  .brand-block{display:flex;flex-direction:column;gap:1px;}
+  .brand-name{font-size:22px;font-weight:700;letter-spacing:-.5px;color:#fff;line-height:1.1;}
+  .brand-tagline{font-size:11px;color:rgba(255,255,255,.65);font-weight:500;letter-spacing:.3px;}
+  .brand-ehi{font-size:10px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-top:1px;}
+  .header-divider{width:1px;height:36px;background:rgba(255,255,255,.15);margin:0 4px;}
+  .header-actions{display:flex;align-items:center;gap:6px;}
+  .btn-ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:6px 13px;border-radius:var(--radius-sm);font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;}
+  .btn-ghost:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4);color:#fff;}
+  .version-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:3px 10px;font-size:11px;font-family:'DM Mono',monospace;color:rgba(255,255,255,.8);cursor:pointer;transition:all .15s;}
+  .version-pill:hover{background:rgba(255,255,255,.22);color:#fff;}
 
   /* ── DISCLAIMER ── */
-  .disclaimer-banner{background:rgba(212,168,67,.08);border-bottom:1px solid rgba(212,168,67,.2);padding:7px 28px;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(212,168,67,.85);}
-  .disclaimer-banner strong{color:var(--gold);}
+  .disclaimer-banner{background:#0A2040;border-bottom:1px solid rgba(255,255,255,.07);padding:7px 28px;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.5);}
+  .disclaimer-banner strong{color:rgba(255,255,255,.75);}
 
   /* ── DESKTOP: UPLOAD BAR above main layout ── */
   .upload-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;}
@@ -81,12 +85,16 @@
   .parse-progress-bar.visible{display:flex;}
   .parse-spinner{width:13px;height:13px;border:2px solid rgba(124,92,219,.25);border-top-color:var(--ai);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
   @keyframes spin{to{transform:rotate(360deg);}}
+  .btn-browse{padding:7px 14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);border-radius:var(--radius-sm);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+  .btn-browse:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);color:#fff;}
+  /* hide the real file input but keep it accessible */
+  #pathFileInput{display:none;}
   .parse-result-bar{display:none;padding:6px 12px;background:rgba(59,170,110,.1);border:1px solid rgba(59,170,110,.25);border-radius:var(--radius-sm);font-size:12px;color:var(--risk-low);font-weight:500;}
   .parse-result-bar.visible{display:block;}
 
   /* ── LAYOUT ── */
-  .app-layout{display:grid;grid-template-columns:385px 1fr;gap:0;min-height:calc(100vh - 60px - 33px - 58px);}
-  .panel-left{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;height:calc(100vh - 60px - 33px - 58px);position:sticky;top:calc(60px + 33px + 58px);}
+  .app-layout{display:grid;grid-template-columns:385px 1fr;gap:0;min-height:calc(100vh - 72px - 33px - 58px);}
+  .panel-left{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;height:calc(100vh - 72px - 33px - 58px);position:sticky;top:calc(72px + 33px + 58px);}
   .panel-right{padding:24px;display:flex;flex-direction:column;gap:20px;background:var(--bg);}
 
   /* ── SCROLLBAR ── */
@@ -263,15 +271,18 @@
 <body>
 
 <header>
-  <div style="display:flex;align-items:center;gap:12px;">
+  <div style="display:flex;align-items:center;gap:14px;">
     <div class="logo-mark">T</div>
-    <div>
+    <div class="brand-block">
       <div class="brand-name">ThyroidCA</div>
-      <div class="brand-sub">DTC Decision Support &middot; ATA 2025</div>
+      <div class="brand-tagline">Differentiated Thyroid Cancer &middot; Clinical Decision Support &middot; ATA 2025</div>
+      <div class="brand-ehi">A product of EndoHormone Institute (EHI)</div>
     </div>
   </div>
   <div class="header-actions">
-    <span class="version-pill">v1.2.0</span>
+    <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.2.0</span>
+    <div class="header-divider"></div>
+    <button class="btn-ghost" onclick="openModal('aboutModal')">&#9432; About</button>
     <button class="btn-ghost" onclick="openModal('savedModal')">&#128194; Saved Cases</button>
     <button class="btn-ghost" onclick="openModal('raiModal')">&#9883; RAI Guide</button>
     <button class="btn-ghost" onclick="window.print()">&#8659; Export PDF</button>
@@ -283,28 +294,42 @@
   <span><strong>Educational decision support only.</strong> Does not replace clinical judgement, MDT discussion, or institutional protocols. For qualified healthcare professionals only. &nbsp;&middot;&nbsp; Author: <strong>Prof. Steven C. Boyages</strong> MBBS FRACP FAFPHM DDU PhD &middot; ATA 2025</span>
 </div>
 
+<!-- hidden file input — triggered by both browse button and drop zone -->
+<input type="file" id="pathFileInput" accept=".pdf,.png,.jpg,.jpeg,.tiff,.tif,.webp" onchange="onFileSelected(event)">
+
 <!-- ═══ DESKTOP: AI UPLOAD BAR ═══ -->
 <div class="upload-bar">
   <div class="upload-bar-inner">
     <div class="ai-label"><span class="ai-dot"></span> AI Auto-Fill</div>
-    <div class="upload-zone-inline" id="uploadZone">
-      <input type="file" id="pathFileInput" accept=".pdf,.png,.jpg,.jpeg,.tiff,.tif,.webp" onchange="onFileSelected(event)">
+
+    <!-- Drop zone — clicking it also opens file picker -->
+    <div class="upload-zone-inline" id="uploadZone" onclick="document.getElementById('pathFileInput').click()" title="Click or drag a file here">
       <div class="upload-zone-icon">&#129302;</div>
       <div class="upload-zone-text">
-        <div class="upload-zone-title">Drop pathology report to auto-populate fields</div>
-        <div class="upload-zone-sub">PDF, PNG, JPG, TIFF &mdash; scanned or digital</div>
+        <div class="upload-zone-title">Drop pathology report here</div>
+        <div class="upload-zone-sub">PDF, PNG, JPG, TIFF &mdash; click zone or use Browse</div>
       </div>
     </div>
+
+    <!-- Explicit Browse button -->
+    <button class="btn-browse" onclick="document.getElementById('pathFileInput').click()">
+      &#128193; Browse
+    </button>
+
+    <!-- File preview (shown after selection) -->
     <div class="upload-preview-inline" id="uploadPreview">
       <span id="previewIcon">&#128196;</span>
       <span class="upload-preview-name-inline" id="previewName"></span>
       <button class="upload-preview-clear" onclick="clearFile()" title="Remove">&#10005;</button>
     </div>
+
+    <!-- Progress indicator -->
     <div class="parse-progress-bar" id="parseProgress">
       <div class="parse-spinner"></div>
       <span id="parseProgressText">Reading report...</span>
     </div>
   </div>
+
   <button class="btn-parse" id="parseBtn" onclick="parsePathology()" disabled>
     <span id="parseBtnText">&#9889; Extract &amp; Fill</span>
   </button>
@@ -684,6 +709,94 @@
     </div>
     <div class="modal-body" style="padding:16px 22px;">
       <div id="savedCasesList"><div style="text-align:center;padding:32px;color:var(--ink3);">Loading...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT MODAL -->
+<div class="modal-backdrop" id="aboutModal">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <div>
+        <h3 style="font-size:17px;font-weight:700;color:var(--ink);">ThyroidCA &mdash; About &amp; Disclaimers</h3>
+        <div style="font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px;">A product of EndoHormone Institute (EHI)</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('aboutModal')">&#10005;</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- AUTHOR -->
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent) 0%,#2A5F96 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;flex-shrink:0;">S</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;">Professor Steven C. Boyages</div>
+          <div style="font-size:12.5px;color:var(--accent);font-weight:600;margin-bottom:6px;">MBBS FRACP FAFPHM DDU PhD</div>
+          <div style="font-size:12.5px;color:var(--ink2);line-height:1.7;">
+            Clinical Professor, The University of Sydney &amp; The Australian National University.<br>
+            Consultant Endocrinologist &middot; Chair, Department of Diabetes &amp; Endocrinology, Sydney Adventist Hospital.<br>
+            Director, EndoHormone Institute Pty Ltd (EHI) &middot; Kalix Healthcare Specialists, Sydney.<br>
+            ORCID: <span style="font-family:'DM Mono',monospace;color:var(--accent);">0000-0002-3909-1662</span> &nbsp;&middot;&nbsp;
+            <a href="mailto:steven.boyages@sydney.edu.au" style="color:var(--accent);text-decoration:none;">steven.boyages@sydney.edu.au</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT THE TOOL -->
+      <h4>About ThyroidCA</h4>
+      <p>ThyroidCA is a browser-based clinical decision support tool for the management of differentiated thyroid carcinoma (DTC), developed and maintained by Professor Steven C. Boyages at the EndoHormone Institute (EHI). The tool synthesises the 2025 American Thyroid Association (ATA) guidelines to provide structured, individualised management recommendations across surgical planning, radioactive iodine therapy, TSH suppression, systemic/targeted therapy, and surveillance.</p>
+      <p>The AI pathology auto-fill feature uses the Anthropic Claude API to extract structured clinical data directly from uploaded surgical pathology reports (PDF or image), reducing manual data entry and transcription errors.</p>
+
+      <!-- DISCLAIMERS -->
+      <h4>Important Disclaimers</h4>
+      <div style="background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#9888; Educational &amp; Decision Support Tool Only</div>
+        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">This tool is intended solely as an educational aid and clinical decision support resource. It does <strong style="color:var(--ink);">not</strong> replace clinical judgement, multidisciplinary team (MDT) discussion, institutional protocols, or the doctor-patient relationship. All clinical decisions remain the sole responsibility of the treating clinician.</p>
+      </div>
+      <div style="background:rgba(224,82,82,.08);border:1px solid rgba(224,82,82,.2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:700;color:var(--risk-high);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#9888; Not for Patient Use</div>
+        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">This tool is designed exclusively for use by qualified healthcare professionals with appropriate training in endocrinology, oncology, or related specialties. It must not be used by patients, members of the public, or those without appropriate clinical training to interpret and contextualise its outputs.</p>
+      </div>
+      <div style="background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#128274; Data &amp; Privacy</div>
+        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">Patient data entered into this tool is processed locally in your browser. Pathology documents uploaded for AI extraction are transmitted securely to the Anthropic API via an encrypted server-side proxy and are not stored by EHI or Anthropic beyond the duration of the API call. Patient names are optional. Do not upload documents containing identifiable patient information unless you have appropriate consent and are operating within your institution's privacy framework.</p>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink3);">Guideline recommendations are aligned to the ATA 2025 guidelines. Clinical guidelines are subject to revision; users should verify currency of recommendations against the most recent published ATA guidance. The tool is updated periodically but may not reflect the very latest evidence at all times.</p>
+
+      <!-- VERSION HISTORY -->
+      <h4>Version History</h4>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr style="background:var(--surface2);">
+              <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Version</th>
+              <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Date</th>
+              <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Changes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--accent);white-space:nowrap;">v1.2.0</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Sep 2026</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Dark theme redesign. AI pathology auto-fill via Anthropic API (PDF &amp; image). Netlify serverless proxy for secure API key handling. Persistent saved cases database. Serum Tg expanded to 5 clinical states. Multifocality field with foci count and distribution. Unfavourable histology subtype field (7 ATA 2025 subtypes). EHI branding. About modal with version history and disclaimers.</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--ink3);white-space:nowrap;">v1.1.0</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Jan 2026</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Two-panel desktop layout. Target-therapy map. RAI reference tab with intent-based guide. Surgical, RAI, TSH suppression, systemic therapy, and surveillance plan generation. Risk stratification drivers list. ATA 2025 risk engine.</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--ink3);white-space:nowrap;">v1.0.0</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Dec 2025</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Initial release. Basic DTC risk stratification and management recommendations. ATA 2025 guideline alignment. Single-page interface.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ACKNOWLEDGEMENTS -->
+      <h4 style="margin-top:18px;">Acknowledgements &amp; Guideline Reference</h4>
+      <p style="font-size:12.5px;color:var(--ink2);line-height:1.7;">Recommendations are based on: <em>American Thyroid Association Management Guidelines for Adult Patients with Thyroid Nodules and Differentiated Thyroid Cancer (2025 revision)</em>. Users are directed to the original ATA publication for full guideline text, evidence grading, and supporting references.</p>
+      <p style="font-size:12px;color:var(--ink3);margin-top:8px;">&copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI). All rights reserved. ThyroidCA is a registered product of EHI. Unauthorised reproduction or redistribution is prohibited.</p>
     </div>
   </div>
 </div>
@@ -1188,14 +1301,33 @@ var _uploadedFile = null;
 var _uploadedB64  = null;
 var _uploadedMime = null;
 
-// Drag-over styling on desktop upload bar zone
+// Drag-and-drop on the desktop upload zone
 var zone = document.getElementById('uploadZone');
 if (zone) {
-  zone.addEventListener('dragover',  function(e){ e.preventDefault(); zone.classList.add('drag-over'); });
-  zone.addEventListener('dragleave', function(){ zone.classList.remove('drag-over'); });
+  zone.addEventListener('dragover', function(e){
+    e.preventDefault(); e.stopPropagation();
+    zone.classList.add('drag-over');
+  });
+  zone.addEventListener('dragleave', function(e){
+    e.stopPropagation();
+    zone.classList.remove('drag-over');
+  });
   zone.addEventListener('drop', function(e){
-    e.preventDefault(); zone.classList.remove('drag-over');
-    var files = e.dataTransfer.files;
+    e.preventDefault(); e.stopPropagation();
+    zone.classList.remove('drag-over');
+    var files = e.dataTransfer && e.dataTransfer.files;
+    if (files && files[0]) handleFile(files[0]);
+  });
+}
+
+// Also allow drag-and-drop on the whole upload bar
+var uploadBar = document.querySelector('.upload-bar');
+if (uploadBar) {
+  uploadBar.addEventListener('dragover', function(e){ e.preventDefault(); if(zone) zone.classList.add('drag-over'); });
+  uploadBar.addEventListener('dragleave', function(e){ if(!uploadBar.contains(e.relatedTarget) && zone) zone.classList.remove('drag-over'); });
+  uploadBar.addEventListener('drop', function(e){
+    e.preventDefault(); if(zone) zone.classList.remove('drag-over');
+    var files = e.dataTransfer && e.dataTransfer.files;
     if (files && files[0]) handleFile(files[0]);
   });
 }
@@ -1203,13 +1335,15 @@ if (zone) {
 function onFileSelected(evt) {
   var f = evt.target.files && evt.target.files[0];
   if (f) handleFile(f);
+  // Reset input so same file can be re-selected
+  evt.target.value = '';
 }
 
 function handleFile(f) {
   var allowed = ['application/pdf','image/png','image/jpeg','image/tiff','image/webp','image/jpg'];
   var extOk = /\.(pdf|png|jpg|jpeg|tiff|tif|webp)$/i.test(f.name);
   if (!extOk && allowed.indexOf(f.type) === -1) {
-    showToast('Unsupported file type. Use PDF or image.', 'error'); return;
+    showToast('Unsupported file type. Use PDF, PNG, JPG or TIFF.', 'error'); return;
   }
   if (f.size > 20 * 1024 * 1024) {
     showToast('File too large (max 20 MB).', 'error'); return;
@@ -1226,16 +1360,20 @@ function handleFile(f) {
     document.getElementById('previewIcon').textContent = icon;
     document.getElementById('previewName').textContent = f.name;
     prev.classList.add('visible');
-    // Hide the drop zone text once file selected
-    var zoneText = zone ? zone.querySelector('.upload-zone-text') : null;
-    if (zoneText) zoneText.style.display = 'none';
   }
+  // Update drop zone text
+  var zoneTitle = zone ? zone.querySelector('.upload-zone-title') : null;
+  var zoneSub   = zone ? zone.querySelector('.upload-zone-sub')   : null;
+  if (zoneTitle) zoneTitle.textContent = f.name;
+  if (zoneSub)   zoneSub.textContent   = isPdf ? 'PDF ready' : 'Image ready';
 
   // Mobile preview
   var mobWrap = document.getElementById('uploadPreviewMobileWrapper');
   if (mobWrap) {
-    document.getElementById('previewIconMobile').textContent = icon;
-    document.getElementById('previewNameMobile').textContent = f.name;
+    var mIcon = document.getElementById('previewIconMobile');
+    var mName = document.getElementById('previewNameMobile');
+    if (mIcon) mIcon.textContent = icon;
+    if (mName) mName.textContent = f.name;
     mobWrap.style.display = '';
   }
 
@@ -1249,19 +1387,23 @@ function handleFile(f) {
     _uploadedB64 = e.target.result.split(',')[1];
     updateParseBtn();
   };
+  reader.onerror = function() {
+    showToast('Could not read file. Please try again.', 'error');
+    clearFile();
+  };
   reader.readAsDataURL(f);
 }
 
 function clearFile() {
   _uploadedFile = null; _uploadedB64 = null; _uploadedMime = null;
-  var fi = document.getElementById('pathFileInput'); if (fi) fi.value = '';
-  var fim = document.getElementById('pathFileInputMobile'); if (fim) fim.value = '';
 
   // Desktop
   var prev = document.getElementById('uploadPreview');
   if (prev) prev.classList.remove('visible');
-  var zoneText = zone ? zone.querySelector('.upload-zone-text') : null;
-  if (zoneText) zoneText.style.display = '';
+  var zoneTitle = zone ? zone.querySelector('.upload-zone-title') : null;
+  var zoneSub   = zone ? zone.querySelector('.upload-zone-sub')   : null;
+  if (zoneTitle) zoneTitle.textContent = 'Drop pathology report here';
+  if (zoneSub)   zoneSub.textContent   = 'PDF, PNG, JPG, TIFF — click zone or use Browse';
 
   // Mobile
   var mobWrap = document.getElementById('uploadPreviewMobileWrapper');
@@ -1276,7 +1418,7 @@ function clearFile() {
 
 function updateParseBtn() {
   var has = !!_uploadedB64;
-  var btn = document.getElementById('parseBtn'); if (btn) btn.disabled = !has;
+  var btn  = document.getElementById('parseBtn');       if (btn)  btn.disabled  = !has;
   var btnM = document.getElementById('parseBtnMobile'); if (btnM) btnM.disabled = !has;
 }
 
@@ -1353,7 +1495,10 @@ async function parsePathology() {
 
     if (!resp.ok) {
       var errData = await resp.json().catch(function(){ return {}; });
-      throw new Error(errData.error || 'Server error ' + resp.status);
+      var errMsg = errData.error || ('Server error ' + resp.status);
+      if (resp.status === 404) errMsg = 'The AI extraction function was not found. Make sure parse-pathology.js is deployed to Netlify/functions and netlify.toml is present in the repo.';
+      if (resp.status === 500 && errMsg.includes('ANTHROPIC_API_KEY')) errMsg = 'Anthropic API key is not set. Add ANTHROPIC_API_KEY in Netlify → Environment Variables.';
+      throw new Error(errMsg);
     }
 
     var result = await resp.json();
