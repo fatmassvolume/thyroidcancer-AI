@@ -280,7 +280,7 @@
     </div>
   </div>
   <div class="header-actions">
-    <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.2.0</span>
+    <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.3.0</span>
     <div class="header-divider"></div>
     <button class="btn-ghost" onclick="openModal('aboutModal')">&#9432; About</button>
     <button class="btn-ghost" onclick="openModal('savedModal')">&#128194; Saved Cases</button>
@@ -547,6 +547,54 @@
       </div>
     </div>
 
+    <!-- SURGICAL PROCEDURE -->
+    <div class="form-section">
+      <div class="form-section-title"><span class="dot"></span> Surgical Procedure</div>
+      <div class="form-body">
+        <div class="field">
+          <label>Type of thyroid surgery</label>
+          <select id="surgeryType" onchange="toggleCompletionField()">
+            <option value="total">Total thyroidectomy</option>
+            <option value="near_total">Near-total thyroidectomy</option>
+            <option value="hemi">Hemithyroidectomy / Lobectomy</option>
+            <option value="hemi_isth">Lobectomy + isthmusectomy</option>
+            <option value="completion">Completion thyroidectomy</option>
+            <option value="surveillance">Active surveillance (no surgery)</option>
+            <option value="unknown">Not yet performed / Unknown</option>
+          </select>
+        </div>
+        <div class="field" id="completionField" style="display:none;">
+          <label>Completion thyroidectomy planned?</label>
+          <select id="completionPlan">
+            <option value="yes">Yes — planned</option>
+            <option value="done">Already performed</option>
+            <option value="no">No — not planned</option>
+            <option value="considering">Under consideration</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Nodal surgery performed</label>
+          <select id="nodalSurgery">
+            <option value="none">None</option>
+            <option value="central">Central neck dissection (Level VI)</option>
+            <option value="lateral">Lateral neck dissection (Level II–V)</option>
+            <option value="central_lateral">Central + lateral dissection</option>
+            <option value="berry_picking">Berry-picking / selective nodal excision</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Intraoperative complications</label>
+          <select id="surgComplications">
+            <option value="none">None</option>
+            <option value="rln">RLN injury (temporary or permanent)</option>
+            <option value="hypoparathyroid">Hypoparathyroidism</option>
+            <option value="both">RLN injury + hypoparathyroidism</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <!-- MOLECULAR -->
     <div class="form-section">
       <div class="form-section-title"><span class="dot"></span> Molecular, Labs &amp; Follow-up</div>
@@ -718,7 +766,7 @@
   <div class="modal modal-wide">
     <div class="modal-header">
       <div>
-        <h3 style="font-size:17px;font-weight:700;color:var(--ink);">ThyroidCA &mdash; About &amp; Disclaimers</h3>
+        <h3 style="font-size:17px;font-weight:700;color:var(--ink);">ThyroidCA &mdash; About, Disclaimers &amp; Version History</h3>
         <div style="font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px;">A product of EndoHormone Institute (EHI)</div>
       </div>
       <button class="modal-close" onclick="closeModal('aboutModal')">&#10005;</button>
@@ -727,76 +775,117 @@
 
       <!-- AUTHOR -->
       <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:20px;display:flex;gap:16px;align-items:flex-start;">
-        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--accent) 0%,#2A5F96 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;flex-shrink:0;">S</div>
+        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0D2B4E 0%,#1B4D6E 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#fff;flex-shrink:0;border:2px solid var(--border2);">S</div>
         <div>
           <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;">Professor Steven C. Boyages</div>
-          <div style="font-size:12.5px;color:var(--accent);font-weight:600;margin-bottom:6px;">MBBS FRACP FAFPHM DDU PhD</div>
-          <div style="font-size:12.5px;color:var(--ink2);line-height:1.7;">
-            Clinical Professor, The University of Sydney &amp; The Australian National University.<br>
-            Consultant Endocrinologist &middot; Chair, Department of Diabetes &amp; Endocrinology, Sydney Adventist Hospital.<br>
-            Director, EndoHormone Institute Pty Ltd (EHI) &middot; Kalix Healthcare Specialists, Sydney.<br>
+          <div style="font-size:12.5px;color:var(--accent);font-weight:600;margin-bottom:8px;">MBBS FRACP FAFPHM DDU PhD</div>
+          <div style="font-size:12.5px;color:var(--ink2);line-height:1.8;">
+            Clinical Professor, The University of Sydney &amp; The Australian National University<br>
+            Consultant Endocrinologist &middot; Chair, Department of Diabetes &amp; Endocrinology, Sydney Adventist Hospital<br>
+            Director, EndoHormone Institute Pty Ltd (EHI) &middot; Kalix Healthcare Specialists, Kingsford &amp; Bella Vista, Sydney<br>
+            Affiliate, Specialist Services Medical Group (SSMG), Norwest &amp; Westmead Medical Centres<br>
             ORCID: <span style="font-family:'DM Mono',monospace;color:var(--accent);">0000-0002-3909-1662</span> &nbsp;&middot;&nbsp;
             <a href="mailto:steven.boyages@sydney.edu.au" style="color:var(--accent);text-decoration:none;">steven.boyages@sydney.edu.au</a>
           </div>
         </div>
       </div>
 
-      <!-- ABOUT THE TOOL -->
+      <!-- ABOUT -->
       <h4>About ThyroidCA</h4>
-      <p>ThyroidCA is a browser-based clinical decision support tool for the management of differentiated thyroid carcinoma (DTC), developed and maintained by Professor Steven C. Boyages at the EndoHormone Institute (EHI). The tool synthesises the 2025 American Thyroid Association (ATA) guidelines to provide structured, individualised management recommendations across surgical planning, radioactive iodine therapy, TSH suppression, systemic/targeted therapy, and surveillance.</p>
-      <p>The AI pathology auto-fill feature uses the Anthropic Claude API to extract structured clinical data directly from uploaded surgical pathology reports (PDF or image), reducing manual data entry and transcription errors.</p>
+      <p>ThyroidCA is a browser-based clinical decision support tool for the multidisciplinary management of differentiated thyroid carcinoma (DTC), developed and maintained by Professor Steven C. Boyages at the EndoHormone Institute (EHI), Sydney. The tool synthesises the 2025 American Thyroid Association (ATA) guidelines to provide structured, individually tailored management recommendations spanning surgical planning, radioactive iodine therapy, TSH suppression, systemic and targeted therapy, serum Tg interpretation, and post-treatment surveillance.</p>
+      <p>The tool was developed to address a recognised gap in accessible, guideline-aligned decision support for DTC management in clinical practice. While the ATA 2025 guidelines are comprehensive, their application to individual patients — with their specific combinations of tumour, pathological, and molecular features — requires integration of multiple interacting variables. ThyroidCA operationalises this integration in real time, providing a structured aide-memoire for clinical encounters, MDT discussions, and post-operative planning.</p>
+      <p>The AI pathology auto-fill feature uses the Anthropic Claude API to extract structured clinical data directly from uploaded surgical pathology reports (PDF or image), reducing manual data entry and transcription error. Documents are processed via an encrypted server-side proxy; no patient data is stored by EHI.</p>
+
+      <!-- HOW IT WORKS -->
+      <h4>How the Risk Engine Works</h4>
+      <p>ThyroidCA implements a weighted scoring algorithm aligned to the ATA 2025 recurrence risk stratification framework. Each clinical and pathological feature is assigned a score based on its established prognostic weight in the guidelines:</p>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:10px;font-size:12.5px;color:var(--ink2);line-height:1.8;">
+        <strong style="color:var(--ink);">High-weight features (score 25–55):</strong> Distant metastasis (M1), gross extrathyroidal extension, R2 resection, unfavourable histology (PDTC, columnar cell, OTC high-grade), extensive vascular invasion, high-volume nodal disease, extranodal extension (ENE)<br>
+        <strong style="color:var(--ink);">Intermediate-weight features (score 10–25):</strong> R1 resection, unfavourable histology (tall cell, hobnail, diffuse sclerosing, solid/trabecular), minimal vascular invasion, low-volume nodal disease, tumour size 2–4 cm, bilateral/extensive multifocality, non-intrathyroidal disease<br>
+        <strong style="color:var(--ink);">Lower-weight features (score 4–10):</strong> Age ≥55 years, ipsilateral multifocality, nodal micrometastases, rising post-operative Tg, tumour size &gt;4 cm
+      </div>
+      <p>Risk tiers: <strong>Low</strong> (score &lt;12), <strong>Intermediate</strong> (12–34), <strong>High</strong> (&ge;35). Certain features (M1 disease, PDTC, columnar cell carcinoma) trigger automatic High-risk classification regardless of score. The surgical procedure type modifies downstream recommendations — particularly RAI eligibility and Tg surveillance — without changing the tumour risk tier itself.</p>
+
+      <!-- INTENDED USERS -->
+      <h4>Intended Users</h4>
+      <p>ThyroidCA is designed for use by qualified healthcare professionals involved in the management of thyroid cancer, including endocrinologists, endocrine surgeons, nuclear medicine physicians, medical oncologists, radiation oncologists, and clinical nurse specialists. It is intended as a structured aide for clinical decision-making, MDT preparation, and post-operative planning — not as a standalone diagnostic or prescriptive tool.</p>
+      <p>Optimal use involves entering pathological data from the surgical pathology report, adding available molecular and biochemical data, and reviewing the generated plan in the context of the individual patient's clinical circumstances, comorbidities, and preferences. The AI auto-fill feature can accelerate data entry from pathology reports but should always be reviewed for accuracy before a plan is generated.</p>
+
+      <!-- LIMITATIONS -->
+      <h4>Limitations</h4>
+      <p>ThyroidCA provides structured guideline-based recommendations and cannot account for all factors relevant to individual clinical decisions. Known limitations include:</p>
+      <div style="background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.2);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:10px;font-size:12.5px;color:var(--ink2);line-height:1.8;">
+        <strong style="color:var(--gold);">&#9888; Clinical factors not captured:</strong> Full comorbidity burden, functional status, patient values and preferences, shared decision-making nuance, institutional expertise and resource availability, contraindications to specific therapies beyond those explicitly entered, drug interactions, and the evolving clinical trajectory over time.<br><br>
+        <strong style="color:var(--gold);">&#9888; Guideline currency:</strong> Recommendations are aligned to ATA 2025 as interpreted at the time of development. Thyroid cancer guidelines are periodically updated; users should verify currency against the most recent published ATA guidance and emerging evidence.<br><br>
+        <strong style="color:var(--gold);">&#9888; AI extraction accuracy:</strong> The pathology auto-fill feature relies on Claude's interpretation of unstructured text. Extracted fields should always be verified against the original pathology report before a plan is generated. Accuracy may be lower for scanned or low-quality documents.<br><br>
+        <strong style="color:var(--gold);">&#9888; Scope:</strong> ThyroidCA covers DTC only (PTC, FTC, OTC, and variants). It does not cover anaplastic thyroid carcinoma, medullary thyroid carcinoma, thyroid lymphoma, or metastatic disease to the thyroid.
+      </div>
+
+      <!-- FUTURE DEVELOPMENT -->
+      <h4>Future Development</h4>
+      <p>Planned features under active development at EHI include: integration of ATA response-to-therapy reassessment categories (Excellent / Indeterminate / Biochemical Incomplete / Structural Incomplete) with dynamic follow-up plan generation; TNM staging calculator (AJCC 8th edition); paediatric DTC module; anaplastic and medullary thyroid carcinoma decision support; export to structured PDF report; and integration with Australian PBS/TGA prescribing information for targeted therapies. Guideline updates will be incorporated as new ATA recommendations are published.</p>
+
+      <!-- CONTACT -->
+      <h4>Contact &amp; Feedback</h4>
+      <p>Clinical errors, suggested improvements, and feedback are welcomed. Please contact Professor Boyages directly at <a href="mailto:steven.boyages@sydney.edu.au" style="color:var(--accent);">steven.boyages@sydney.edu.au</a> or through the EndoHormone Institute at <a href="https://www.endohormoneinstitute.com.au" style="color:var(--accent);" target="_blank">endohormoneinstitute.com.au</a>. Reports of clinical inaccuracies will be reviewed and addressed in the next version update.</p>
+
+      <!-- FUNDING / COI -->
+      <h4>Funding &amp; Conflicts of Interest</h4>
+      <p>ThyroidCA was developed entirely by Professor Boyages and the EndoHormone Institute using independent resources. No pharmaceutical, device, or industry funding has been received for the development or maintenance of this tool. Professor Boyages has received honoraria for educational presentations from Sanofi, Novo Nordisk, and Eli Lilly in the fields of diabetes and obesity; no industry relationships exist in thyroid oncology. The tool does not promote any specific commercial product, diagnostic service, or institution.</p>
 
       <!-- DISCLAIMERS -->
       <h4>Important Disclaimers</h4>
-      <div style="background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#9888; Educational &amp; Decision Support Tool Only</div>
-        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">This tool is intended solely as an educational aid and clinical decision support resource. It does <strong style="color:var(--ink);">not</strong> replace clinical judgement, multidisciplinary team (MDT) discussion, institutional protocols, or the doctor-patient relationship. All clinical decisions remain the sole responsibility of the treating clinician.</p>
+      <div style="background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#9888; Educational &amp; Decision Support Tool Only</div>
+        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">This tool is intended solely as an educational aid and clinical decision support resource. It does <strong style="color:var(--ink);">not</strong> replace clinical judgement, multidisciplinary team (MDT) discussion, institutional protocols, or the doctor–patient relationship. All clinical decisions remain the sole responsibility of the treating clinician.</p>
       </div>
-      <div style="background:rgba(224,82,82,.08);border:1px solid rgba(224,82,82,.2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:700;color:var(--risk-high);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#9888; Not for Patient Use</div>
-        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">This tool is designed exclusively for use by qualified healthcare professionals with appropriate training in endocrinology, oncology, or related specialties. It must not be used by patients, members of the public, or those without appropriate clinical training to interpret and contextualise its outputs.</p>
+      <div style="background:rgba(224,82,82,.08);border:1px solid rgba(224,82,82,.2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;">
+        <div style="font-size:11px;font-weight:700;color:var(--risk-high);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#9888; Not for Patient Use</div>
+        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">Designed exclusively for qualified healthcare professionals. Must not be used by patients, members of the public, or those without appropriate clinical training to interpret its outputs.</p>
       </div>
-      <div style="background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;">
-        <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#128274; Data &amp; Privacy</div>
-        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">Patient data entered into this tool is processed locally in your browser. Pathology documents uploaded for AI extraction are transmitted securely to the Anthropic API via an encrypted server-side proxy and are not stored by EHI or Anthropic beyond the duration of the API call. Patient names are optional. Do not upload documents containing identifiable patient information unless you have appropriate consent and are operating within your institution's privacy framework.</p>
+      <div style="background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">&#128274; Data &amp; Privacy</div>
+        <p style="font-size:13px;margin:0;color:var(--ink2);line-height:1.7;">Patient data is processed locally in your browser. Pathology documents uploaded for AI extraction are transmitted securely via an encrypted server-side proxy to Anthropic's API and are not stored by EHI or Anthropic beyond the API call. Patient names are optional. Do not upload identifiable documents without appropriate consent and institutional privacy compliance.</p>
       </div>
-      <p style="font-size:12.5px;color:var(--ink3);">Guideline recommendations are aligned to the ATA 2025 guidelines. Clinical guidelines are subject to revision; users should verify currency of recommendations against the most recent published ATA guidance. The tool is updated periodically but may not reflect the very latest evidence at all times.</p>
 
       <!-- VERSION HISTORY -->
       <h4>Version History</h4>
       <div style="border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;">
         <table style="width:100%;border-collapse:collapse;">
-          <thead>
-            <tr style="background:var(--surface2);">
-              <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Version</th>
-              <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Date</th>
-              <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Changes</th>
-            </tr>
-          </thead>
+          <thead><tr style="background:var(--surface2);">
+            <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Version</th>
+            <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Date</th>
+            <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:1px solid var(--border);">Changes</th>
+          </tr></thead>
           <tbody>
             <tr>
-              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--accent);white-space:nowrap;">v1.2.0</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--accent);white-space:nowrap;">v1.3.0</td>
               <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Sep 2026</td>
-              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Dark theme redesign. AI pathology auto-fill via Anthropic API (PDF &amp; image). Netlify serverless proxy for secure API key handling. Persistent saved cases database. Serum Tg expanded to 5 clinical states. Multifocality field with foci count and distribution. Unfavourable histology subtype field (7 ATA 2025 subtypes). EHI branding. About modal with version history and disclaimers.</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Surgical procedure fields: type of thyroid surgery, nodal dissection, completion thyroidectomy planning, intraoperative complications. Surgery-aware RAI, TSH, Tg, and surveillance recommendations (lobectomy, active surveillance). Tg uninterpretability after lobectomy flagged. Full About modal with clinical background, risk engine explanation, intended users, limitations, future development, contact, funding/COI, and full disclaimers.</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--ink3);white-space:nowrap;">v1.2.0</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Sep 2026</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Dark theme. AI pathology auto-fill (Anthropic API, Netlify serverless proxy). Persistent saved cases. Serum Tg 5-state field. Multifocality with distribution. Unfavourable histology subtypes (7 ATA 2025 types). EHI branding. White-on-navy header. Browse + drag-drop upload.</td>
             </tr>
             <tr>
               <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--ink3);white-space:nowrap;">v1.1.0</td>
               <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Jan 2026</td>
-              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Two-panel desktop layout. Target-therapy map. RAI reference tab with intent-based guide. Surgical, RAI, TSH suppression, systemic therapy, and surveillance plan generation. Risk stratification drivers list. ATA 2025 risk engine.</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Two-panel desktop layout. Target-therapy map. RAI reference tab. Full plan generation: surgery, RAI, TSH, systemic therapy, surveillance. Risk stratification drivers list. ATA 2025 risk engine.</td>
             </tr>
             <tr>
               <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);font-family:'DM Mono',monospace;color:var(--ink3);white-space:nowrap;">v1.0.0</td>
               <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink3);white-space:nowrap;">Dec 2025</td>
-              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Initial release. Basic DTC risk stratification and management recommendations. ATA 2025 guideline alignment. Single-page interface.</td>
+              <td style="padding:10px 14px;font-size:12.5px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.6;">Initial release. Basic DTC risk stratification and ATA 2025-aligned management recommendations. Single-page interface.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- ACKNOWLEDGEMENTS -->
-      <h4 style="margin-top:18px;">Acknowledgements &amp; Guideline Reference</h4>
-      <p style="font-size:12.5px;color:var(--ink2);line-height:1.7;">Recommendations are based on: <em>American Thyroid Association Management Guidelines for Adult Patients with Thyroid Nodules and Differentiated Thyroid Cancer (2025 revision)</em>. Users are directed to the original ATA publication for full guideline text, evidence grading, and supporting references.</p>
-      <p style="font-size:12px;color:var(--ink3);margin-top:8px;">&copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI). All rights reserved. ThyroidCA is a registered product of EHI. Unauthorised reproduction or redistribution is prohibited.</p>
+      <!-- REFERENCE + COPYRIGHT -->
+      <h4 style="margin-top:18px;">Guideline Reference</h4>
+      <p style="font-size:12.5px;color:var(--ink2);line-height:1.7;">Recommendations are based on: <em>American Thyroid Association Management Guidelines for Adult Patients with Thyroid Nodules and Differentiated Thyroid Cancer</em> (ATA 2025 revision). Users are directed to the original ATA publication for full guideline text, evidence grading, and supporting references.</p>
+      <p style="font-size:12px;color:var(--ink3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">&copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI). All rights reserved. ThyroidCA is a product of EHI. Unauthorised reproduction or redistribution is prohibited. For licensing enquiries contact <a href="mailto:steven.boyages@sydney.edu.au" style="color:var(--accent);">steven.boyages@sydney.edu.au</a>.</p>
     </div>
   </div>
 </div>
@@ -862,6 +951,12 @@ function toggleFociCount() {
   document.getElementById('fociCountField').style.display = (mf && mf.value === 'yes') ? '' : 'none';
 }
 
+function toggleCompletionField() {
+  const st = getVal('surgeryType');
+  const cf = document.getElementById('completionField');
+  if (cf) cf.style.display = (st === 'hemi' || st === 'hemi_isth') ? '' : 'none';
+}
+
 // ══════════════════════════════════════════════
 //  FORM DATA
 // ══════════════════════════════════════════════
@@ -896,6 +991,10 @@ function gatherData() {
     tgTrend:        getVal('tgTrend'),
     tgab:           getRadio('tgab'),
     pathNotes:      getVal('pathNotes'),
+    surgeryType:    getVal('surgeryType'),
+    completionPlan: getVal('completionPlan'),
+    nodalSurgery:   getVal('nodalSurgery'),
+    surgComplications: getVal('surgComplications'),
   };
 }
 
@@ -927,6 +1026,11 @@ function populateForm(d) {
   setV('tgTrend', d.tgTrend || 'not_tested');
   setR('tgab', d.tgab || 'neg');
   setV('pathNotes', d.pathNotes || '');
+  setV('surgeryType', d.surgeryType || 'total');
+  setV('completionPlan', d.completionPlan || 'yes');
+  setV('nodalSurgery', d.nodalSurgery || 'none');
+  setV('surgComplications', d.surgComplications || 'none');
+  toggleCompletionField();
   updateUnfavBadge();
   toggleFociCount();
 }
@@ -935,7 +1039,7 @@ function resetForm() {
   document.querySelectorAll('input[type="text"],input[type="number"],textarea').forEach(function(i){ i.value=''; });
   document.querySelectorAll('select').forEach(function(s){ s.selectedIndex=0; });
   ['intra_yes','preg_no','com_low','ete_no','dm_no','mm_no','ene_no','ab_neg','mf_no'].forEach(function(id){ var el=document.getElementById(id); if(el) el.checked=true; });
-  updateUnfavBadge(); toggleFociCount();
+  updateUnfavBadge(); toggleFociCount(); toggleCompletionField();
   var existing = document.getElementById('planCard'); if (existing) existing.remove();
   document.getElementById('emptyCard').style.display = '';
   document.getElementById('saveBtn').style.display = 'none';
@@ -1044,8 +1148,17 @@ function computeRisk(d) {
   // Age
   if (d.age >= 55) { score += 5; flags.push('Age ≥55 years (prognostic factor per ATA 2025)'); }
 
-  // Comorbidity
-  if (d.comorbidity === 'high') { flags.push('High comorbidity / frailty — modify treatment intensity'); }
+  // Surgical procedure flags (informational — don't change risk tier but affect recs)
+  var isLobectomy = (d.surgeryType === 'hemi' || d.surgeryType === 'hemi_isth');
+  var isSurveillance = (d.surgeryType === 'surveillance');
+  var isUnknown = (d.surgeryType === 'unknown' || !d.surgeryType);
+  if (isLobectomy) flags.push('Hemithyroidectomy / lobectomy — RAI not applicable; Tg uninterpretable as surveillance marker; consider completion thyroidectomy based on final pathology risk');
+  if (isSurveillance) flags.push('Active surveillance — no surgery performed; risk stratification is pre-operative');
+  if (d.nodalSurgery === 'none' && (d.nodesNum > 0 || d.ene === 'yes')) flags.push('Nodal disease present but no neck dissection performed — surgical management may be incomplete');
+  if (d.surgComplications === 'rln') flags.push('RLN injury — impacts re-operative risk; document laterality');
+  if (d.surgComplications === 'hypoparathyroid') flags.push('Post-operative hypoparathyroidism — calcium/PTH monitoring required');
+  if (d.surgComplications === 'both') flags.push('RLN injury and hypoparathyroidism — impacts re-operative risk and calcium management');
+  if (d.comorbidity === 'high') flags.push('High comorbidity / frailty — modify treatment intensity');
 
   var level;
   if (score >= 35) level = 'High';
@@ -1059,65 +1172,69 @@ function computeRisk(d) {
 //  RECOMMENDATION TEXT
 // ══════════════════════════════════════════════
 function getSurgeryRec(d, risk) {
+  var isLobectomy = (d.surgeryType === 'hemi' || d.surgeryType === 'hemi_isth');
+  var isSurveillance = (d.surgeryType === 'surveillance');
+  var highComorbidity = d.comorbidity === 'high' ? ' Account for comorbidity burden; weigh surgical risk with MDT.' : '';
   var mfNote = '';
   if (d.multifocal === 'yes') {
-    var distrib = d.fociDistrib || 'ipsilateral';
-    var fn = d.fociCount || 2;
-    if (distrib === 'bilateral' || fn >= 3) {
-      mfNote = ' <strong>Bilateral/extensively multifocal disease (' + fn + ' foci)</strong> is a strong indication for total thyroidectomy — ensures complete excision, enables Tg surveillance, and facilitates RAI.';
-    } else {
-      mfNote = ' Multifocal disease (' + fn + ' ipsilateral foci) — consider total thyroidectomy to facilitate surveillance; lobectomy may still be acceptable if all other features are low-risk.';
-    }
+    var fn = d.fociCount || 2; var distrib = d.fociDistrib || 'ipsilateral';
+    if (distrib === 'bilateral' || fn >= 3) { mfNote = ' Bilateral/extensively multifocal disease (' + fn + ' foci).'; }
+    else { mfNote = ' Multifocal disease (' + fn + ' ipsilateral foci).'; }
   }
-  var highComorbidity = d.comorbidity === 'high' ? ' Account for comorbidity burden; weigh surgical risk with MDT.' : '';
-
-  if (d.distantMet === 'yes') return 'Total thyroidectomy strongly recommended. M1 disease requires systemic staging, consideration of RAI (if iodine-avid), and/or systemic targeted therapy. Nodal surgery as clinically indicated.';
-  if (risk === 'High') return 'Total thyroidectomy strongly recommended. R1/R2 status should prompt central ± lateral neck dissection as clinically indicated. Re-operation for residual disease if feasible.' + mfNote + highComorbidity;
+  if (isSurveillance) return 'Patient is on active surveillance. Surgery has not been performed. Monitor with serial neck ultrasound every 6-12 months. Consider surgery if tumour growth >3 mm, new nodal disease, or patient preference changes. ATA 2025 supports active surveillance for selected low-risk microcarcinomas.';
+  if (isLobectomy) {
+    var completionRec = '';
+    if (risk === 'High') completionRec = 'Completion thyroidectomy is strongly recommended given high-risk pathological features — enables RAI therapy, Tg-based surveillance, and complete surgical staging.';
+    else if (risk === 'Intermediate') completionRec = 'Completion thyroidectomy should be discussed in MDT. It enables RAI if needed and meaningful Tg surveillance. Decision depends on integrated risk, patient preference, and comorbidity.';
+    else completionRec = 'Completion thyroidectomy is not routinely required for low-risk lobectomy. Ultrasound-based surveillance is appropriate.';
+    if (d.completionPlan === 'yes') completionRec += ' Completion thyroidectomy is planned — ensure pre-operative staging is complete.';
+    if (d.completionPlan === 'done') completionRec = 'Completion thyroidectomy has already been performed.';
+    if (d.completionPlan === 'no') completionRec += ' Patient/clinician has elected not to proceed to completion thyroidectomy.';
+    return 'Hemithyroidectomy performed. ' + completionRec + mfNote + highComorbidity;
+  }
+  if (d.distantMet === 'yes') return 'Total thyroidectomy strongly recommended. M1 disease requires systemic staging, RAI (if iodine-avid), and/or systemic targeted therapy.';
+  if (risk === 'High') return 'Total thyroidectomy strongly recommended. R1/R2 status should prompt central +/- lateral neck dissection as clinically indicated.' + mfNote + highComorbidity;
   if (risk === 'Intermediate') {
-    if (d.tumorSize <= 1 && d.intrathyroidal === 'yes' && d.multifocal !== 'yes') return 'Hemithyroidectomy may be acceptable for small intermediate-risk intrathyroidal tumours; however, total thyroidectomy facilitates RAI and Tg surveillance. Discuss in MDT.' + highComorbidity;
+    if (d.tumorSize <= 1 && d.intrathyroidal === 'yes' && d.multifocal !== 'yes') return 'Hemithyroidectomy may be acceptable for small intermediate-risk intrathyroidal tumours; total thyroidectomy facilitates RAI and Tg surveillance. Discuss in MDT.' + highComorbidity;
     return 'Total thyroidectomy generally recommended. Nodal surgery per intraoperative findings and imaging.' + mfNote + highComorbidity;
   }
-  // Low
-  if (d.multifocal === 'yes' && (d.fociDistrib === 'bilateral' || d.fociCount >= 3)) {
-    return 'Total thyroidectomy recommended given bilateral or extensively multifocal disease. Hemithyroidectomy is not appropriate for bilateral or ≥3-focus PTC.' + highComorbidity;
-  }
-  if (d.tumorSize <= 1 && d.intrathyroidal === 'yes' && d.multifocal !== 'yes') return 'Hemithyroidectomy or active surveillance are acceptable for unifocal intrathyroidal microcarcinoma (≤1 cm). Total thyroidectomy not routinely required.' + highComorbidity;
-  if (d.tumorSize <= 2 && d.intrathyroidal === 'yes') return 'Hemithyroidectomy is an appropriate option for unifocal low-risk disease ≤2 cm. Total thyroidectomy acceptable if RAI or Tg monitoring is desired.' + mfNote + highComorbidity;
-  return 'Total thyroidectomy recommended. Low-risk disease; nodal surgery only if clinically or sonographically indicated.' + mfNote + highComorbidity;
+  if (d.multifocal === 'yes' && (d.fociDistrib === 'bilateral' || d.fociCount >= 3)) return 'Total thyroidectomy recommended for bilateral or extensively multifocal disease.' + highComorbidity;
+  if (d.tumorSize <= 1 && d.intrathyroidal === 'yes' && d.multifocal !== 'yes') return 'Hemithyroidectomy or active surveillance acceptable for unifocal intrathyroidal microcarcinoma (<=1 cm).' + highComorbidity;
+  if (d.tumorSize <= 2 && d.intrathyroidal === 'yes') return 'Hemithyroidectomy is appropriate for unifocal low-risk disease <=2 cm. Total thyroidectomy acceptable if RAI or Tg monitoring is desired.' + mfNote + highComorbidity;
+  return 'Total thyroidectomy recommended. Nodal surgery only if clinically or sonographically indicated.' + mfNote + highComorbidity;
 }
 
 function getRAIRec(d, risk) {
+  if (d.surgeryType === 'surveillance') return 'RAI is not applicable — no surgery has been performed.';
+  var isLobOnly = (d.surgeryType === 'hemi' || d.surgeryType === 'hemi_isth') && d.completionPlan !== 'done';
+  if (isLobOnly) return '<strong>RAI is not applicable after hemithyroidectomy alone.</strong> The residual lobe takes up iodine and Tg monitoring is unreliable. RAI requires completion thyroidectomy first. Reassess RAI eligibility post-completion based on integrated risk.';
   if (d.pregnant === 'yes') return '<strong>RAI is absolutely contraindicated in pregnancy.</strong> Defer all RAI decisions until after delivery and cessation of breastfeeding.';
-  if (d.unfavHist === 'pdtc') return 'PDTC has <strong>limited RAI responsiveness</strong>. RAI may still be considered post-surgery to treat any residual iodine-avid disease, but systemic therapy (targeted or MKI) should be discussed early in MDT.';
-  if (d.unfavHist === 'otc_unfav') return 'OTC with high-grade features has <strong>poor RAI avidity</strong>. Confirm uptake on diagnostic WBS before therapeutic RAI. Early systemic therapy consideration is appropriate.';
-  if (d.distantMet === 'yes') {
-    var raiM1 = 'RAI is indicated for iodine-avid M1 disease. Activity should be empiric or dosimetry-guided in consultation with Nuclear Medicine. Diagnostic WBS recommended prior to treatment.';
-    if (d.driver === 'BRAF') raiM1 += ' BRAF V600E present — consider <strong>redifferentiation</strong> with Dabrafenib + Trametinib to restore RAI avidity before treatment.';
-    return raiM1;
-  }
-  if (risk === 'High') {
-    var txt = 'RAI adjuvant therapy is recommended (intent: adjuvant). Typical activity: <strong>~75-150 mCi (2.8-5.5 GBq)</strong>, context-dependent. ';
-    if (d.driver === 'BRAF') txt += 'BRAF V600E detected — consider <strong>redifferentiation</strong> with Dabrafenib + Trametinib prior to RAI to maximise avidity. ';
-    if (d.histology === 'OTC') txt += 'OTC has variable RAI avidity — confirm uptake on diagnostic WBS before therapeutic RAI. ';
-    if (d.unfavHist === 'tallcell' || d.unfavHist === 'hobnail' || d.unfavHist === 'columnar') txt += (UNFAV_LABELS[d.unfavHist] || 'This unfavourable subtype') + ' is associated with reduced RAI avidity — confirm uptake on diagnostic WBS before treatment. ';
-    return txt;
-  }
-  if (risk === 'Intermediate') return 'RAI is selective and context-dependent for intermediate-risk DTC. Remnant ablation (<strong>~30 mCi / 1.1 GBq</strong>) may facilitate Tg surveillance and treat occult microscopic disease. Discuss in MDT with Nuclear Medicine. Not routinely indicated for all intermediate-risk patients per ATA 2025.';
-  return 'RAI is <strong>not routinely recommended</strong> for low-risk DTC per ATA 2025. Remnant ablation does not improve outcomes in most low-risk cases. Reserve only for situations where complete remnant ablation is deemed essential for surveillance.';
+  if (d.unfavHist === 'pdtc') return 'PDTC has <strong>limited RAI responsiveness</strong>. RAI may still be considered for residual iodine-avid disease, but early systemic therapy should be discussed in MDT.';
+  if (d.unfavHist === 'otc_unfav') return 'OTC with high-grade features has <strong>poor RAI avidity</strong>. Confirm uptake on diagnostic WBS before therapeutic RAI. Early systemic therapy consideration appropriate.';
+  if (d.distantMet === 'yes') { var raiM1 = 'RAI is indicated for iodine-avid M1 disease. Activity should be empiric or dosimetry-guided in consultation with Nuclear Medicine. Diagnostic WBS recommended first.'; if (d.driver === 'BRAF') raiM1 += ' BRAF V600E — consider redifferentiation with Dabrafenib + Trametinib to restore avidity.'; return raiM1; }
+  if (risk === 'High') { var txt = 'RAI adjuvant therapy is recommended. Typical activity: <strong>~75-150 mCi (2.8-5.5 GBq)</strong>, context-dependent. '; if (d.driver === 'BRAF') txt += 'BRAF V600E — consider redifferentiation prior to RAI. '; if (d.histology === 'OTC') txt += 'OTC — confirm uptake on WBS before treating. '; if (d.unfavHist === 'tallcell' || d.unfavHist === 'hobnail' || d.unfavHist === 'columnar') txt += (UNFAV_LABELS[d.unfavHist]||'Unfavourable subtype') + ' — reduced RAI avidity likely; confirm on WBS. '; return txt; }
+  if (risk === 'Intermediate') return 'RAI is selective for intermediate-risk DTC. Remnant ablation (~30 mCi / 1.1 GBq) may facilitate Tg surveillance. Discuss in MDT with Nuclear Medicine. Not routinely indicated for all intermediate-risk patients.';
+  return 'RAI is <strong>not routinely recommended</strong> for low-risk DTC per ATA 2025.';
 }
 
 function getTgNote(d) {
-  if (d.tgTrend === 'undetectable') return 'Tg is currently undetectable — consistent with an excellent biochemical response. Continue Tg monitoring per risk-stratified protocol.';
-  if (d.tgTrend === 'low') return 'Tg is detectable but stable. Serial measurement is essential to detect any rising trend; the trajectory is more important than any single value.';
-  if (d.tgTrend === 'rising') return 'Rising Tg raises concern for persistent or recurrent disease. Consider stimulated Tg (rhTSH or withdrawal), neck ultrasound, and cross-sectional or functional imaging as appropriate.';
-  if (d.tgTrend === 'unavailable') return 'Tg is unavailable or assay-interfered. Ensure TgAb is measured; if positive, track antibody trend as a surrogate. Imaging-based surveillance is particularly important.';
-  if (d.tgTrend === 'not_tested') return 'Post-operative Tg has not yet been measured. Obtain a baseline Tg (and TgAb) as soon as clinically appropriate — ideally 4–6 weeks post-thyroidectomy.';
-  return '';
+  var isLobOnly = (d.surgeryType === 'hemi' || d.surgeryType === 'hemi_isth') && d.completionPlan !== 'done';
+  var lobNote = isLobOnly ? ' <strong>Note:</strong> After hemithyroidectomy alone, Tg is not interpretable as a tumour marker — the residual lobe produces Tg. Tg monitoring only becomes meaningful after completion thyroidectomy.' : '';
+  if (d.tgTrend === 'undetectable') return 'Tg is currently undetectable — consistent with an excellent biochemical response. Continue Tg monitoring per risk-stratified protocol.' + lobNote;
+  if (d.tgTrend === 'low') return 'Tg is detectable but stable. Serial measurement is essential; the trajectory is more important than any single value.' + lobNote;
+  if (d.tgTrend === 'rising') return 'Rising Tg raises concern for persistent or recurrent disease. Consider stimulated Tg (rhTSH or withdrawal), neck ultrasound, and cross-sectional or functional imaging as appropriate.' + lobNote;
+  if (d.tgTrend === 'unavailable') return 'Tg is unavailable or assay-interfered. Ensure TgAb is measured; if positive, track antibody trend as a surrogate. Imaging-based surveillance is particularly important.' + lobNote;
+  if (d.tgTrend === 'not_tested') return 'Post-operative Tg has not yet been measured. Obtain a baseline Tg (and TgAb) as soon as clinically appropriate — ideally 4–6 weeks post-operatively.' + lobNote;
+  return lobNote || '';
 }
+
+function getTSHRec(d, risk) {
+  var isLobOnly = (d.surgeryType === 'hemi' || d.surgeryType === 'hemi_isth') && d.completionPlan !== 'done';
+  if (isLobOnly) return 'After hemithyroidectomy, many patients remain euthyroid from the residual lobe. Check TSH at 6–8 weeks post-operatively. Levothyroxine replacement (not suppression) is only required if the patient becomes hypothyroid. TSH suppression is not indicated unless completion thyroidectomy is performed.';
   var comNote = d.comorbidity === 'high' ? ' In high-comorbidity/frailty patients, weigh cardiovascular and bone risks of prolonged suppression against oncological benefit; de-escalate earlier where appropriate.' : '';
-  if (risk === 'High') return 'Initial TSH suppression to <strong>&lt;0.1 mU/L</strong> is recommended. Duration adjusted based on response-to-therapy reassessment at 12-24 months post-treatment.' + comNote;
-  if (risk === 'Intermediate') return 'Mild-to-moderate TSH suppression (<strong>0.1-0.5 mU/L</strong>) in the initial post-operative period. De-escalate to low-normal (0.5-2 mU/L) if excellent response to therapy at 12 months.' + comNote;
-  return 'TSH suppression is not routinely required for low-risk DTC. Target TSH within <strong>low-normal range (0.5-2 mU/L)</strong>. Avoid over-suppression to minimise cardiovascular and bone adverse effects.' + comNote;
+  if (risk === 'High') return 'Initial TSH suppression to <strong>&lt;0.1 mU/L</strong> is recommended. Duration adjusted based on response-to-therapy reassessment at 12–24 months post-treatment.' + comNote;
+  if (risk === 'Intermediate') return 'Mild-to-moderate TSH suppression (<strong>0.1–0.5 mU/L</strong>) in the initial post-operative period. De-escalate to low-normal (0.5–2 mU/L) if excellent response to therapy at 12 months.' + comNote;
+  return 'TSH suppression is not routinely required for low-risk DTC. Target TSH within <strong>low-normal range (0.5–2 mU/L)</strong>. Avoid over-suppression to minimise cardiovascular and bone adverse effects.' + comNote;
 }
 
 function getSystemicRec(d, risk) {
@@ -1131,20 +1248,34 @@ function getSystemicRec(d, risk) {
 }
 
 function getSurveillance(d, risk) {
+  var isLobOnly = (d.surgeryType === 'hemi' || d.surgeryType === 'hemi_isth') && d.completionPlan !== 'done';
+  var isSurveillance = d.surgeryType === 'surveillance';
+  if (isSurveillance) return [
+    'Serial neck ultrasound every 6–12 months',
+    'Consider surgery if tumour growth >3 mm in any dimension, new nodal disease, patient preference, or if high-risk features emerge',
+    'Tg is not applicable pre-operatively as a surveillance marker in this context',
+    'Clinical review with endocrinologist ± surgeon every 6–12 months'
+  ];
+  if (isLobOnly) return [
+    'Neck ultrasound at 6–12 months post-lobectomy, then annually',
+    'Serum Tg is NOT interpretable as a tumour marker after lobectomy — the residual lobe produces Tg',
+    'Surveillance is primarily ultrasound-based until completion thyroidectomy (if planned)',
+    'If completion thyroidectomy performed, reassess surveillance protocol based on integrated post-operative risk'
+  ];
   if (risk === 'High') return [
     'Neck ultrasound at 6 and 12 months post-treatment, then annually',
     'Serum Tg and TgAb on TSH-stimulated or suppressed basis per MDT protocol',
-    'Cross-sectional imaging (CT neck/chest ± whole-body scan) at 6-12 months',
-    'Response-to-therapy reassessment at 12-24 months: Excellent / Indeterminate / Biochemical Incomplete / Structural Incomplete'
+    'Cross-sectional imaging (CT neck/chest ± whole-body scan) at 6–12 months',
+    'Response-to-therapy reassessment at 12–24 months: Excellent / Indeterminate / Biochemical Incomplete / Structural Incomplete'
   ];
   if (risk === 'Intermediate') return [
-    'Neck ultrasound at 6-12 months post-surgery, then every 1-2 years',
-    'Serum Tg ± TgAb on levothyroxine (suppressed) at 6-12 months',
+    'Neck ultrasound at 6–12 months post-surgery, then every 1–2 years',
+    'Serum Tg ± TgAb on levothyroxine (suppressed) at 6–12 months',
     'Adjust TSH targets based on response-to-therapy assessment at 12 months',
-    'Stimulated Tg (rhTSH or withdrawal) at 12-18 months if remnant ablation performed'
+    'Stimulated Tg (rhTSH or withdrawal) at 12–18 months if remnant ablation performed'
   ];
   return [
-    'Neck ultrasound at 6-12 months post-surgery',
+    'Neck ultrasound at 6–12 months post-surgery',
     'Annual serum Tg on levothyroxine; stimulated Tg if clinically indicated',
     'If Tg undetectable and ultrasound negative at 1 year, extend surveillance intervals',
     'Low-normal TSH target; routine whole-body scan generally not required'
