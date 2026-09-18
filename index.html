@@ -91,6 +91,15 @@
   #pathFileInput{display:none;}
   .parse-result-bar{display:none;padding:6px 12px;background:rgba(59,170,110,.1);border:1px solid rgba(59,170,110,.25);border-radius:var(--radius-sm);font-size:12px;color:var(--risk-low);font-weight:500;}
   .parse-result-bar.visible{display:block;}
+  .upgrade-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:20px;}
+  .btn-subscribe{padding:10px 20px;background:linear-gradient(135deg,var(--ai) 0%,#5B3FB5 100%);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;box-shadow:0 2px 12px rgba(124,92,219,.35);}
+  .btn-subscribe:hover{background:linear-gradient(135deg,#8D6EE8 0%,#6B4FC5 100%);}
+  .btn-restore{padding:10px 14px;background:var(--surface2);border:1px solid var(--border2);color:var(--ink3);border-radius:var(--radius-sm);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;}
+  .btn-restore:hover{border-color:var(--accent);color:var(--accent);}
+  .checkout-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:400;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+  .checkout-overlay.open{display:flex;}
+  .checkout-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:32px 36px;text-align:center;max-width:380px;width:100%;}
+  .checkout-spinner{width:40px;height:40px;border:3px solid rgba(124,92,219,.2);border-top-color:var(--ai);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
 
   /* ── LAYOUT ── */
   .app-layout{display:grid;grid-template-columns:385px 1fr;gap:0;min-height:calc(100vh - 72px - 33px - 58px);}
@@ -298,11 +307,10 @@
 <input type="file" id="pathFileInput" accept=".pdf,.png,.jpg,.jpeg,.tiff,.tif,.webp" onchange="onFileSelected(event)">
 
 <!-- ═══ DESKTOP: AI UPLOAD BAR ═══ -->
-<div class="upload-bar">
+<!-- Paid / Free trial state (shown when user has extractions remaining) -->
+<div class="upload-bar" id="uploadBar">
   <div class="upload-bar-inner">
     <div class="ai-label"><span class="ai-dot"></span> AI Auto-Fill</div>
-
-    <!-- Drop zone — clicking it also opens file picker -->
     <div class="upload-zone-inline" id="uploadZone" onclick="document.getElementById('pathFileInput').click()" title="Click or drag a file here">
       <div class="upload-zone-icon">&#129302;</div>
       <div class="upload-zone-text">
@@ -310,30 +318,51 @@
         <div class="upload-zone-sub">PDF, PNG, JPG, TIFF &mdash; click zone or use Browse</div>
       </div>
     </div>
-
-    <!-- Explicit Browse button -->
-    <button class="btn-browse" onclick="document.getElementById('pathFileInput').click()">
-      &#128193; Browse
-    </button>
-
-    <!-- File preview (shown after selection) -->
+    <button class="btn-browse" onclick="document.getElementById('pathFileInput').click()">&#128193; Browse</button>
     <div class="upload-preview-inline" id="uploadPreview">
       <span id="previewIcon">&#128196;</span>
       <span class="upload-preview-name-inline" id="previewName"></span>
       <button class="upload-preview-clear" onclick="clearFile()" title="Remove">&#10005;</button>
     </div>
-
-    <!-- Progress indicator -->
     <div class="parse-progress-bar" id="parseProgress">
       <div class="parse-spinner"></div>
       <span id="parseProgressText">Reading report...</span>
     </div>
+    <!-- Free extractions counter -->
+    <div id="freeCounter" style="font-size:11.5px;color:rgba(255,255,255,.6);white-space:nowrap;display:none;">
+      <span id="freeCountText"></span>
+    </div>
   </div>
-
-  <button class="btn-parse" id="parseBtn" onclick="parsePathology()" disabled>
-    <span id="parseBtnText">&#9889; Extract &amp; Fill</span>
-  </button>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <!-- Subscriber badge -->
+    <div id="subscriberBadge" style="display:none;font-size:11px;font-weight:600;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:3px 10px;white-space:nowrap;">&#10003; Pro</div>
+    <button class="btn-parse" id="parseBtn" onclick="parsePathology()" disabled>
+      <span id="parseBtnText">&#9889; Extract &amp; Fill</span>
+    </button>
+  </div>
 </div>
+
+<!-- Upgrade prompt (shown when free extractions exhausted and not subscribed) -->
+<div class="upgrade-bar" id="upgradeBar" style="display:none;">
+  <div style="display:flex;align-items:center;gap:14px;flex:1;">
+    <div style="font-size:20px;">&#128274;</div>
+    <div>
+      <div style="font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:2px;">You've used all 3 free AI extractions</div>
+      <div style="font-size:12px;color:var(--ink3);">Subscribe to <strong style="color:var(--ink2);">ThyroidCA Pro</strong> for unlimited pathology report extraction &mdash; <strong style="color:var(--accent);">$10 AUD/month</strong>, 14-day free trial, cancel anytime.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
+    <button class="btn-subscribe" onclick="startCheckout()">&#9889; Subscribe &mdash; $10 AUD/month</button>
+    <button class="btn-restore" onclick="restoreSubscription()">Already subscribed?</button>
+  </div>
+</div>
+
+<!-- Subscribed banner (shown after successful checkout) -->
+<div id="subscribedBanner" style="display:none;background:rgba(59,170,110,.12);border-bottom:1px solid rgba(59,170,110,.25);padding:8px 28px;font-size:13px;color:var(--risk-low);display:flex;align-items:center;gap:8px;">
+  <span>&#10003;</span><span id="subscribedBannerText">ThyroidCA Pro activated. Unlimited AI extractions enabled.</span>
+  <button onclick="document.getElementById('subscribedBanner').style.display='none'" style="background:none;border:none;color:var(--ink3);cursor:pointer;margin-left:auto;font-size:16px;">&#10005;</button>
+</div>
+
 <div id="parseResultBarWrapper" style="padding:0 28px 10px;display:none;">
   <div class="parse-result-bar visible" id="parseResultBar"></div>
   <div class="parse-result" id="parseResult">
@@ -890,7 +919,200 @@
   </div>
 </div>
 
+<!-- CHECKOUT LOADING OVERLAY -->
+<div class="checkout-overlay" id="checkoutOverlay">
+  <div class="checkout-card">
+    <div class="checkout-spinner"></div>
+    <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;">Redirecting to Stripe...</div>
+    <div style="font-size:13px;color:var(--ink3);">You'll be taken to a secure Stripe checkout page. Your card details are never handled by ThyroidCA.</div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════
+//  SUBSCRIPTION STATE
+// ══════════════════════════════════════════════
+var STRIPE_PUBLISHABLE_KEY = 'pk_live_51SiqhXGSaNumIARATn9WcbUU3yYxx4v4jbzOSeukzGW7O2YpbChxhlGLwljPg7EK66joDlFGx9ghBdSQSqyaMqLF00xEUNtZ8b';
+var FREE_LIMIT = 3;
+
+// Subscription state — persisted in localStorage
+var _subToken   = localStorage.getItem('tc_sub_token') || null;
+var _subEmail   = localStorage.getItem('tc_sub_email') || null;
+var _freeUsed   = parseInt(localStorage.getItem('tc_free_used') || '0', 10);
+var _subValid   = false; // validated server-side on load
+
+async function initSubscriptionState() {
+  // Check URL params for post-checkout redirect
+  var params = new URLSearchParams(window.location.search);
+  var sessionId = params.get('session_id');
+  var subscribed = params.get('subscribed');
+
+  if (sessionId && subscribed === 'true') {
+    // Exchange session_id for our token
+    await handlePostCheckout(sessionId);
+    // Clean URL
+    window.history.replaceState({}, '', window.location.pathname);
+    return;
+  }
+
+  if (subscribed === 'false') {
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+
+  // Validate existing token if we have one
+  if (_subToken) {
+    await validateToken(_subToken);
+  } else {
+    updateUploadBarUI();
+  }
+}
+
+async function handlePostCheckout(sessionId) {
+  showToast('Activating your subscription...', 'info');
+  // Retry up to 5 times — webhook may not have fired yet
+  for (var i = 0; i < 5; i++) {
+    try {
+      var resp = await fetch('/.netlify/functions/verify-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId: sessionId })
+      });
+      var data = await resp.json();
+      if (data.valid && data.token) {
+        _subToken = data.token;
+        _subEmail = data.email;
+        _subValid = true;
+        localStorage.setItem('tc_sub_token', _subToken);
+        localStorage.setItem('tc_sub_email', _subEmail || '');
+        showToast('ThyroidCA Pro activated! Unlimited extractions enabled.', 'success');
+        document.getElementById('subscribedBannerText').textContent =
+          'ThyroidCA Pro activated' + (_subEmail ? ' for ' + _subEmail : '') + '. Unlimited AI extractions enabled.';
+        document.getElementById('subscribedBanner').style.display = 'flex';
+        updateUploadBarUI();
+        return;
+      }
+      if (data.pending) {
+        // Webhook not yet processed — wait and retry
+        await new Promise(function(r){ setTimeout(r, 2000); });
+      }
+    } catch(e) { break; }
+  }
+  showToast('Subscription confirmed by Stripe — activation may take a moment. Refresh the page if the feature is not yet unlocked.', 'info');
+  updateUploadBarUI();
+}
+
+async function validateToken(token) {
+  try {
+    var resp = await fetch('/.netlify/functions/verify-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token })
+    });
+    var data = await resp.json();
+    _subValid = data.valid === true;
+    if (!_subValid) {
+      // Token expired or cancelled — clear it
+      localStorage.removeItem('tc_sub_token');
+      localStorage.removeItem('tc_sub_email');
+      _subToken = null; _subEmail = null;
+    }
+  } catch(e) {
+    // Network error — assume valid to avoid blocking users
+    _subValid = !!_subToken;
+  }
+  updateUploadBarUI();
+}
+
+function getFreeLeft() {
+  return Math.max(0, FREE_LIMIT - _freeUsed);
+}
+
+function updateUploadBarUI() {
+  var uploadBar   = document.getElementById('uploadBar');
+  var upgradeBar  = document.getElementById('upgradeBar');
+  var freeCounter = document.getElementById('freeCounter');
+  var freeCountText = document.getElementById('freeCountText');
+  var subBadge    = document.getElementById('subscriberBadge');
+
+  if (!uploadBar || !upgradeBar) return;
+
+  if (_subValid) {
+    // Subscribed — show upload bar with Pro badge
+    uploadBar.style.display = '';
+    upgradeBar.style.display = 'none';
+    if (subBadge) subBadge.style.display = '';
+    if (freeCounter) freeCounter.style.display = 'none';
+  } else {
+    var freeLeft = getFreeLeft();
+    if (freeLeft > 0) {
+      // Free tier with extractions remaining
+      uploadBar.style.display = '';
+      upgradeBar.style.display = 'none';
+      if (subBadge) subBadge.style.display = 'none';
+      if (freeCounter && freeCountText) {
+        freeCounter.style.display = '';
+        freeCountText.textContent = freeLeft + ' free extraction' + (freeLeft !== 1 ? 's' : '') + ' remaining';
+      }
+    } else {
+      // Free extractions exhausted — show upgrade bar
+      uploadBar.style.display = 'none';
+      upgradeBar.style.display = '';
+    }
+  }
+}
+
+async function startCheckout() {
+  document.getElementById('checkoutOverlay').classList.add('open');
+  try {
+    var resp = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ returnUrl: window.location.href.split('?')[0] })
+    });
+    var data = await resp.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Could not create checkout session');
+    }
+  } catch(e) {
+    document.getElementById('checkoutOverlay').classList.remove('open');
+    showToast('Checkout error: ' + e.message, 'error');
+  }
+}
+
+async function restoreSubscription() {
+  var email = prompt('Enter the email address you used when subscribing:');
+  if (!email) return;
+  showToast('Checking subscription...', 'info');
+  try {
+    var resp = await fetch('/.netlify/functions/verify-subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim().toLowerCase() })
+    });
+    var data = await resp.json();
+    if (data.valid && data.token) {
+      _subToken = data.token;
+      _subEmail = email;
+      _subValid = true;
+      localStorage.setItem('tc_sub_token', _subToken);
+      localStorage.setItem('tc_sub_email', _subEmail);
+      showToast('Subscription restored!', 'success');
+      updateUploadBarUI();
+    } else {
+      showToast('No active subscription found for that email.', 'error');
+    }
+  } catch(e) {
+    showToast('Could not verify subscription: ' + e.message, 'error');
+  }
+}
+
+// Initialise on load
+document.addEventListener('DOMContentLoaded', initSubscriptionState);
+</script>
 
 <script>
 // ══════════════════════════════════════════════
@@ -1620,15 +1842,27 @@ async function parsePathology() {
       body: JSON.stringify({
         data: _uploadedB64,
         mimeType: mime,
-        isPdf: isPdf
+        isPdf: isPdf,
+        subscriptionToken: _subToken || null
       })
     });
 
-    if (!resp.ok) {
+    if (resp.status === 402) {
+      // Free limit reached
       var errData = await resp.json().catch(function(){ return {}; });
-      var errMsg = errData.error || ('Server error ' + resp.status);
-      if (resp.status === 404) errMsg = 'The AI extraction function was not found. Make sure parse-pathology.js is deployed to Netlify/functions and netlify.toml is present in the repo.';
-      if (resp.status === 500 && errMsg.includes('ANTHROPIC_API_KEY')) errMsg = 'Anthropic API key is not set. Add ANTHROPIC_API_KEY in Netlify → Environment Variables.';
+      _freeUsed = FREE_LIMIT;
+      localStorage.setItem('tc_free_used', String(_freeUsed));
+      var pp = document.getElementById('parseProgress'); if(pp) pp.classList.remove('visible');
+      updateUploadBarUI();
+      showToast('Free extractions used up. Subscribe to continue.', 'info');
+      return;
+    }
+
+    if (!resp.ok) {
+      var errData2 = await resp.json().catch(function(){ return {}; });
+      var errMsg = errData2.error || ('Server error ' + resp.status);
+      if (resp.status === 404) errMsg = 'AI extraction function not found. Check Netlify deployment.';
+      if (resp.status === 500 && errMsg.includes('ANTHROPIC_API_KEY')) errMsg = 'API key not configured in Netlify Environment Variables.';
       throw new Error(errMsg);
     }
 
@@ -1636,6 +1870,13 @@ async function parsePathology() {
     if (result.error) throw new Error(result.error);
 
     var extracted = result.extracted;
+
+    // Update free extraction count if server returned remaining count
+    if (!_subValid && result.freeLeft !== undefined) {
+      _freeUsed = FREE_LIMIT - result.freeLeft;
+      localStorage.setItem('tc_free_used', String(_freeUsed));
+      updateUploadBarUI();
+    }
 
     // Populate the form
     populateFromExtracted(extracted);
