@@ -8,24 +8,22 @@
 [functions."parse-pathology"]
   timeout = 30
 
+[functions."create-checkout"]
+  timeout = 15
+
+[functions."stripe-webhook"]
+  timeout = 15
+
+[functions."verify-subscription"]
+  timeout = 15
+
 # ── Security headers ──────────────────────────────────────────────────────────
 [[headers]]
   for = "/*"
   [headers.values]
-    # Prevent clickjacking
     X-Frame-Options = "DENY"
-    # Prevent MIME sniffing
     X-Content-Type-Options = "nosniff"
-    # Limit referrer information
     Referrer-Policy = "strict-origin-when-cross-origin"
-    # Permissions policy — disable unused browser features
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
-    # HSTS — force HTTPS for 1 year
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    # Content Security Policy
-    # - default: only same origin
-    # - scripts: same origin + inline (needed for app logic) + cdnjs for fonts
-    # - connect: same origin + Anthropic API (for future direct calls if needed) + Netlify functions
-    # - fonts: Google Fonts
-    # - images: same origin + data URIs (used for inline assets)
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.googleapis.com https://fonts.gstatic.com; connect-src 'self' https://api.stripe.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; frame-ancestors 'none'"
