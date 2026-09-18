@@ -1,1 +1,9 @@
-
+{
+  "name": "thyroidca",
+  "version": "1.3.0",
+  "description": "ThyroidCA DTC Decision Support — EndoHormone Institute",
+  "private": true,
+  "dependencies": {
+    "pg": "^8.13.0"
+  }
+}
