@@ -104,7 +104,8 @@
   /* ── LAYOUT ── */
   .app-layout{display:grid;grid-template-columns:385px 1fr;gap:0;min-height:calc(100vh - 72px - 33px - 58px);}
   .panel-left{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;height:calc(100vh - 72px - 33px - 58px);position:sticky;top:calc(72px + 33px + 58px);}
-  .panel-right{padding:24px;display:flex;flex-direction:column;gap:20px;background:var(--bg);}
+  .panel-right{padding:24px;display:flex;flex-direction:column;gap:20px;background:var(--bg);position:relative;}
+  .sandbox-watermark{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(224,82,82,.12);border:1px solid rgba(224,82,82,.3);border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#E05252;pointer-events:none;z-index:50;}
 
   /* ── SCROLLBAR ── */
   .panel-left::-webkit-scrollbar{width:3px;}
@@ -283,13 +284,16 @@
   <div style="display:flex;align-items:center;gap:14px;">
     <div class="logo-mark">T</div>
     <div class="brand-block">
-      <div class="brand-name">ThyroidCA</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="brand-name">ThyroidCA</div>
+        <div style="background:#E05252;color:#fff;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:4px;line-height:1.4;">SANDBOX</div>
+      </div>
       <div class="brand-tagline">Differentiated Thyroid Cancer &middot; Clinical Decision Support &middot; ATA 2025</div>
-      <div class="brand-ehi">A product of EndoHormone Institute (EHI)</div>
+      <div class="brand-ehi">Development &amp; Testing Environment &mdash; EndoHormone Institute (EHI)</div>
     </div>
   </div>
   <div class="header-actions">
-    <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.3.0</span>
+    <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.3.0-sandbox</span>
     <div class="header-divider"></div>
     <button class="btn-ghost" onclick="openModal('aboutModal')">&#9432; About</button>
     <button class="btn-ghost" onclick="openModal('savedModal')">&#128194; Saved Cases</button>
@@ -298,9 +302,9 @@
   </div>
 </header>
 
-<div class="disclaimer-banner">
-  <span>&#9888;</span>
-  <span><strong>Educational decision support only.</strong> Does not replace clinical judgement, MDT discussion, or institutional protocols. For qualified healthcare professionals only. &nbsp;&middot;&nbsp; Author: <strong>Prof. Steven C. Boyages</strong> MBBS FRACP FAFPHM DDU PhD &middot; ATA 2025</span>
+<div class="disclaimer-banner" style="background:#4D1515;border-bottom:1px solid rgba(224,82,82,.3);">
+  <span style="color:#E05252;font-size:14px;">&#9888;</span>
+  <span style="color:rgba(255,180,180,.9);"><strong style="color:#E05252;">SANDBOX &#8212; NOT FOR CLINICAL USE.</strong> Development and testing environment only. Results must not be used for patient management. Production tool: <a href="https://thyroidca.com" style="color:#E05252;">thyroidca.com</a></span>
 </div>
 
 <!-- hidden file input — triggered by both browse button and drop zone -->
@@ -370,6 +374,8 @@
     <div class="parse-result-body" id="parseResultBody"></div>
   </div>
 </div>
+
+<div class="sandbox-watermark">&#9888; Sandbox — Not for Clinical Use</div>
 
 <div class="app-layout">
 
@@ -934,39 +940,19 @@
 // ══════════════════════════════════════════════
 //  SUBSCRIPTION STATE
 // ══════════════════════════════════════════════
-var STRIPE_PUBLISHABLE_KEY = 'pk_live_51SiqhXGSaNumIARATn9WcbUU3yYxx4v4jbzOSeukzGW7O2YpbChxhlGLwljPg7EK66joDlFGx9ghBdSQSqyaMqLF00xEUNtZ8b';
+var STRIPE_PUBLISHABLE_KEY = 'pk_test_SANDBOX'; // Stripe test mode — replace with test key
 var FREE_LIMIT = 3;
 
-// Subscription state — persisted in localStorage
-var _subToken   = localStorage.getItem('tc_sub_token') || null;
-var _subEmail   = localStorage.getItem('tc_sub_email') || null;
-var _freeUsed   = parseInt(localStorage.getItem('tc_free_used') || '0', 10);
-var _subValid   = false; // validated server-side on load
+// ── SANDBOX MODE — paywall bypassed ──
+var _subToken   = 'sandbox_unlimited';
+var _subEmail   = 'sandbox@thyroidca.com';
+var _freeUsed   = 0;
+var _subValid   = true; // Always true in sandbox — no subscription check
 
 async function initSubscriptionState() {
-  // Check URL params for post-checkout redirect
-  var params = new URLSearchParams(window.location.search);
-  var sessionId = params.get('session_id');
-  var subscribed = params.get('subscribed');
-
-  if (sessionId && subscribed === 'true') {
-    // Exchange session_id for our token
-    await handlePostCheckout(sessionId);
-    // Clean URL
-    window.history.replaceState({}, '', window.location.pathname);
-    return;
-  }
-
-  if (subscribed === 'false') {
-    window.history.replaceState({}, '', window.location.pathname);
-  }
-
-  // Validate existing token if we have one
-  if (_subToken) {
-    await validateToken(_subToken);
-  } else {
-    updateUploadBarUI();
-  }
+  // SANDBOX: subscription always active — skip all server validation
+  _subValid = true;
+  updateUploadBarUI();
 }
 
 async function handlePostCheckout(sessionId) {
