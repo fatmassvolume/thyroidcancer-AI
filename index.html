@@ -281,7 +281,22 @@
 
 <header>
   <div style="display:flex;align-items:center;gap:14px;">
-    <div class="logo-mark">T</div>
+    <div class="logo-mark" style="background:none;border:none;padding:0;overflow:visible;">
+      <svg width="44" height="44" viewBox="0 0 44 44" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>ThyroidCA</title>
+        <defs>
+          <linearGradient id="hLobeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F4A7C3" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#C2185B" stop-opacity="0.9"/>
+          </linearGradient>
+        </defs>
+        <rect width="44" height="44" rx="11" fill="#0D2B4E"/>
+        <ellipse cx="17" cy="30" rx="5.5" ry="11" fill="url(#hLobeGrad)" transform="rotate(-26 17 30)"/>
+        <ellipse cx="27" cy="30" rx="5.5" ry="11" fill="url(#hLobeGrad)" transform="rotate(26 27 30)"/>
+        <rect x="19.5" y="37" width="5" height="2.5" rx="1.2" fill="#C2185B" opacity="0.9"/>
+        <text x="22" y="26" fill="white" font-size="24" font-weight="700" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" dominant-baseline="auto">T</text>
+      </svg>
+    </div>
     <div class="brand-block">
       <div class="brand-name">ThyroidCA</div>
       <div class="brand-tagline">Differentiated Thyroid Cancer &middot; Clinical Decision Support &middot; ATA 2025</div>
@@ -294,7 +309,6 @@
     <button class="btn-ghost" onclick="openModal('aboutModal')">&#9432; About</button>
     <button class="btn-ghost" onclick="window.open('https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N','_blank')">&#10067; Help</button>
     <button class="btn-ghost" onclick="openModal('savedModal')">&#128194; Saved Cases</button>
-    <button class="btn-ghost" onclick="openModal('raiModal')">&#9883; RAI Guide</button>
     <button class="btn-ghost" onclick="window.print()">&#8659; Export PDF</button>
   </div>
 </header>
