@@ -292,6 +292,7 @@
     <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.3.0</span>
     <div class="header-divider"></div>
     <button class="btn-ghost" onclick="openModal('aboutModal')">&#9432; About</button>
+    <button class="btn-ghost" onclick="window.open('https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N','_blank')">&#10067; Help</button>
     <button class="btn-ghost" onclick="openModal('savedModal')">&#128194; Saved Cases</button>
     <button class="btn-ghost" onclick="openModal('raiModal')">&#9883; RAI Guide</button>
     <button class="btn-ghost" onclick="window.print()">&#8659; Export PDF</button>
@@ -798,7 +799,10 @@
         <h3 style="font-size:17px;font-weight:700;color:var(--ink);">ThyroidCA &mdash; About, Disclaimers &amp; Version History</h3>
         <div style="font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px;">A product of EndoHormone Institute (EHI)</div>
       </div>
-      <button class="modal-close" onclick="closeModal('aboutModal')">&#10005;</button>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <a href="https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:var(--radius-sm);font-size:12.5px;font-weight:600;color:var(--accent);text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(59,130,196,.22)'" onmouseout="this.style.background='var(--accent-bg)'">&#10067; User Manual</a>
+        <button class="modal-close" onclick="closeModal('aboutModal')">&#10005;</button>
+      </div>
     </div>
     <div class="modal-body">
 
@@ -914,7 +918,10 @@
       <!-- REFERENCE + COPYRIGHT -->
       <h4 style="margin-top:18px;">Guideline Reference</h4>
       <p style="font-size:12.5px;color:var(--ink2);line-height:1.7;">Recommendations are based on: <em>American Thyroid Association Management Guidelines for Adult Patients with Thyroid Nodules and Differentiated Thyroid Cancer</em> (ATA 2025 revision). Users are directed to the original ATA publication for full guideline text, evidence grading, and supporting references.</p>
-      <p style="font-size:12px;color:var(--ink3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">&copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI). All rights reserved. ThyroidCA is a product of EHI. Unauthorised reproduction or redistribution is prohibited. For licensing enquiries contact <a href="mailto:steven.boyages@sydney.edu.au" style="color:var(--accent);">steven.boyages@sydney.edu.au</a>.</p>
+      <p style="font-size:12px;color:var(--ink3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
+        &#128211; <a href="https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">Open User Manual &amp; Help Directory</a> &mdash; full field guide, AI extraction guide, subscription help, and troubleshooting FAQ.
+      </p>
+      <p style="font-size:12px;color:var(--ink3);margin-top:8px;">&copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI). All rights reserved. ThyroidCA is a product of EHI. Unauthorised reproduction or redistribution is prohibited. For licensing enquiries contact <a href="mailto:steve.boyages@gmail.com" style="color:var(--accent);">steve.boyages@gmail.com</a>.</p>
     </div>
   </div>
 </div>
