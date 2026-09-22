@@ -7,37 +7,37 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Dark palette */
-    --bg:#0F1117;
-    --surface:#181C26;
-    --surface2:#1E2330;
-    --surface3:#242938;
-    --border:#2A3045;
-    --border2:#323A52;
-    --ink:#E8ECF4;
-    --ink2:#A8B2CC;
-    --ink3:#606880;
+    /* Light content palette */
+    --bg:#F0F4FA;
+    --surface:#FFFFFF;
+    --surface2:#E8EEF6;
+    --surface3:#DDE4F0;
+    --border:#C8D4E8;
+    --border2:#B0C0D8;
+    --ink:#0D2B4E;
+    --ink2:#2A4A6E;
+    --ink3:#6A85A8;
     /* Accent — teal-blue */
-    --accent:#3B82C4;
-    --accent-dim:#2A5F96;
-    --accent-bg:rgba(59,130,196,.12);
-    --accent-glow:rgba(59,130,196,.25);
+    --accent:#1B5FA8;
+    --accent-dim:#154D8A;
+    --accent-bg:rgba(27,95,168,.08);
+    --accent-glow:rgba(27,95,168,.2);
     /* Status */
-    --gold:#D4A843;
-    --gold-bg:rgba(212,168,67,.12);
-    --risk-low:#3BAA6E;
-    --risk-low-bg:rgba(59,170,110,.12);
-    --risk-int:#D4A843;
-    --risk-int-bg:rgba(212,168,67,.12);
-    --risk-high:#E05252;
-    --risk-high-bg:rgba(224,82,82,.12);
+    --gold:#9A6A00;
+    --gold-bg:rgba(154,106,0,.1);
+    --risk-low:#1A7A4A;
+    --risk-low-bg:rgba(26,122,74,.1);
+    --risk-int:#9A6A00;
+    --risk-int-bg:rgba(154,106,0,.1);
+    --risk-high:#C0392B;
+    --risk-high-bg:rgba(192,57,43,.1);
     /* Upload zone AI accent */
-    --ai:#7C5CDB;
-    --ai-bg:rgba(124,92,219,.12);
-    --ai-border:rgba(124,92,219,.35);
+    --ai:#5B3FB5;
+    --ai-bg:rgba(91,63,181,.08);
+    --ai-border:rgba(91,63,181,.25);
     --radius:10px;--radius-sm:6px;--radius-xs:4px;
-    --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.2);
-    --shadow-md:0 4px 16px rgba(0,0,0,.35),0 12px 40px rgba(0,0,0,.25);
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);
+    --shadow-md:0 4px 16px rgba(0,0,0,.1),0 12px 40px rgba(0,0,0,.08);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;font-size:14px;line-height:1.6;}
@@ -57,31 +57,31 @@
   .version-pill:hover{background:rgba(255,255,255,.22);color:#fff;}
 
   /* ── DISCLAIMER ── */
-  .disclaimer-banner{background:#0A2040;border-bottom:1px solid rgba(255,255,255,.07);padding:7px 28px;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.5);}
-  .disclaimer-banner strong{color:rgba(255,255,255,.75);}
+  .disclaimer-banner{background:#0D2B4E;border-bottom:1px solid rgba(255,255,255,.1);padding:7px 28px;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.6);}
+  .disclaimer-banner strong{color:rgba(255,255,255,.9);}
 
   /* ── DESKTOP: UPLOAD BAR above main layout ── */
-  .upload-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;}
+  .upload-bar{background:#0F3460;border-bottom:1px solid rgba(255,255,255,.1);padding:14px 28px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;}
   .upload-bar-inner{display:flex;align-items:center;gap:14px;flex:1;}
-  .upload-zone-inline{flex:1;border:1.5px dashed var(--ai-border);border-radius:var(--radius-sm);padding:10px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;position:relative;background:var(--ai-bg);}
-  .upload-zone-inline:hover,.upload-zone-inline.drag-over{border-color:var(--ai);background:rgba(124,92,219,.18);}
+  .upload-zone-inline{flex:1;border:1.5px dashed rgba(255,255,255,.45);border-radius:var(--radius-sm);padding:10px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;position:relative;background:rgba(255,255,255,.1);}
+  .upload-zone-inline:hover,.upload-zone-inline.drag-over{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.18);}
   .upload-zone-inline input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
   .upload-zone-icon{font-size:20px;flex-shrink:0;}
   .upload-zone-text{display:flex;flex-direction:column;line-height:1.3;}
-  .upload-zone-title{font-size:13px;font-weight:600;color:var(--ink);}
-  .upload-zone-sub{font-size:11.5px;color:var(--ink3);}
-  .upload-preview-inline{display:none;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:8px 12px;min-width:0;}
+  .upload-zone-title{font-size:13px;font-weight:600;color:#fff;}
+  .upload-zone-sub{font-size:11.5px;color:rgba(255,255,255,.65);}
+  .upload-preview-inline{display:none;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius-sm);padding:8px 12px;min-width:0;}
   .upload-preview-inline.visible{display:flex;}
-  .upload-preview-name-inline{font-size:12.5px;font-weight:500;color:var(--ink2);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .upload-preview-clear{background:none;border:none;color:var(--ink3);cursor:pointer;font-size:15px;padding:0 2px;transition:color .1s;line-height:1;}
-  .upload-preview-clear:hover{color:var(--risk-high);}
+  .upload-preview-name-inline{font-size:12.5px;font-weight:500;color:#fff;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .upload-preview-clear{background:none;border:none;color:rgba(255,255,255,.6);cursor:pointer;font-size:15px;padding:0 2px;transition:color .1s;line-height:1;}
+  .upload-preview-clear:hover{color:#fff;}
   .btn-parse{padding:10px 22px;background:linear-gradient(135deg,var(--ai) 0%,#5B3FB5 100%);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .15s;white-space:nowrap;box-shadow:0 2px 12px rgba(124,92,219,.35);}
   .btn-parse:hover{background:linear-gradient(135deg,#8D6EE8 0%,#6B4FC5 100%);box-shadow:0 4px 20px rgba(124,92,219,.5);}
-  .btn-parse:disabled{background:var(--surface3);color:var(--ink3);cursor:not-allowed;box-shadow:none;}
-  .ai-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ai);flex-shrink:0;}
-  .ai-dot{width:6px;height:6px;border-radius:50%;background:var(--ai);animation:pulse 2s infinite;}
+  .btn-parse:disabled{background:rgba(255,255,255,.15);color:rgba(255,255,255,.4);cursor:not-allowed;box-shadow:none;}
+  .ai-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.8);flex-shrink:0;}
+  .ai-dot{width:6px;height:6px;border-radius:50%;background:#B39DED;animation:pulse 2s infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-  .parse-progress-bar{display:none;align-items:center;gap:8px;font-size:12px;color:var(--ai);}
+  .parse-progress-bar{display:none;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.8);}
   .parse-progress-bar.visible{display:flex;}
   .parse-spinner{width:13px;height:13px;border:2px solid rgba(124,92,219,.25);border-top-color:var(--ai);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
   @keyframes spin{to{transform:rotate(360deg);}}
@@ -91,7 +91,7 @@
   #pathFileInput{display:none;}
   .parse-result-bar{display:none;padding:6px 12px;background:rgba(59,170,110,.1);border:1px solid rgba(59,170,110,.25);border-radius:var(--radius-sm);font-size:12px;color:var(--risk-low);font-weight:500;}
   .parse-result-bar.visible{display:block;}
-  .upgrade-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:20px;}
+  .upgrade-bar{background:#F0F4FA;border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:20px;}
   .btn-subscribe{padding:10px 20px;background:linear-gradient(135deg,var(--ai) 0%,#5B3FB5 100%);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap;box-shadow:0 2px 12px rgba(124,92,219,.35);}
   .btn-subscribe:hover{background:linear-gradient(135deg,#8D6EE8 0%,#6B4FC5 100%);}
   .btn-restore{padding:10px 14px;background:var(--surface2);border:1px solid var(--border2);color:var(--ink3);border-radius:var(--radius-sm);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;}
@@ -128,7 +128,7 @@
   input[type="text"],input[type="number"],select,textarea{width:100%;padding:8px 10px;border:1px solid var(--border2);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;color:var(--ink);background:var(--surface2);transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none;}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
   input::placeholder,textarea::placeholder{color:var(--ink3);}
-  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23606880' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px;cursor:pointer;}
+  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236A85A8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px;cursor:pointer;}
   select option{background:var(--surface2);color:var(--ink);}
   textarea{resize:vertical;min-height:60px;}
 
@@ -150,7 +150,7 @@
   /* ── ACTION ROW ── */
   .action-row{padding:14px 20px;display:flex;gap:8px;flex-wrap:wrap;background:var(--surface);border-top:1px solid var(--border);}
   .btn-primary{flex:1;min-width:120px;padding:11px 18px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dim) 100%);color:#fff;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 2px 10px rgba(59,130,196,.3);}
-  .btn-primary:hover{background:linear-gradient(135deg,#4A92D4 0%,#3A6FAC 100%);box-shadow:0 4px 16px rgba(59,130,196,.4);}
+  .btn-primary:hover{background:linear-gradient(135deg,#2470BE 0%,#1A5090 100%);box-shadow:0 4px 16px rgba(27,95,168,.35);}
   .btn-primary:active{transform:scale(.98);}
   .btn-secondary{padding:11px 14px;background:var(--surface2);color:var(--ink3);border:1px solid var(--border2);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;}
   .btn-secondary:hover{border-color:var(--ink3);color:var(--ink);}
@@ -292,7 +292,7 @@
     <span class="version-pill" onclick="openModal('aboutModal')" title="Version history, author & disclaimers">v1.3.0</span>
     <div class="header-divider"></div>
     <button class="btn-ghost" onclick="openModal('aboutModal')">&#9432; About</button>
-    <button class="btn-ghost" onclick="window.open('https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N','_blank')">&#10067; Help</button>
+    <button class="btn-ghost" onclick="window.open('/help','_blank')">&#10067; Help</button>
     <button class="btn-ghost" onclick="openModal('savedModal')">&#128194; Saved Cases</button>
     <button class="btn-ghost" onclick="window.print()">&#8659; Export PDF</button>
   </div>
@@ -799,7 +799,7 @@
         <div style="font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px;">A product of EndoHormone Institute (EHI)</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
-        <a href="https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:var(--radius-sm);font-size:12.5px;font-weight:600;color:var(--accent);text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(59,130,196,.22)'" onmouseout="this.style.background='var(--accent-bg)'">&#10067; User Manual</a>
+        <a href="/help" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--accent-bg);border:1px solid var(--accent-glow);border-radius:var(--radius-sm);font-size:12.5px;font-weight:600;color:var(--accent);text-decoration:none;transition:all .15s;" onmouseover="this.style.background='rgba(59,130,196,.22)'" onmouseout="this.style.background='var(--accent-bg)'">&#10067; User Manual</a>
         <button class="modal-close" onclick="closeModal('aboutModal')">&#10005;</button>
       </div>
     </div>
@@ -918,7 +918,7 @@
       <h4 style="margin-top:18px;">Guideline Reference</h4>
       <p style="font-size:12.5px;color:var(--ink2);line-height:1.7;">Recommendations are based on: <em>American Thyroid Association Management Guidelines for Adult Patients with Thyroid Nodules and Differentiated Thyroid Cancer</em> (ATA 2025 revision). Users are directed to the original ATA publication for full guideline text, evidence grading, and supporting references.</p>
       <p style="font-size:12px;color:var(--ink3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">
-        &#128211; <a href="https://claude.ai/artifact/SkU7ywidUcYKwY9k8aDr1N" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">Open User Manual &amp; Help Directory</a> &mdash; full field guide, AI extraction guide, subscription help, and troubleshooting FAQ.
+        &#128211; <a href="/help" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">Open User Manual &amp; Help Directory</a> &mdash; full field guide, AI extraction guide, subscription help, and troubleshooting FAQ.
       </p>
       <p style="font-size:12px;color:var(--ink3);margin-top:10px;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);line-height:1.7;">&#9432; <strong style="color:var(--ink2);">Independent tool — not affiliated with the ATA.</strong> ThyroidCA is an independent clinical decision support resource developed by EndoHormone Institute Pty Ltd (EHI). It is not affiliated with, endorsed by, approved by, or certified by the American Thyroid Association® (ATA®). References to ATA 2025 guidelines are factual descriptors indicating the guideline version upon which recommendations are based. AMERICAN THYROID ASSOCIATION® and ATA® are registered trademarks of the American Thyroid Association, Inc.</p>
       <p style="font-size:12px;color:var(--ink3);margin-top:8px;">&copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI). All rights reserved. ThyroidCA is a product of EHI. Unauthorised reproduction or redistribution is prohibited. For licensing enquiries contact <a href="mailto:steve.boyages@gmail.com" style="color:var(--accent);">steve.boyages@gmail.com</a>.</p>
@@ -1548,8 +1548,9 @@ function generatePlan() {
   var tgLabels = { not_tested:'Not tested', unavailable:'Unavailable', undetectable:'Undetectable', low:'Low / Stable', rising:'Rising ▲' };
   var tgClass = d.tgTrend==='rising' ? 'color:var(--risk-high);' : d.tgTrend==='undetectable' ? 'color:var(--risk-low);' : d.tgTrend==='low' ? 'color:var(--gold);' : 'color:var(--ink3);';
   var tgCellHtml = '<div class="summary-cell"><div class="summary-label">Serum Tg</div><div class="summary-value" style="font-family:\'DM Sans\',sans-serif;font-size:12px;' + tgClass + '">' + (tgLabels[d.tgTrend]||'—') + '</div></div>';
+  var unfavLabel = (d.unfavHist && d.unfavHist !== 'none') ? (UNFAV_LABELS[d.unfavHist] || d.unfavHist) : '';
   var unfavCellHtml = (d.unfavHist && d.unfavHist!=='none')
-    ? '<div class="summary-cell"><div class="summary-label">Unfav. Subtype</div><div style="margin-top:4px;"><span class="unfav-badge" style="font-size:10.5px;">' + (unfavShort.length>14 ? unfavShort.slice(0,14)+'...' : unfavShort) + '</span></div></div>'
+    ? '<div class="summary-cell"><div class="summary-label">Unfav. Subtype</div><div style="margin-top:4px;"><span class="unfav-badge" style="font-size:10.5px;">' + (unfavLabel.length>14 ? unfavLabel.slice(0,14)+'...' : unfavLabel) + '</span></div></div>'
     : '<div class="summary-cell"><div class="summary-label">Unfav. Subtype</div><div class="summary-value">None</div></div>';
 
   var mfCellHtml = (d.multifocal === 'yes')
