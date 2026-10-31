@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThyroidCA — User Manual & Help Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FFFFFF;--surface:#F4F6FA;--surface2:#E8ECF4;--border:#D0D8E8;--ink:#0D2B4E;--ink2:#1E3A5F;--ink3:#5A7A9A;--accent:#1B5FA8;--accent-bg:rgba(27,95,168,.07);--accent-glow:rgba(27,95,168,.2);--risk-low:#1A7A4A;--gold:#B8860B;--radius:10px;--radius-sm:6px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* HEADER */
+  header{background:linear-gradient(135deg,#0D2B4E 0%,#0F3460 60%,#0D2B4E 100%);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:100;}
+  .header-left{display:flex;align-items:center;gap:12px;}
+  .header-brand{font-size:18px;font-weight:700;color:#fff;}
+  .header-sub{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.3px;}
+  .btn-back{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:7px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
+  .btn-back:hover{background:rgba(255,255,255,.2);color:#fff;text-decoration:none;}
+
+  /* LAYOUT */
+  .page{display:grid;grid-template-columns:240px 1fr;max-width:1200px;margin:0 auto;min-height:calc(100vh - 65px);}
+
+  /* SIDEBAR */
+  nav{padding:28px 0;position:sticky;top:65px;height:calc(100vh - 65px);overflow-y:auto;border-right:1px solid var(--border);}
+  nav::-webkit-scrollbar{width:3px;}
+  nav::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+  .nav-title{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink3);padding:0 20px 8px;}
+  .nav-item{display:block;padding:7px 20px;font-size:13px;color:var(--ink3);text-decoration:none;border-left:2px solid transparent;transition:all .12s;}
+  .nav-item:hover{color:var(--ink);background:#F0F4FA;text-decoration:none;}
+  .nav-item.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg);}
+  .nav-sep{height:1px;background:var(--border);margin:12px 0;}
+
+  /* CONTENT */
+  main{padding:40px 56px;max-width:860px;}
+  h1{font-size:28px;font-weight:700;color:var(--ink);margin-bottom:6px;font-family:'Playfair Display',serif;}
+  .hero-sub{font-size:14px;color:var(--ink3);margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+  h2{font-size:20px;font-weight:700;color:var(--ink);margin:44px 0 14px;padding-top:12px;scroll-margin-top:80px;}
+  h3{font-size:15px;font-weight:700;color:var(--accent);margin:24px 0 10px;}
+  p{color:var(--ink2);margin-bottom:14px;}
+  ul,ol{color:var(--ink2);padding-left:22px;margin-bottom:14px;}
+  li{margin-bottom:6px;}
+  li strong{color:var(--ink);}
+  strong{color:var(--ink);font-weight:600;}
+  em{color:var(--ink3);}
+  blockquote{border-left:3px solid var(--accent);background:var(--accent-bg);padding:12px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:16px 0;color:var(--ink2);}
+  hr{border:none;border-top:1px solid var(--border);margin:28px 0;}
+
+  /* TABLES */
+  table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:13.5px;}
+  th{background:#E8ECF4;padding:9px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#5A7A9A;border-bottom:1px solid var(--border);}
+  td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:#F4F6FA;}
+
+  /* CALLOUT */
+  .callout{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin:16px 0;font-size:13.5px;color:var(--ink2);}
+  .callout.info{border-left:3px solid var(--accent);background:var(--accent-bg);}
+  .callout.warn{border-left:3px solid var(--gold);background:rgba(212,168,67,.08);}
+
+  /* BADGES */
+  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;margin:1px;}
+  .badge.free{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-glow);}
+  .badge.pro{background:rgba(124,92,219,.15);color:#9B72E8;border:1px solid rgba(124,92,219,.3);}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:24px 56px;color:var(--ink3);font-size:12px;max-width:1200px;margin:0 auto;}
+
+  @media(max-width:768px){
+    .page{grid-template-columns:1fr;}
+    nav{display:none;}
+    main{padding:24px 20px;}
+    header{padding:14px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div>
+      <div class="header-brand">ThyroidCA</div>
+      <div class="header-sub">User Manual &amp; Help Directory &middot; v1.3.0</div>
+    </div>
+  </div>
+  <a href="https://thyroidca.com" class="btn-back">&#8592; Back to ThyroidCA</a>
+</header>
+
+<div class="page">
+  <nav>
+    <div class="nav-title">Contents</div>
+    <a class="nav-item" href="#overview">1. Overview</a>
+    <a class="nav-item" href="#getting-started">2. Getting Started</a>
+    <a class="nav-item" href="#interface">3. The Interface</a>
+    <a class="nav-item" href="#entering-data">4. Entering Patient Data</a>
+    <a class="nav-item" href="#ai-autofill">5. AI Pathology Auto-Fill</a>
+    <a class="nav-item" href="#clinical-plan">6. Understanding the Plan</a>
+    <a class="nav-item" href="#saving-cases">7. Saving &amp; Retrieving Cases</a>
+    <a class="nav-item" href="#subscription">8. Subscription</a>
+    <a class="nav-item" href="#troubleshooting">9. Troubleshooting &amp; FAQ</a>
+    <a class="nav-item" href="#contact">10. Contact &amp; Support</a>
+    <div class="nav-sep"></div>
+    <div class="nav-title">Quick links</div>
+    <a class="nav-item" href="https://thyroidca.com">thyroidca.com</a>
+    <a class="nav-item" href="mailto:steve.boyages@gmail.com">Email support</a>
+  </nav>
+
+  <main>
+    <h1>User Manual &amp; Help Directory</h1>
+    <div class="hero-sub">ThyroidCA v1.3.0 &middot; EndoHormone Institute (EHI) &middot; ATA 2025 aligned &middot; For qualified healthcare professionals only</div>
+
+    <!-- 1. OVERVIEW -->
+    <h2 id="overview">1. Overview</h2>
+    <p>ThyroidCA is a browser-based clinical decision support tool for the management of <strong>differentiated thyroid carcinoma (DTC)</strong>. It synthesises the 2025 American Thyroid Association (ATA) guidelines to generate structured, individually tailored management recommendations for use by qualified endocrinologists, endocrine surgeons, nuclear medicine physicians, and medical oncologists.</p>
+    <p>ThyroidCA is a product of <strong>EndoHormone Institute Pty Ltd (EHI)</strong>, developed and maintained by Professor Steven C. Boyages MBBS FRACP FAFPHM DDU PhD.</p>
+    <h3>What ThyroidCA does</h3>
+    <ul>
+      <li>Stratifies recurrence risk (Low / Intermediate / High) using ATA 2025 criteria</li>
+      <li>Generates structured recommendations for surgery, RAI, TSH suppression, systemic therapy, and surveillance</li>
+      <li>Extracts clinical data automatically from uploaded pathology reports using AI <span class="badge pro">Pro</span></li>
+      <li>Saves and retrieves patient cases for later review</li>
+    </ul>
+    <h3>What ThyroidCA does not do</h3>
+    <ul>
+      <li>Diagnose thyroid cancer</li>
+      <li>Replace clinical judgement, MDT discussion, or institutional protocols</li>
+      <li>Interface with electronic medical records or diagnostic equipment</li>
+      <li>Provide advice directly to patients</li>
+    </ul>
+    <blockquote><strong>Important:</strong> ThyroidCA is an educational decision support tool for qualified healthcare professionals only. All clinical decisions remain the sole responsibility of the treating clinician.</blockquote>
+
+    <!-- 2. GETTING STARTED -->
+    <h2 id="getting-started">2. Getting Started</h2>
+    <h3>System Requirements</h3>
+    <p>ThyroidCA runs entirely in a web browser — no software installation is required.</p>
+    <table>
+      <tr><th>Requirement</th><th>Details</th></tr>
+      <tr><td><strong>Browser</strong></td><td>Chrome, Edge, Firefox, or Safari (current version recommended)</td></tr>
+      <tr><td><strong>Internet connection</strong></td><td>Required for AI extraction and case saving; risk engine works offline</td></tr>
+      <tr><td><strong>Device</strong></td><td>Desktop or laptop recommended for full layout; mobile supported</td></tr>
+      <tr><td><strong>Screen resolution</strong></td><td>1024&times;768 minimum; 1440&times;900 or wider recommended</td></tr>
+    </table>
+    <h3>Accessing ThyroidCA</h3>
+    <ul>
+      <li><strong>Production (clinical use):</strong> <a href="https://thyroidca.com">thyroidca.com</a></li>
+      <li><strong>Sandbox (testing only):</strong> thyroidca-sandbox.netlify.app — not for clinical use</li>
+    </ul>
+    <h3>Free Tier vs ThyroidCA Pro</h3>
+    <table>
+      <tr><th>Feature</th><th>Free</th><th>Pro ($10 AUD/month)</th></tr>
+      <tr><td>Full clinical decision support tool</td><td>&#10003;</td><td>&#10003;</td></tr>
+      <tr><td>Risk stratification and plan generation</td><td>&#10003;</td><td>&#10003;</td></tr>
+      <tr><td>Saved cases</td><td>&#10003;</td><td>&#10003;</td></tr>
+      <tr><td>RAI guide, target-therapy map</td><td>&#10003;</td><td>&#10003;</td></tr>
+      <tr><td>AI pathology auto-fill</td><td>3 extractions</td><td>Unlimited</td></tr>
+    </table>
+    <p>No account or login is required for the free tier. ThyroidCA Pro requires a Stripe subscription via the upgrade prompt.</p>
+
+    <!-- 3. INTERFACE -->
+    <h2 id="interface">3. The Interface</h2>
+    <h3>Layout</h3>
+    <p>On desktop, ThyroidCA uses a multi-zone layout:</p>
+    <ol>
+      <li><strong>Header bar (top)</strong> — Branding, version, About, Help, Saved Cases, Export PDF</li>
+      <li><strong>AI Upload bar (below header)</strong> — Pathology document upload and AI extraction (Pro)</li>
+      <li><strong>Left panel</strong> — Patient data entry form (scrollable)</li>
+      <li><strong>Right panel</strong> — Clinical plan output, Target-Therapy Map, RAI Reference, Unfavourable Subtypes</li>
+    </ol>
+    <p>On mobile, the panels stack vertically and the upload bar moves into the form panel.</p>
+    <h3>Header Buttons</h3>
+    <table>
+      <tr><th>Button</th><th>Function</th></tr>
+      <tr><td><strong>v1.3.0</strong></td><td>Opens the About modal — version history, author, disclaimers</td></tr>
+      <tr><td><strong>About</strong></td><td>Same as above</td></tr>
+      <tr><td><strong>Help</strong></td><td>Opens this user manual</td></tr>
+      <tr><td><strong>Saved Cases</strong></td><td>Opens the saved case database</td></tr>
+      <tr><td><strong>Export PDF</strong></td><td>Prints the current plan to PDF via the browser print dialog</td></tr>
+    </table>
+    <h3>Reference Tabs (right panel)</h3>
+    <table>
+      <tr><th>Tab</th><th>Contents</th></tr>
+      <tr><td><strong>Target-Therapy Map</strong></td><td>Molecular driver &rarr; first-line targeted agent reference table</td></tr>
+      <tr><td><strong>RAI Reference</strong></td><td>Intent-based RAI activity guide (remnant ablation / adjuvant / treatment)</td></tr>
+      <tr><td><strong>Unfavourable Subtypes</strong></td><td>ATA 2025 unfavourable histology subtype definitions and risk tier</td></tr>
+    </table>
+
+    <!-- 4. ENTERING DATA -->
+    <h2 id="entering-data">4. Entering Patient Data</h2>
+    <p>All fields are optional — the risk engine uses whatever data is available. Fields left blank are excluded from scoring. Enter the most complete data available from the surgical pathology report and clinical records.</p>
+    <h3>Patient &amp; Presentation</h3>
+    <table>
+      <tr><th>Field</th><th>Notes</th></tr>
+      <tr><td><strong>Patient name</strong></td><td>Optional — used for labelling saved cases only; not transmitted anywhere</td></tr>
+      <tr><td><strong>Age (years)</strong></td><td>Age &ge;55 is an ATA 2025 prognostic factor and adds a modest risk score increment</td></tr>
+      <tr><td><strong>Tumor size (cm)</strong></td><td>Enter the largest tumour focus in cm. Drives risk scoring at &gt;2 cm and &gt;4 cm thresholds</td></tr>
+      <tr><td><strong>Intrathyroidal</strong></td><td>Yes = tumour confined entirely within the thyroid capsule</td></tr>
+      <tr><td><strong>Pregnant</strong></td><td>If yes, RAI is flagged as absolutely contraindicated</td></tr>
+      <tr><td><strong>Comorbidity burden</strong></td><td>High/frailty modifies TSH suppression and surgical risk recommendations</td></tr>
+    </table>
+    <h3>Tumor Characteristics</h3>
+    <table>
+      <tr><th>Field</th><th>Notes</th></tr>
+      <tr><td><strong>Histology</strong></td><td>PTC, FTC, OTC (H&uuml;rthle cell), or IEFVPTC (follicular variant PTC)</td></tr>
+      <tr><td><strong>Unfavourable histology subtype</strong></td><td>Select if a specific aggressive subtype is reported — triggers automatic risk escalation. See the Unfavourable Subtypes tab for definitions</td></tr>
+      <tr><td><strong>Focality</strong></td><td>Unifocal or multifocal. If multifocal, enter number of foci and distribution (ipsilateral / bilateral)</td></tr>
+      <tr><td><strong>Gross ETE</strong></td><td>Gross (macroscopic) extrathyroidal extension only — microscopic/minimal ETE does not qualify</td></tr>
+      <tr><td><strong>Resection status</strong></td><td>R0 = clear margins; R1 = microscopic positive margin; R2 = gross residual disease</td></tr>
+      <tr><td><strong>Margin distance</strong></td><td>Optional — for R0 resections, distance of closest margin in mm</td></tr>
+      <tr><td><strong>Distant metastasis</strong></td><td>If yes, automatically triggers High risk and M1-specific recommendations</td></tr>
+    </table>
+    <h3>Pathology Findings</h3>
+    <table>
+      <tr><th>Field</th><th>Notes</th></tr>
+      <tr><td><strong>Vascular invasion</strong></td><td>None / Minimal (1&ndash;3 foci) / Extensive (&ge;4 foci or categorical extensive)</td></tr>
+      <tr><td><strong>Vascular invasion foci</strong></td><td>Number of discrete vascular invasion foci if stated in the report</td></tr>
+      <tr><td><strong>Nodes involved</strong></td><td>Total number of pathologically involved lymph nodes</td></tr>
+      <tr><td><strong>Largest node (cm)</strong></td><td>Size of the largest involved node — &ge;3 cm triggers high-volume nodal disease scoring</td></tr>
+      <tr><td><strong>Micrometastases only</strong></td><td>Yes only if ALL nodal deposits are &lt;2 mm</td></tr>
+      <tr><td><strong>Extranodal extension</strong></td><td>Extension of nodal metastases beyond the lymph node capsule</td></tr>
+      <tr><td><strong>Pathology notes</strong></td><td>Free text — record BRAF status, Ki-67, capsular invasion details, or any other significant findings</td></tr>
+    </table>
+    <h3>Surgical Procedure</h3>
+    <table>
+      <tr><th>Field</th><th>Notes</th></tr>
+      <tr><td><strong>Type of surgery</strong></td><td>Total thyroidectomy, near-total, hemithyroidectomy/lobectomy, completion thyroidectomy, active surveillance, or unknown</td></tr>
+      <tr><td><strong>Completion thyroidectomy</strong></td><td>Appears if lobectomy selected — planned / already done / not planned / under consideration</td></tr>
+      <tr><td><strong>Nodal surgery</strong></td><td>None / Central (Level VI) / Lateral (II&ndash;V) / Central + lateral / Berry-picking</td></tr>
+      <tr><td><strong>Intraoperative complications</strong></td><td>RLN injury, hypoparathyroidism, both, or none — modifies recommendations</td></tr>
+    </table>
+    <h3>Molecular, Labs &amp; Follow-up</h3>
+    <table>
+      <tr><th>Field</th><th>Notes</th></tr>
+      <tr><td><strong>Driver mutation</strong></td><td>RET fusion, NTRK1/3, BRAF V600E, ALK fusion, or none/unknown — drives targeted therapy recommendations</td></tr>
+      <tr><td><strong>Post-op serum Tg</strong></td><td>Not yet tested / Unavailable / Undetectable / Low (stable) / Rising — each generates a specific Tg interpretation section in the plan</td></tr>
+      <tr><td><strong>TgAb status</strong></td><td>Positive TgAb limits Tg interpretation and is flagged in the plan</td></tr>
+    </table>
+
+    <!-- 5. AI AUTOFILL -->
+    <h2 id="ai-autofill">5. AI Pathology Auto-Fill <span class="badge pro">Pro</span></h2>
+    <p>ThyroidCA Pro includes an AI-assisted data extraction feature that reads a surgical pathology report and automatically populates the form fields.</p>
+    <h3>How to Use It</h3>
+    <ol>
+      <li><strong>Locate the upload bar</strong> at the top of the page (below the disclaimer, above the form)</li>
+      <li><strong>Upload your file</strong> using one of two methods:
+        <ul>
+          <li><strong>Drag and drop</strong> — drag the file directly onto the upload zone</li>
+          <li><strong>Browse</strong> — click the Browse button to open a file picker</li>
+        </ul>
+      </li>
+      <li><strong>Supported formats:</strong> PDF (digital or scanned), PNG, JPG, TIFF, WebP (max 4 MB)</li>
+      <li>Once the file is loaded, the filename appears in the bar and the <strong>Extract &amp; Fill</strong> button activates</li>
+      <li>Click <strong>Extract &amp; Fill</strong> — Claude reads the report and populates matching fields (5&ndash;15 seconds)</li>
+      <li><strong>Review all extracted fields</strong> — highlighted fields indicate what was auto-populated</li>
+      <li>Correct any errors, then click <strong>Generate Clinical Plan</strong></li>
+    </ol>
+    <h3>What Gets Extracted</h3>
+    <p>Patient name, age, tumour size, histology, unfavourable subtype, multifocality and foci count, intrathyroidal status, gross ETE, resection status, margin distance, distant metastasis, vascular invasion (category and foci count), nodal disease (number and largest node size), micrometastases, extranodal extension, and free-text pathology notes (BRAF status, Ki-67, capsular invasion details).</p>
+    <h3>Tips for Best Results</h3>
+    <ul>
+      <li><strong>Digital PDFs extract best</strong> — a text-layer PDF costs ~3&times; fewer tokens than a scanned image and produces more accurate extraction</li>
+      <li><strong>Limit to the relevant pages</strong> — upload the surgical pathology report only, not the full hospital record</li>
+      <li><strong>Compress large files</strong> — files over 4 MB will be rejected; use <a href="https://ilovepdf.com" target="_blank">ilovepdf.com</a> to compress before uploading</li>
+      <li><strong>Always verify</strong> — AI extraction is highly accurate but not infallible; always review populated fields before generating a plan</li>
+    </ul>
+    <div class="callout warn">Uploaded documents are transmitted via an encrypted server-side proxy to Anthropic's API for processing and are not stored by EHI or Anthropic beyond the duration of the API call. Do not upload documents containing patient identifiers unless you have appropriate consent and institutional privacy compliance.</div>
+
+    <!-- 6. CLINICAL PLAN -->
+    <h2 id="clinical-plan">6. Understanding the Clinical Plan</h2>
+    <p>Click <strong>Generate Clinical Plan</strong> after entering patient data. The plan appears in the right panel and contains the following sections:</p>
+    <h3>Summary Grid</h3>
+    <p>A row of tiles showing at a glance: patient name, histology, tumour size, unfavourable subtype (if any), focality, serum Tg status, and the <strong>ATA 2025 risk tier</strong> (colour-coded: green = Low, amber = Intermediate, red = High).</p>
+    <h3>Risk Stratification Drivers</h3>
+    <p>A list of every feature that contributed to the risk tier, with a brief description of each. This makes the reasoning transparent and auditable.</p>
+    <h3>Surgical Management</h3>
+    <p>Recommendation for surgical extent based on risk tier, tumour characteristics, focality, and the procedure already performed. If a lobectomy has been performed, this section addresses whether completion thyroidectomy is recommended.</p>
+    <h3>Radioactive Iodine (RAI)</h3>
+    <p>Intent-based RAI recommendation aligned to ATA 2025:</p>
+    <ul>
+      <li><strong>Low risk:</strong> RAI not routinely recommended</li>
+      <li><strong>Intermediate risk:</strong> Selective — context-dependent, discuss in MDT</li>
+      <li><strong>High risk:</strong> Adjuvant RAI recommended (~75&ndash;150 mCi)</li>
+      <li><strong>Lobectomy only:</strong> RAI flagged as not applicable until completion thyroidectomy</li>
+      <li><strong>Pregnant:</strong> Absolute contraindication flagged</li>
+    </ul>
+    <h3>TSH Suppression Strategy</h3>
+    <p>Initial TSH target and duration based on risk tier. High risk &rarr; &lt;0.1 mU/L; Intermediate &rarr; 0.1&ndash;0.5 mU/L; Low &rarr; low-normal (0.5&ndash;2 mU/L). After lobectomy, redirects to replacement rather than suppression.</p>
+    <h3>Systemic / Targeted Therapy</h3>
+    <p>Appears for High risk or M1 disease only. If an actionable driver mutation is selected, the specific targeted agent is recommended (selpercatinib/pralsetinib for RET; larotrectinib/entrectinib for NTRK; dabrafenib + trametinib for BRAF V600E; alectinib for ALK). If no driver, lenvatinib or sorafenib are recommended as MKI options.</p>
+    <h3>Serum Tg Interpretation</h3>
+    <p>A specific interpretation block based on the Tg status selected. After lobectomy, Tg is flagged as uninterpretable as a tumour marker.</p>
+    <h3>Surveillance Protocol</h3>
+    <p>Risk-stratified follow-up schedule including ultrasound, Tg monitoring, and imaging intervals. After lobectomy, switches to ultrasound-based surveillance.</p>
+
+    <!-- 7. SAVING CASES -->
+    <h2 id="saving-cases">7. Saving and Retrieving Cases</h2>
+    <h3>Saving a Case</h3>
+    <ol>
+      <li>Generate a clinical plan</li>
+      <li>Click the <strong>Save</strong> button (appears in the action row after generating a plan)</li>
+      <li>The case is stored with the patient name, risk tier, histology, and timestamp</li>
+      <li>A confirmation toast appears at the bottom right of the screen</li>
+    </ol>
+    <h3>Retrieving a Case</h3>
+    <ol>
+      <li>Click <strong>Saved Cases</strong> in the header</li>
+      <li>The case list shows all saved cases with name, histology, size, risk badge, and date</li>
+      <li>Click <strong>Load &amp; View</strong> on any case to restore all form fields and regenerate the plan</li>
+      <li>Click <strong>Delete</strong> to permanently remove a case (confirmation required)</li>
+    </ol>
+
+    <!-- 8. SUBSCRIPTION -->
+    <h2 id="subscription">8. Subscription</h2>
+    <h3>Free Tier</h3>
+    <p>All users have free access to the full clinical decision support tool. No account or payment is required. Free users receive <strong>3 complimentary AI extractions</strong>. After these are used, the upload bar is replaced by an upgrade prompt.</p>
+    <h3>ThyroidCA Pro</h3>
+    <p><strong>Price:</strong> $10 AUD / month &nbsp;&middot;&nbsp; <strong>Trial:</strong> 14-day free trial &nbsp;&middot;&nbsp; <strong>Billing:</strong> Monthly via Stripe, cancel anytime.</p>
+    <h3>Subscribing</h3>
+    <ol>
+      <li>Click <strong>Subscribe — $10 AUD/month</strong> in the upgrade prompt</li>
+      <li>You will be redirected to a secure Stripe-hosted checkout page</li>
+      <li>Enter your payment details (card, Apple Pay, or Google Pay)</li>
+      <li>On successful payment, you are returned to ThyroidCA with Pro activated</li>
+      <li>The upload bar reappears with a <strong>Pro</strong> badge</li>
+    </ol>
+    <h3>Restoring Access on a New Device</h3>
+    <ol>
+      <li>Click <strong>Subscribe — $10 AUD/month</strong> in the upgrade prompt</li>
+      <li>Click <strong>Already subscribed?</strong> below the subscribe button</li>
+      <li>Enter the email address you used when subscribing</li>
+      <li>Pro access is restored immediately</li>
+    </ol>
+    <h3>Cancelling</h3>
+    <p>Cancel anytime via your Stripe customer portal or by emailing <a href="mailto:steve.boyages@gmail.com">steve.boyages@gmail.com</a>. Access continues until the end of the current billing period.</p>
+
+    <!-- 9. TROUBLESHOOTING -->
+    <h2 id="troubleshooting">9. Troubleshooting &amp; FAQ</h2>
+    <h3>AI Extraction</h3>
+    <p><strong>The Extract &amp; Fill button is greyed out</strong><br>A file must be loaded first. Use Browse or drag a file onto the upload zone. The button activates once the file is read into memory.</p>
+    <p><strong>I get an error when clicking Extract &amp; Fill</strong></p>
+    <ul>
+      <li><em>File too large</em> — compress the PDF to under 4 MB using <a href="https://ilovepdf.com" target="_blank">ilovepdf.com</a></li>
+      <li><em>API key not configured</em> — administrator issue; contact EHI support</li>
+      <li><em>Rate limit reached</em> — maximum 10 extractions per hour per user; wait and try again</li>
+      <li><em>Claude returned empty response</em> — the document may be a scanned image with very low resolution; try a higher quality scan or digital PDF</li>
+    </ul>
+    <p><strong>Fields weren't populated after extraction</strong><br>Some fields may not be present in the report or may be expressed in non-standard language. Review the pathology notes field — the AI records any findings it couldn't map to structured fields there.</p>
+    <p><strong>The file won't upload</strong><br>Only PDF, PNG, JPG, TIFF, and WebP formats are supported. Maximum file size is 4 MB. Ensure the file is not password-protected.</p>
+    <hr>
+    <h3>Clinical Plan</h3>
+    <p><strong>The risk tier seems too high / too low</strong><br>Review the Risk Stratification Drivers list — every scoring factor is listed. Verify all entered data matches the pathology report. Correct any inadvertently set fields and regenerate.</p>
+    <p><strong>RAI shows as 'not applicable'</strong><br>This appears when hemithyroidectomy/lobectomy is selected and completion thyroidectomy has not been marked as already performed. RAI requires a total or near-total thyroidectomy.</p>
+    <p><strong>The plan shows no systemic therapy recommendation</strong><br>Systemic therapy recommendations only appear for High risk or M1 disease.</p>
+    <hr>
+    <h3>Subscription</h3>
+    <p><strong>My Pro badge isn't showing after subscribing</strong><br>Subscription activation normally takes 5&ndash;10 seconds. If it hasn't appeared after 30 seconds, refresh the page. If still not activated, click "Already subscribed?" and enter your email address.</p>
+    <p><strong>I subscribed on another device and can't access Pro</strong><br>Click "Already subscribed?" in the upgrade prompt and enter the email you used when subscribing.</p>
+    <p><strong>I was charged but can't access Pro</strong><br>Contact <a href="mailto:steve.boyages@gmail.com">steve.boyages@gmail.com</a> with your receipt and we will resolve it promptly.</p>
+    <hr>
+    <h3>General</h3>
+    <p><strong>Can I use ThyroidCA offline?</strong><br>The risk engine and plan generator work offline once the page is loaded. AI extraction and saved cases require an internet connection.</p>
+    <p><strong>Is my patient data stored?</strong><br>Patient data entered into the form is processed locally in your browser and is not sent to any server except: (a) pathology documents uploaded for AI extraction, transmitted to Anthropic's API and immediately discarded, and (b) case data explicitly saved using the Save button, stored in an encrypted database.</p>
+    <p><strong>Which browsers are supported?</strong><br>Chrome, Edge, Firefox, and Safari (current versions). Internet Explorer is not supported.</p>
+
+    <!-- 10. CONTACT -->
+    <h2 id="contact">10. Contact &amp; Support</h2>
+    <div class="callout info">
+      <strong>Professor Steven C. Boyages</strong> MBBS FRACP FAFPHM DDU PhD<br>
+      Director, EndoHormone Institute Pty Ltd (EHI)<br>
+      Email: <a href="mailto:steve.boyages@gmail.com">steve.boyages@gmail.com</a><br>
+      ORCID: 0000-0002-3909-1662
+    </div>
+    <h3>Clinical Questions and Feedback</h3>
+    <p>For clinical accuracy issues, suggested improvements, or guideline update requests, email the address above and include: a description of the clinical scenario, the specific recommendation in question, and the relevant ATA 2025 guideline reference if applicable.</p>
+    <h3>Technical Support</h3>
+    <p>For login issues, subscription problems, or extraction errors, email the same address with: a description of the issue, the browser and device you are using, and any error message shown on screen.</p>
+    <h3>Billing and Subscription</h3>
+    <p>For billing enquiries, receipts, refund requests, or subscription cancellation: <a href="mailto:steve.boyages@gmail.com">steve.boyages@gmail.com</a>. For urgent Stripe billing issues: <a href="https://support.stripe.com" target="_blank">support.stripe.com</a>.</p>
+    <h3>EHI Website</h3>
+    <p><a href="https://www.endohormoneinstitute.com.au" target="_blank">endohormoneinstitute.com.au</a></p>
+  </main>
+</div>
+
+<footer>
+  <em>ThyroidCA v1.3.0 &middot; &copy; 2025&ndash;2026 EndoHormone Institute Pty Ltd (EHI) &middot; ATA 2025 aligned &middot; For qualified healthcare professionals only &middot; Not affiliated with or endorsed by the American Thyroid Association&reg;</em>
+</footer>
+
+<script>
+// Highlight active nav item on scroll
+const sections = document.querySelectorAll('h2[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navItems.forEach(n => {
+    n.classList.toggle('active', n.getAttribute('href') === '#' + current);
+  });
+}, {passive: true});
+</script>
+</body>
+</html>
