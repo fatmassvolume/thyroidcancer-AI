@@ -100,4 +100,3 @@ exports.handler = async function(event) {
     await client.end();
   }
 };
-
