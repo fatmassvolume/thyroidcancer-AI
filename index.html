@@ -1788,8 +1788,9 @@ Extract the following fields and return ONLY a valid JSON object with exactly th
   "distantMet": "yes" or "no",
   "vasInvasion": "none" or "minimal" or "extensive",
   "vasFoci": number (0-20) or null,
-  "nodesNum": number or null,
-  "nodeLargest": number (cm) or null,
+  "nodesNum": number or null (nodes POSITIVE for carcinoma, never the number examined),
+  "nodesExamined": number or null (total nodes dissected or examined),
+  "nodeLargest": number (cm; size of the largest nodal deposit, convert mm to cm) or null,
   "micromet": "yes" or "no",
   "ene": "yes" or "no",
   "pathNotes": string summarising any key pathology details not captured above, or null
@@ -1803,6 +1804,9 @@ Rules:
 - vasFoci: extract the number of vascular invasion foci if stated
 - resectionStatus: negative/clear margins→R0; microscopic positive→R1; gross residual→R2
 - grossETE: only mark yes for GROSS (macroscopic) extrathyroidal extension; minimal/microscopic ETE is NOT gross ETE
+- nodesNum: the number of lymph nodes INVOLVED BY CARCINOMA (positive nodes) only. Never use the total or examined count. Read "involved (1/19)", "1 of 19 nodes positive", "1/19" or "number of involved nodes: 1; total number of nodes: 19" as nodesNum = 1 and nodesExamined = 19. If no node is involved, nodesNum = 0. Prefer the synoptic total over adding up levels yourself.
+- nodesExamined: the total number of nodes examined across all levels and specimens, from the synoptic total if given
+- nodeLargest: size of the largest metastatic deposit in cm (9 mm = 0.9); null if no node is involved
 - micromet: yes only if ALL nodal deposits are <2mm
 - ene: extranodal extension of nodal metastases
 - multifocal: yes if more than one distinct tumour focus is described
@@ -1976,7 +1980,7 @@ function showExtractionSummary(ex) {
   html += label('Gross ETE', ex.grossETE==='yes' ? 'Present' : null);
   html += label('Resection', ex.resectionStatus !== 'R0' ? ex.resectionStatus : null);
   html += label('Vasc. invasion', ex.vasInvasion !== 'none' ? ex.vasInvasion + (ex.vasFoci ? ' (' + ex.vasFoci + ' foci)' : '') : null);
-  html += label('Nodes', ex.nodesNum ? ex.nodesNum + ' node(s)' + (ex.nodeLargest ? ', largest ' + ex.nodeLargest + ' cm' : '') : null);
+  html += label('Nodes', (typeof ex.nodesNum === 'number' && (ex.nodesNum > 0 || ex.nodesExamined)) ? ex.nodesNum + ' positive' + (ex.nodesExamined ? ' of ' + ex.nodesExamined + ' examined' : '') + (ex.nodeLargest ? ', largest ' + ex.nodeLargest + ' cm' : '') : null);
   html += label('ENE', ex.ene==='yes' ? 'Present' : null);
   html += label('Distant met', ex.distantMet==='yes' ? 'Yes' : null);
   if (!html) html = '<span style="color:var(--ink3);">No structured fields extracted — check pathNotes below.</span>';
