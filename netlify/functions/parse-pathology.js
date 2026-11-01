@@ -40,8 +40,9 @@ Extract the following fields and return ONLY a valid JSON object with exactly th
   "distantMet": "yes" or "no",
   "vasInvasion": "none" or "minimal" or "extensive",
   "vasFoci": number (0-20) or null,
-  "nodesNum": number or null,
-  "nodeLargest": number (cm) or null,
+  "nodesNum": number or null (nodes POSITIVE for carcinoma, never the number examined),
+  "nodesExamined": number or null (total nodes dissected or examined),
+  "nodeLargest": number (cm; size of the largest nodal deposit, convert mm to cm) or null,
   "micromet": "yes" or "no",
   "ene": "yes" or "no",
   "pathNotes": string summarising any key pathology details not captured above, or null
@@ -54,6 +55,9 @@ Rules:
 - vasInvasion: >=4 foci or extensive->extensive; 1-3 foci or minimal->minimal; none->none
 - resectionStatus: clear margins->R0; microscopic positive->R1; gross residual->R2
 - grossETE: yes only for GROSS (macroscopic) ETE; minimal/microscopic does NOT qualify
+- nodesNum: the number of lymph nodes INVOLVED BY CARCINOMA (positive nodes) only. Never use the total or examined count. Read "involved (1/19)", "1 of 19 nodes positive", "1/19" or "number of involved nodes: 1; total number of nodes: 19" as nodesNum = 1 and nodesExamined = 19. If no node is involved, nodesNum = 0. Prefer the synoptic total over adding up levels yourself.
+- nodesExamined: the total number of nodes examined across all levels and specimens, from the synoptic total if given
+- nodeLargest: size of the largest metastatic deposit in cm (9 mm = 0.9); null if no node is involved
 - micromet: yes only if ALL nodal deposits <2mm
 - multifocal: yes if more than one distinct tumour focus
 - pathNotes: BRAF status, LVI, capsular invasion, Ki-67, other significant findings
@@ -281,6 +285,12 @@ exports.handler = async function(event) {
   let extracted;
   try { extracted = JSON.parse(clean); }
   catch { return { statusCode: 502, headers, body: JSON.stringify({ error: 'Could not parse extraction result.' }) }; }
+
+  // Sanity guard: involved nodes can never exceed nodes examined
+  if (extracted && typeof extracted.nodesNum === 'number' && typeof extracted.nodesExamined === 'number' && extracted.nodesNum > extracted.nodesExamined) {
+    extracted.nodesNum = null;
+    extracted.pathNotes = ((extracted.pathNotes || '') + ' Nodal count was inconsistent (involved exceeded examined); please enter the number of involved nodes manually.').trim();
+  }
 
   return {
     statusCode: 200,
