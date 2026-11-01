@@ -52,6 +52,7 @@ Rules:
 - tumorSize: largest tumour focus in cm
 - histology: papillary->PTC, follicular->FTC, oncocytic/hurthle->OTC, follicular variant PTC->IEFVPTC
 - unfavHist: tall cell->tallcell, columnar->columnar, hobnail/micropapillary->hobnail, diffuse sclerosing->diffscler, solid/trabecular->solidtrab, poorly differentiated->pdtc, oncocytic high-grade->otc_unfav, none->none
+- unfavHist percentage rule: tall cell, hobnail and solid/trabecular count as unfavourable ONLY when they make up 30% or more of the tumour (the app's threshold). If the report gives a percentage below 30% (for example "solid/trabecular growth pattern, 20%"), set unfavHist to "none" and record the finding and percentage in pathNotes. If the report names the entity as the tumour's variant or subtype without giving a percentage, assign it. If it gives a percentage of exactly 30%, assign it and say in pathNotes that the percentage is at the threshold. Focal or minor components (for example "focal tall cell features", "focal hobnail") are NOT the variant: use "none" and note them in pathNotes. Never infer a percentage that is not stated.
 - vasInvasion: >=4 foci or extensive->extensive; 1-3 foci or minimal->minimal; none->none
 - resectionStatus: clear margins->R0; microscopic positive->R1; gross residual->R2
 - grossETE: yes only for GROSS (macroscopic) ETE; minimal/microscopic does NOT qualify
