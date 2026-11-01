@@ -665,7 +665,7 @@
     <div class="action-row">
       <button class="btn-primary" onclick="generatePlan()">Generate Clinical Plan &#8594;</button>
       <button class="btn-save" id="saveBtn" style="display:none;" onclick="saveCase()">&#128190; Save</button>
-      <button class="btn-secondary" onclick="resetForm()">Reset</button>
+      <button class="btn-secondary" id="clearBtn" onclick="newPatient()" title="Clear the form, uploaded report and plan so the next patient can be entered">Clear &amp; new patient</button>
     </div>
   </div>
 
@@ -1759,6 +1759,27 @@ function clearFile() {
   if (resultBar) resultBar.style.display = 'none';
 
   updateParseBtn();
+}
+
+// Clear everything so the next patient can be entered. Two-step to avoid accidental loss.
+var _clearArmed = false, _clearTimer = null;
+function newPatient() {
+  var btn = document.getElementById('clearBtn');
+  if (!_clearArmed) {
+    _clearArmed = true;
+    if (btn) btn.textContent = 'Click again to clear';
+    _clearTimer = setTimeout(function(){ _clearArmed = false; if (btn) btn.innerHTML = 'Clear &amp; new patient'; }, 4000);
+    return;
+  }
+  clearTimeout(_clearTimer); _clearArmed = false;
+  if (btn) btn.innerHTML = 'Clear &amp; new patient';
+  resetForm();
+  clearFile();
+  ['pathFileInput','pathFileInputMobile'].forEach(function(id){ var f = document.getElementById(id); if (f) f.value = ''; });
+  var pr = document.getElementById('parseResult'); if (pr) { pr.style.display = 'none'; }
+  var pp = document.getElementById('parseProgress'); if (pp) pp.classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showToast('Cleared. Ready for the next patient.', 'info');
 }
 
 function updateParseBtn() {
